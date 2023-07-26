@@ -162,3 +162,21 @@ the development process
 ### Admin CRUD functions
 
 - Add, update and deletion of products
+
+---
+
+## Web marketing campaign
+
+- FB Business page
+- Reciprocal links
+- Newsletter
+- eCommerce business model in-depth
+
+## SEO implementation
+
+- Step-up from previous considerations
+- robots.txt
+- sitemap.xml
+- meta tags
+- rel attrs on external links
+- URL design
