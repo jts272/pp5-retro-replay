@@ -32,3 +32,64 @@ the development process
 - [Issues]
 - [Milestones]
 - [Projects]
+
+---
+
+## Five stages of UX design
+
+### 1. Strategy
+
+- Business model
+- Competition check
+
+### 2. Scope
+
+- MVP features
+- Admin CRUD
+- Specific eCommerce implementation
+
+### 3. Structure
+
+- Information architecture
+- Interaction design
+- Navigation
+
+### 4. Skeleton
+
+- UI
+- Navigation story
+- Mobile-first
+
+<details>
+  <summary>Wireframe</summary>
+  <img src="" alt="">
+</details>
+
+### 5. Surface
+
+#### Colour
+
+![Colour palette]
+
+- Colour justification
+
+#### Typography
+
+- Font justification
+
+[Pricedown]
+
+#### Imagery
+
+- Own images
+- Customers interested in condition
+
+#### Text content
+
+- [igdb.com]
+- Model text
+
+#### Responsive design
+
+- Mobile first
+- Progressive enhancement to bigger screens
