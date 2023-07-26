@@ -2,7 +2,7 @@
 name: User story
 about: An agile user story, broken down into tasks and acceptance criteria
 title: "[STORY]"
-labels: ''
+labels: user story
 assignees: ''
 
 ---
