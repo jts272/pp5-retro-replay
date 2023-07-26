@@ -93,3 +93,72 @@ the development process
 
 - Mobile first
 - Progressive enhancement to bigger screens
+
+---
+
+## Features
+
+- Include screenshots of everything
+
+### Navbar
+
+- Fully responsive
+- Search bar
+
+### Home page
+
+- Introduction
+- New arrivals
+
+### Footer
+
+- Newsletter
+- Social CTAs
+
+### Pagination of console > item type
+
+- e.g. Console > Region > Games list > game detail
+
+### Product detail page
+
+- Add to basket
+
+### Basket
+
+- Remove products
+- Keep shopping
+
+### Checkout
+
+- Confirm address
+- Payment integration
+
+### Profile
+
+- Address
+- Order history
+
+### FAQ/Contact page
+
+- HTML detail/summary
+- Contact
+
+### Error pages
+
+- 404
+- 403
+- 500
+
+### Favicon
+
+- Where it was made and why
+
+### Feedback system
+
+- Django messages
+- Toasts
+- Login/registration status
+
+### Admin CRUD functions
+
+- Add, update and deletion of products
