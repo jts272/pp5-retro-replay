@@ -267,3 +267,38 @@ Tool: [WAVE](https://wave.webaim.org/)
 - No commented-out code
 - Filename conventions
 - Settings (pyproject, formatters)
+
+## Deployment
+
+- See PP4 steps where appropriate
+- [Boutique Ado guide](https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+EA101+2021_T1/courseware/eb05f06e62c64ac89823cc956fcd8191/40cc2543c48643fda09351da6fa90579/)
+- [AWS guide](https://codeinstitute.s3.amazonaws.com/fullstack/AWS%20changes%20sheet.pdf)
+
+### Breakdown by service provider
+
+- Environment
+- SECRET KEYS
+
+- GitHub
+- Heroku
+- ElephantSQL
+- Stripe
+- AWS
+
+### Cloning
+
+- See PP4 if same
+
+### Forking
+
+- See PP4 if same
+
+---
+
+## Acknowledgements
+
+- Code credit given in comments and docstrings
+- Any tutorials if required
+- Shoutouts to CI tutors, mentors, students past and present
+- Any repos that served as inspiration
+- Summary of year's learning
