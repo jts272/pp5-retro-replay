@@ -180,3 +180,45 @@ the development process
 - meta tags
 - rel attrs on external links
 - URL design
+
+---
+
+## Data modelling
+
+- PostgreSQL on ElephantSQL
+- How to read the graph
+- Note on custom models, with images for each
+
+### Header for each model
+
+### Complete schema
+
+---
+
+## Testing
+
+- Intro on nature of testing carried out
+- Mention what was automated and what was manual/integration
+
+### Python testing
+
+#### Automated test for each app
+
+#### Coverage
+
+### JavaScript testing
+
+- Table
+
+### Stripe/webhook testing
+
+- Local vs deployed
+
+### UX/User story testing
+
+- Link to project iterations; mention index card presentation
+
+### UI testing
+
+- Mobile-first design
+- Each component that was tested for responsiveness throughout development
