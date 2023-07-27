@@ -222,3 +222,48 @@ the development process
 
 - Mobile-first design
 - Each component that was tested for responsiveness throughout development
+
+---
+
+## Validation
+
+- Accessibility and SEO considerations
+
+### HTML validation
+
+Tool: [Nu Html Checker](https://validator.w3.org/nu/)
+
+### CSS validation
+
+Tool: [Jigsaw CSS Validation Service](https://jigsaw.w3.org/css-validator/)
+
+### JavaScript validation
+
+Tool: [JSHint](https://jshint.com/)
+
+- Local = eslint, prettier
+
+### Python validation
+
+https://pep8ci.herokuapp.com/
+
+- Local = ruff, pylance, black
+
+### WAVE accessibility validation
+
+Tool: [WAVE](https://wave.webaim.org/)
+
+### Lighthouse reports
+
+---
+
+## Bugs
+
+- Link to milestones
+
+## Version control
+
+- Conventional commits
+- No commented-out code
+- Filename conventions
+- Settings (pyproject, formatters)
