@@ -1,13 +1,20 @@
-{% for product in products %}
-  <li>
-    <ul>
-      Product: {{ product.name }}
-    </ul>
-    <ul>
-      Price: {{ product.category }}
-    </ul>
-    <ul>
-      Category: {{ product.category }}
-    </ul>
-  </li>
-{% endfor %}
+{% extends "base.html" %}
+{% block title %}
+  Retro Replay | Home
+{% endblock title %}
+Retro Replay | Home
+{% block content %}
+  {% for product in products %}
+    <li>
+      <ul>
+        Product: {{ product.name }}
+      </ul>
+      <ul>
+        Price: {{ product.category }}
+      </ul>
+      <ul>
+        Category: {{ product.category }}
+      </ul>
+    </li>
+  {% endfor %}
+{% endblock content %}
