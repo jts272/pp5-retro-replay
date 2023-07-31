@@ -5,16 +5,10 @@
 Retro Replay | Home
 {% block content %}
   {% for product in products %}
-    <li>
-      <ul>
-        Product: {{ product.name }}
-      </ul>
-      <ul>
-        Price: {{ product.category }}
-      </ul>
-      <ul>
-        Category: {{ product.category }}
-      </ul>
-    </li>
+    <ul>
+      <li>Product: {{ product.name }}</li>
+      <li>Price: {{ product.category }}</li>
+      <li>Category: {{ product.category }}</li>
+    </ul>
   {% endfor %}
 {% endblock content %}
