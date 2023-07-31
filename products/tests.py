@@ -1,5 +1,6 @@
 from django.test import TestCase
 
+from . import views
 from .models import Category, Product
 
 
@@ -18,3 +19,9 @@ class TestProductModel(TestCase):
 
     def test_product_str_method(self):
         self.assertEqual(self.p.__str__(), "test product")
+
+
+class TestAllProductsView(TestCase):
+    def test_view_url_200_response(self):
+        response = self.client.get("/")
+        self.assertEqual(response.status_code, 200)
