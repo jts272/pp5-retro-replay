@@ -15,7 +15,7 @@ def all_products(request):
     """
     products = Product.objects.all()
     context = {"products": products}
-    return render(request, "products/index.html", context)
+    return render(request, "products/product_list.html", context)
 
 
 def products_by_category(request, category):
@@ -30,7 +30,7 @@ def products_by_category(request, category):
     """
     products = Product.objects.filter(category__slug=category)
     context = {"products": products}
-    return render(request, "products/index.html", context)
+    return render(request, "products/product_list.html", context)
 
 
 def products_by_platform(request, platform):
@@ -45,7 +45,7 @@ def products_by_platform(request, platform):
     """
     products = Product.objects.filter(platform__slug=platform)
     context = {"products": products}
-    return render(request, "products/index.html", context)
+    return render(request, "products/product_list.html", context)
 
 
 def products_by_region(request, region):
@@ -60,7 +60,7 @@ def products_by_region(request, region):
     """
     products = Product.objects.filter(region__slug=region)
     context = {"products": products}
-    return render(request, "products/index.html", context)
+    return render(request, "products/product_list.html", context)
 
 
 def product_detail(request, pk):
