@@ -17,6 +17,6 @@ def products_by_category(request, category):
         request -- HttpRequest
         category -- category to filter products by
     """
-    products = Product.objects.filter(slug=category)
+    products = Product.objects.filter(category__slug=category)
     context = {"products": products}
     return render(request, "products/index.html", context)
