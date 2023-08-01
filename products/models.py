@@ -8,6 +8,9 @@ class Product(models.Model):
     category = models.ForeignKey(
         "Category", on_delete=models.SET_NULL, null=True, blank=True
     )
+    platform = models.ForeignKey(
+        "Platform", on_delete=models.SET_NULL, null=True, blank=True
+    )
 
     def __str__(self):
         return self.name
@@ -19,6 +22,14 @@ class Category(models.Model):
 
     class Meta:
         verbose_name_plural = "Categories"
+
+    def __str__(self):
+        return self.name
+
+
+class Platform(models.Model):
+    name = models.CharField(max_length=255)
+    slug = models.SlugField(max_length=255)
 
     def __str__(self):
         return self.name
