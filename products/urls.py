@@ -15,4 +15,9 @@ urlpatterns = [
         views.products_by_platform,
         name="products_by_platform",
     ),
+    path(
+        "regions/<slug:regions>/",
+        views.products_by_region,
+        name="products_by_region",
+    ),
 ]
