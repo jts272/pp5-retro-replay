@@ -1,8 +1,7 @@
 {% extends "base.html" %}
 {% block title %}
-  Retro Replay | Home
+  Retro Replay | Products
 {% endblock title %}
-Retro Replay | Home
 {% block content %}
   <p>{{ products.count }} product{{ products.count|pluralize }} found:</p>
   {% for product in products %}
