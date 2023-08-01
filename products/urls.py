@@ -16,7 +16,7 @@ urlpatterns = [
         name="products_by_platform",
     ),
     path(
-        "regions/<slug:regions>/",
+        "regions/<slug:region>/",
         views.products_by_region,
         name="products_by_region",
     ),
