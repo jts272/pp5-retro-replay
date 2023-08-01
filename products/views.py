@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from .models import Product
 
@@ -61,3 +61,18 @@ def products_by_region(request, region):
     products = Product.objects.filter(region__slug=region)
     context = {"products": products}
     return render(request, "products/index.html", context)
+
+
+def product_detail(request, pk):
+    """Returns the detail page for a given product
+
+    Arguments:
+        request -- HttpRequest
+        pk -- Primary Key of the item to be returned
+
+    Returns:
+        HTML template with request and context variables available.
+    """
+    product = get_object_or_404(Product, id=pk)
+    context = {"product": product}
+    return render(request, "products/product_detail.html", context)
