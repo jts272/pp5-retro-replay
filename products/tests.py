@@ -1,6 +1,5 @@
 from django.test import TestCase
 
-from . import views
 from .models import Category, Product, Platform, Region
 
 
