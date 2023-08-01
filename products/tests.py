@@ -68,3 +68,12 @@ class TestProductsByRegionView(TestCase):
     def test_view_url_200_response(self):
         response = self.client.get("/regions/test-region/")
         self.assertEqual(response.status_code, 200)
+
+
+class TestProductDetailView(TestCase):
+    def setUp(self):
+        self.p = Product.objects.create(name="test product", price=10.00)
+
+    def test_view_url_200_response(self):
+        response = self.client.get("/products/1/")
+        self.assertEqual(response.status_code, 200)
