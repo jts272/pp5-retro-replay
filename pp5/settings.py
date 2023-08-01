@@ -80,6 +80,7 @@ TEMPLATES = [
                 # Custom context processors
                 "products.context_processors.categories",
                 "products.context_processors.platforms",
+                "products.context_processors.regions",
             ],
         },
     },
