@@ -1,7 +1,7 @@
 from django.test import TestCase
 
 from . import views
-from .models import Category, Product, Platform
+from .models import Category, Product, Platform, Region
 
 
 # Create your tests here.
@@ -27,6 +27,14 @@ class TestPlatformModel(TestCase):
 
     def test_product_str_method(self):
         self.assertEqual(self.p.__str__(), "test platform")
+
+
+class TestRegionModel(TestCase):
+    def setUp(self):
+        self.r = Region.objects.create(name="test region", slug="test-region")
+
+    def test_region_str_method(self):
+        self.assertEqual(self.r.__str__(), "test region")
 
 
 class TestAllProductsView(TestCase):
