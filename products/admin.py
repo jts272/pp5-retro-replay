@@ -7,6 +7,17 @@ class CategoryModelAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ["name"]}
 
 
+class ProductModelAdmin(admin.ModelAdmin):
+    list_display = ["name", "region", "platform", "category", "price"]
+    search_fields = [
+        "name",
+        "region__name",
+        "platform__name",
+        "category__name",
+        "price",
+    ]
+
+
 class PlatformModelAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ["name"]}
 
@@ -17,6 +28,6 @@ class RegionModelAdmin(admin.ModelAdmin):
 
 # Register your models here.
 admin.site.register(Category, CategoryModelAdmin)
-admin.site.register(Product)
+admin.site.register(Product, ProductModelAdmin)
 admin.site.register(Platform, PlatformModelAdmin)
 admin.site.register(Region, RegionModelAdmin)
