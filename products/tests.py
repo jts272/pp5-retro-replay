@@ -6,7 +6,9 @@ from .models import Category, Product, Platform, Region
 # Create your tests here.
 class TestCategoryModel(TestCase):
     def setUp(self):
-        self.c = Category.objects.create(name="test category", slug="test-category")
+        self.c = Category.objects.create(
+            name="test category", slug="test-category"
+        )
 
     def test_category_str_method(self):
         self.assertEqual(self.c.__str__(), "test category")
@@ -17,7 +19,9 @@ class TestProductModel(TestCase):
         self.platform = Platform.objects.create(
             name="test platform", slug="test-platform"
         )
-        self.region = Region.objects.create(name="test region", slug="test-region")
+        self.region = Region.objects.create(
+            name="test region", slug="test-region"
+        )
         self.p = Product.objects.create(
             name="test product",
             price=10.00,
@@ -33,7 +37,9 @@ class TestProductModel(TestCase):
 
 class TestPlatformModel(TestCase):
     def setUp(self):
-        self.p = Platform.objects.create(name="test platform", slug="test-slug")
+        self.p = Platform.objects.create(
+            name="test platform", slug="test-slug"
+        )
 
     def test_product_str_method(self):
         self.assertEqual(self.p.__str__(), "test platform")
@@ -55,7 +61,9 @@ class TestAllProductsView(TestCase):
 
 class TestProductsByCategoryView(TestCase):
     def setUp(self):
-        self.c = Category.objects.create(name="test category", slug="test-category")
+        self.c = Category.objects.create(
+            name="test category", slug="test-category"
+        )
 
     def test_view_url_200_response(self):
         response = self.client.get("/categories/test-category/")
@@ -64,7 +72,9 @@ class TestProductsByCategoryView(TestCase):
 
 class TestProductsByPlatformView(TestCase):
     def setUp(self):
-        self.p = Platform.objects.create(name="test platform", slug="test-platform")
+        self.p = Platform.objects.create(
+            name="test platform", slug="test-platform"
+        )
 
     def test_view_url_200_response(self):
         response = self.client.get("/platforms/test-platform/")
