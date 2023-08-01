@@ -48,7 +48,7 @@
             {% for platform in platforms %}
               <li>
                 <a class="dropdown-item"
-                   href="{% url 'products:products_by_category' platform.slug %}">{{ platform.name }}</a>
+                   href="{% url 'products:products_by_platform' platform.slug %}">{{ platform.name }}</a>
               </li>
             {% endfor %}
           </ul>
