@@ -21,6 +21,7 @@ class Category(models.Model):
     slug = models.SlugField(max_length=255)
 
     class Meta:
+        ordering = ["name"]
         verbose_name_plural = "Categories"
 
     def __str__(self):
@@ -30,6 +31,9 @@ class Category(models.Model):
 class Platform(models.Model):
     name = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255)
+
+    class Meta:
+        ordering = ["name"]
 
     def __str__(self):
         return self.name
