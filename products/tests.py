@@ -15,10 +15,21 @@ class TestCategoryModel(TestCase):
 
 class TestProductModel(TestCase):
     def setUp(self):
-        self.p = Product.objects.create(name="test product", price=10.00)
+        self.platform = Platform.objects.create(
+            name="test platform", slug="test-platform"
+        )
+        self.region = Region.objects.create(name="test region", slug="test-region")
+        self.p = Product.objects.create(
+            name="test product",
+            price=10.00,
+            platform=self.platform,
+            region=self.region,
+        )
 
     def test_product_str_method(self):
-        self.assertEqual(self.p.__str__(), "test product")
+        self.assertEqual(
+            self.p.__str__(), "test product for test platform - test region"
+        )
 
 
 class TestPlatformModel(TestCase):
