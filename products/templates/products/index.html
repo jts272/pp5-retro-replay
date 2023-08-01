@@ -4,6 +4,7 @@
 {% endblock title %}
 Retro Replay | Home
 {% block content %}
+  <p>{{ products.count }} product{{ products.count|pluralize }} found:</p>
   {% for product in products %}
     <ul>
       <li>Product: {{ product.name }}</li>
