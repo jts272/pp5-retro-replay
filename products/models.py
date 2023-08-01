@@ -11,6 +11,9 @@ class Product(models.Model):
     platform = models.ForeignKey(
         "Platform", on_delete=models.SET_NULL, null=True, blank=True
     )
+    region = models.ForeignKey(
+        "Region", on_delete=models.SET_NULL, null=True, blank=True
+    )
 
     def __str__(self):
         return self.name
@@ -29,6 +32,17 @@ class Category(models.Model):
 
 
 class Platform(models.Model):
+    name = models.CharField(max_length=255)
+    slug = models.SlugField(max_length=255)
+
+    class Meta:
+        ordering = ["name"]
+
+    def __str__(self):
+        return self.name
+
+
+class Region(models.Model):
     name = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255)
 
