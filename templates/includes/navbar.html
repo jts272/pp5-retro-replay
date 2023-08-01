@@ -54,6 +54,23 @@
           </ul>
         </li>
         <!-- END Plaform dropdown -->
+        <!-- Region dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle"
+             href="#"
+             role="button"
+             data-bs-toggle="dropdown"
+             aria-expanded="false">Shop by Region</a>
+          <ul class="dropdown-menu">
+            {% for region in regions %}
+              <li>
+                <a class="dropdown-item"
+                   href="{% url 'products:products_by_region' region.slug %}">{{ region.name }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </li>
+        <!-- END Region dropdown -->
         <li class="nav-item">
           <a class="nav-link disabled" aria-disabled="true">Disabled</a>
         </li>
