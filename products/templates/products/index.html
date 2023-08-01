@@ -11,6 +11,9 @@ Retro Replay | Home
       <li>Price: {{ product.price }}</li>
       <li>Category: {{ product.category }}</li>
       <li>Platform: {{ product.platform }}</li>
+      <li>
+        <a href="{% url 'products:product_detail' product.id %}">More details</a>
+      </li>
     </ul>
   {% endfor %}
 {% endblock content %}
