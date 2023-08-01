@@ -1,7 +1,7 @@
 from django.test import TestCase
 
 from . import views
-from .models import Category, Product
+from .models import Category, Product, Platform
 
 
 # Create your tests here.
@@ -19,6 +19,14 @@ class TestProductModel(TestCase):
 
     def test_product_str_method(self):
         self.assertEqual(self.p.__str__(), "test product")
+
+
+class TestPlatformModel(TestCase):
+    def setUp(self):
+        self.p = Platform.objects.create(name="test platform", slug="test-slug")
+
+    def test_product_str_method(self):
+        self.assertEqual(self.p.__str__(), "test platform")
 
 
 class TestAllProductsView(TestCase):
