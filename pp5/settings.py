@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # Project apps
     "products.apps.ProductsConfig",
+    # Additional apps
+    "django_extensions",
 ]
 
 MIDDLEWARE = [
