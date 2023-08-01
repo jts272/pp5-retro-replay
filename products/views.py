@@ -11,7 +11,7 @@ def all_products(request):
         request -- HttpRequest
 
     Returns:
-        HTML template with request and context variables available.
+        HTML template with request and context variables available
     """
     products = Product.objects.all()
     context = {"products": products}
@@ -26,7 +26,7 @@ def products_by_category(request, category):
         category -- category to filter products by
 
     Returns:
-        HTML template with request and context variables available.
+        HTML template with request and context variables available
     """
     products = Product.objects.filter(category__slug=category)
     context = {"products": products}
@@ -41,7 +41,7 @@ def products_by_platform(request, platform):
         platform -- platform to filter products by
 
     Returns:
-        HTML template with request and context variables available.
+        HTML template with request and context variables available
     """
     products = Product.objects.filter(platform__slug=platform)
     context = {"products": products}
@@ -49,14 +49,14 @@ def products_by_platform(request, platform):
 
 
 def products_by_region(request, region):
-    """Returns all products within a given region
+    """Returns all products within a given region.
 
     Arguments:
         request -- HttpRequest
         region -- region to filter products by
 
     Returns:
-        HTML template with request and context variables available.
+        HTML template with request and context variables available
     """
     products = Product.objects.filter(region__slug=region)
     context = {"products": products}
@@ -64,14 +64,14 @@ def products_by_region(request, region):
 
 
 def product_detail(request, pk):
-    """Returns the detail page for a given product
+    """Returns the detail page for a given product.
 
     Arguments:
         request -- HttpRequest
         pk -- Primary Key of the item to be returned
 
     Returns:
-        HTML template with request and context variables available.
+        HTML template with request and context variables available
     """
     product = get_object_or_404(Product, id=pk)
     context = {"product": product}
