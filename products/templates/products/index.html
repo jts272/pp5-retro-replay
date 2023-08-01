@@ -7,8 +7,9 @@ Retro Replay | Home
   {% for product in products %}
     <ul>
       <li>Product: {{ product.name }}</li>
-      <li>Price: {{ product.category }}</li>
+      <li>Price: {{ product.price }}</li>
       <li>Category: {{ product.category }}</li>
+      <li>Platform: {{ product.platform }}</li>
     </ul>
   {% endfor %}
 {% endblock content %}
