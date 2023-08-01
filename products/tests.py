@@ -42,3 +42,12 @@ class TestProductsByCategoryView(TestCase):
     def test_view_url_200_response(self):
         response = self.client.get("/categories/test-category/")
         self.assertEqual(response.status_code, 200)
+
+
+class TestProductsByPlatformView(TestCase):
+    def setUp(self):
+        self.p = Platform.objects.create(name="test platform", slug="test-platform")
+
+    def test_view_url_200_response(self):
+        response = self.client.get("/platforms/test-platform/")
+        self.assertEqual(response.status_code, 200)
