@@ -32,3 +32,18 @@ def products_by_platform(request, platform):
     products = Product.objects.filter(platform__slug=platform)
     context = {"products": products}
     return render(request, "products/index.html", context)
+
+
+def products_by_region(request, region):
+    """Returns all products within a given region
+
+    Arguments:
+        request -- HttpRequest
+        region -- region to filter products by
+
+    Returns:
+        HTML template with request and context variables available
+    """
+    products = Product.objects.filter(region__slug=region)
+    context = {"products": products}
+    return render(request, "products/index.html", context)
