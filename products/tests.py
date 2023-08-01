@@ -33,3 +33,12 @@ class TestAllProductsView(TestCase):
     def test_view_url_200_response(self):
         response = self.client.get("/")
         self.assertEqual(response.status_code, 200)
+
+
+class TestProductsByCategoryView(TestCase):
+    def setUp(self):
+        self.c = Category.objects.create(name="test category", slug="test-category")
+
+    def test_view_url_200_response(self):
+        response = self.client.get("/categories/test-category/")
+        self.assertEqual(response.status_code, 200)
