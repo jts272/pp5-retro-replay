@@ -16,7 +16,7 @@ class Product(models.Model):
     )
 
     def __str__(self):
-        return self.name
+        return f"{self.name} for {self.platform} - {self.region}"
 
 
 class Category(models.Model):
