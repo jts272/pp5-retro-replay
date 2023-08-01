@@ -10,4 +10,9 @@ urlpatterns = [
         views.products_by_category,
         name="products_by_category",
     ),
+    path(
+        "platforms/<slug:platform>",
+        views.products_by_platform,
+        name="products_by_platform",
+    ),
 ]
