@@ -5,7 +5,7 @@ from django_extensions.db.fields import AutoSlugField
 # Create your models here.
 class Product(models.Model):
     name = models.CharField(max_length=255)
-    slug = AutoSlugField(populate_from=name)
+    slug = AutoSlugField(populate_from=["name", "region__name"])
     price = models.DecimalField(max_digits=6, decimal_places=2)
     category = models.ForeignKey(
         "Category", on_delete=models.SET_NULL, null=True, blank=True
