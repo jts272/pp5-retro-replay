@@ -16,6 +16,7 @@ class ProductModelAdmin(admin.ModelAdmin):
         "category__name",
         "price",
     ]
+    readonly_fields = ["slug"]
 
 
 class PlatformModelAdmin(admin.ModelAdmin):
