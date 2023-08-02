@@ -63,7 +63,7 @@ def products_by_region(request, region):
     return render(request, "products/product_list.html", context)
 
 
-def product_detail(request, pk):
+def product_detail(request, slug):
     """Returns the detail page for a given product.
 
     Arguments:
@@ -73,6 +73,6 @@ def product_detail(request, pk):
     Returns:
         HTML template with request and context variables available
     """
-    product = get_object_or_404(Product, id=pk)
+    product = get_object_or_404(Product, slug=slug)
     context = {"product": product}
     return render(request, "products/product_detail.html", context)

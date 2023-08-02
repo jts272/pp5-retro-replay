@@ -20,5 +20,5 @@ urlpatterns = [
         views.products_by_region,
         name="products_by_region",
     ),
-    path("products/<int:pk>/", views.product_detail, name="product_detail"),
+    path("products/<slug:slug>/", views.product_detail, name="product_detail"),
 ]
