@@ -1,5 +1,12 @@
-{{ product.name }}
-{{ product.price }}
-{{ product.category }}
-{{ product.platform }}
-{{ product.region }}
+{% extends "base.html" %}
+{% block content %}
+  <div class="row">
+    <div class="col text-center">
+      <h2>{{ product.name }}</h2>
+      <div>Price: £{{ product.price }}</div>
+      <div>Category: {{ product.category }}</div>
+      <div>Region: {{ product.region }}</div>
+      <input type="button" value="Add to basket" />
+    </div>
+  </div>
+{% endblock content %}
