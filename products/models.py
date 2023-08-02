@@ -23,6 +23,9 @@ class Product(models.Model):
         "Region", on_delete=models.SET_NULL, null=True, blank=True
     )
 
+    class Meta:
+        ordering = ["-pk"]
+
     def __str__(self):
         return f"{self.name} for {self.platform} - {self.region}"
 
