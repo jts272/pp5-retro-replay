@@ -68,7 +68,7 @@ def product_detail(request, slug):
 
     Arguments:
         request -- HttpRequest
-        pk -- Primary Key of the item to be returned
+        slug -- unique slug of the item to be returned
 
     Returns:
         HTML template with request and context variables available
