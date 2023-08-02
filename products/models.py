@@ -6,7 +6,7 @@ from django_extensions.db.fields import AutoSlugField
 class Product(models.Model):
     name = models.CharField(max_length=255)
     slug = AutoSlugField(
-        populate_from=["name", "region__name"],
+        populate_from=["name"],
         help_text=(
             "This field is generated automatically when the product is saved. "
             "It cannot be edited."
