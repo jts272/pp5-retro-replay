@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # Project apps
     "products.apps.ProductsConfig",
-    "home.apps.HomeConfig"
+    "home.apps.HomeConfig",
     # Additional apps
     "django_extensions",
 ]
