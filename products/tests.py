@@ -55,7 +55,7 @@ class TestRegionModel(TestCase):
 
 class TestAllProductsView(TestCase):
     def test_view_url_200_response(self):
-        response = self.client.get("/")
+        response = self.client.get("/products/all-products/")
         self.assertEqual(response.status_code, 200)
 
 
@@ -66,7 +66,7 @@ class TestProductsByCategoryView(TestCase):
         )
 
     def test_view_url_200_response(self):
-        response = self.client.get("/categories/test-category/")
+        response = self.client.get("/products/categories/test-category/")
         self.assertEqual(response.status_code, 200)
 
 
@@ -77,7 +77,7 @@ class TestProductsByPlatformView(TestCase):
         )
 
     def test_view_url_200_response(self):
-        response = self.client.get("/platforms/test-platform/")
+        response = self.client.get("/products/platforms/test-platform/")
         self.assertEqual(response.status_code, 200)
 
 
@@ -86,7 +86,7 @@ class TestProductsByRegionView(TestCase):
         self.r = Region.objects.create(name="test region", slug="test-region")
 
     def test_view_url_200_response(self):
-        response = self.client.get("/regions/test-region/")
+        response = self.client.get("/products/regions/test-region/")
         self.assertEqual(response.status_code, 200)
 
 
@@ -97,5 +97,5 @@ class TestProductDetailView(TestCase):
         )
 
     def test_view_url_200_response(self):
-        response = self.client.get("/products/test-product/")
+        response = self.client.get("/products/view/test-product/")
         self.assertEqual(response.status_code, 200)
