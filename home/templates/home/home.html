@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}
+  Retro Replay | Home
+{% endblock title %}
+{% block content %}
+  <h1>Retro Replay Homepage!</h1>
+  <p>{{ recent_products.count }} product{{ recent_products.count|pluralize }} found:</p>
+  {% for product in recent_products %}
+    <ul>
+      <li>Product: {{ product.name }}</li>
+      <li>Price: {{ product.price }}</li>
+      <li>Category: {{ product.category }}</li>
+      <li>Platform: {{ product.platform }}</li>
+      <li>
+        <a href="{% url 'products:product_detail' product.slug %}">More details</a>
+      </li>
+    </ul>
+  {% endfor %}
+{% endblock content %}
