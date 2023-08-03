@@ -6,7 +6,12 @@
       <div>Price: £{{ product.price }}</div>
       <div>Category: {{ product.category }}</div>
       <div>Region: {{ product.region }}</div>
-      <input type="button" value="Add to basket" />
+      <button type="button"
+              class="btn btn-success"
+              id="add-to-basket"
+              value="{{ product.pk }}">
+        Add to Basket <i class="bi bi-basket"></i>
+      </button>
     </div>
   </div>
 {% endblock content %}
