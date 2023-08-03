@@ -83,6 +83,7 @@ TEMPLATES = [
                 "products.context_processors.categories",
                 "products.context_processors.platforms",
                 "products.context_processors.regions",
+                "basket.context_processors.basket",
             ],
         },
     },
