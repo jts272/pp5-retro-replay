@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     # Project apps
     "products.apps.ProductsConfig",
     "home.apps.HomeConfig",
+    "basket.apps.BasketConfig",
     # Additional apps
     "django_extensions",
 ]
