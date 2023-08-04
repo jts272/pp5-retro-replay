@@ -25,7 +25,7 @@ class Basket:
         # 'basket' is equivalent to the user's session
         if product_id not in self.basket:
             # Add product to basket with reference to its price
-            self.basket[product_id] = {"price": product.price}
+            self.basket[product_id] = {"price": str(product.price)}
 
         # Mark the session as modified to save it
         self.session.modified = True

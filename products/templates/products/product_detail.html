@@ -24,16 +24,18 @@
       $.ajax({
         type: "POST",
         // Connect to a URL, which is connected to a view
-        url: "{% url 'basket:add_to_basket' %}"
+        url: "{% url 'basket:add_to_basket' %}",
         data: {
-          productId: $("add-to-basket").val(),
-          csrfmiddlewaretoken: {{ csrfmiddlewaretoken }}
+          productId: $("#add-to-basket").val(),
+          csrfmiddlewaretoken: "{{ csrf_token }}",
           // Action that can be tested for type of request
           action: "post",
         },
         // Data is returned into the success function argument
         success: function (json) {},
-        error: function (xhr, errmsg, err) {},
+        error: function (xhr, errmsg, err) {
+          console.log(errmsg, err)
+        },
       });
     });
   </script>
