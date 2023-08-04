@@ -24,7 +24,7 @@
       $.ajax({
         type: "POST",
         // Connect to a URL, which is connected to a view
-        url: "{% url 'basket:add' %}"
+        url: "{% url 'basket:add_to_basket' %}"
         data: {
           productId: $("add-to-basket").val(),
           csrfmiddlewaretoken: {{ csrfmiddlewaretoken }}
