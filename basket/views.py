@@ -36,7 +36,16 @@ def add_to_basket(request):
         else:
             print("already added!")
 
-        response = JsonResponse({"product": product.pk})
+        basket_qty = basket.__len__()
+        basket_contents = basket.basket
+
+        response = JsonResponse(
+            {
+                "product just added:": product.pk,
+                "basket quantity": basket_qty,
+                "basket contents": basket_contents,
+            }
+        )
         print(f"response.content: {response.content}")
         print(f"basket: {basket.basket}")
         print(f"basket keys: {basket.basket.keys()}")
