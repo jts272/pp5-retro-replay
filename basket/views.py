@@ -28,9 +28,10 @@ def add_to_basket(request):
         product_id = int(request.POST.get("productId"))
         # Get the referenced product from the database
         product = get_object_or_404(Product, pk=product_id)
+        print(product)
         # Add product to the Basket instance
         basket.add(product=product)
 
-        response = JsonResponse({"test": "data"})
+        response = JsonResponse({"product": product.pk})
         print(response.content)
         return response

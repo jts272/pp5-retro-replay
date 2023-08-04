@@ -32,7 +32,9 @@
           action: "post",
         },
         // Data is returned into the success function argument
-        success: function (json) {},
+        success: function (json) {
+          console.log(json);
+        },
         error: function (xhr, errmsg, err) {
           console.log(errmsg, err)
         },
