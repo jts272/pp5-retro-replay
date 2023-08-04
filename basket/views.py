@@ -25,21 +25,20 @@ def add_to_basket(request):
     # Test action specified in ajax script data dictionary
     if request.POST.get("action") == "post":
         # Get product id captured in ajax data dictionary
-        product_id = int(request.POST.get("productId"))
+        product_id = str(request.POST.get("productId"))
         # Get the referenced product from the database
         product = get_object_or_404(Product, pk=product_id)
-        print(product)
-        # Add product to the Basket instance
-        basket.add(product=product)
+        print(f"product pk = {product.pk}")
+
+        if str(product.pk) not in basket.basket.keys():
+            # Add product to the Basket instance
+            basket.add(product=product)
+        else:
+            print("already added!")
 
         response = JsonResponse({"product": product.pk})
-        print(response.content)
-        print(basket.basket)
-        print(basket.basket.keys())
-        print(basket.basket.keys().__len__())
-        print(basket.__len__())
+        print(f"response.content: {response.content}")
+        print(f"basket: {basket.basket}")
+        print(f"basket keys: {basket.basket.keys()}")
+        print(f"basket length: {basket.__len__()}")
         return response
-
-    else:
-        print(basket.__len__())
-        return HttpResponse(basket.__len__())
