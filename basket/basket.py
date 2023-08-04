@@ -17,3 +17,15 @@ class Basket:
             basket = self.session["session_key"] = {}
         # Get existing session data or new empty dictionary basket
         self.basket = basket
+
+    def add(self, product):
+        # Get product id which is provided by the add to basket view
+        product_id = product.pk
+        # Check if product is present in basket from class init method
+        # 'basket' is equivalent to the user's session
+        if product_id not in self.basket:
+            # Add product to basket with reference to its price
+            self.basket[product_id] = {"price": product.price}
+
+        # Mark the session as modified to save it
+        self.session.modified = True
