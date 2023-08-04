@@ -17,5 +17,24 @@
   </div>
 {% endblock content %}
 {% block additional_scripts %}
-  <script src="{% static 'js/basket.js' %}"></script>
+  {% comment %} <script src="{% static 'js/basket.js' %}"></script> {% endcomment %}
+  <script>
+    $(document).on("click", "#add-to-basket", function (e) {
+      e.preventDefault();
+      $.ajax({
+        type: "POST",
+        // Connect to a URL, which is connected to a view
+        url: "{% url 'basket:add' %}"
+        data: {
+          productId: $("add-to-basket").val(),
+          csrfmiddlewaretoken: {{ csrfmiddlewaretoken }}
+          // Action that can be tested for type of request
+          action: "post",
+        },
+        // Data is returned into the success function argument
+        success: function (json) {},
+        error: function (xhr, errmsg, err) {},
+      });
+    });
+  </script>
 {% endblock additional_scripts %}
