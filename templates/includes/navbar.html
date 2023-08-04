@@ -72,7 +72,7 @@
       <!-- Basket link -->
       <a href="{% url 'basket:basket_summary' %}" class="btn btn-light mb-2">
         Basket:
-        <span>
+        <span id="basket-qty">
           {% with basket_qty=basket|length %}{{ basket_qty }}{% endwith %}
         </span> <i class="bi bi-basket"></i></a>
         <!-- END Basket link -->
