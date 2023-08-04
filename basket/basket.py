@@ -18,6 +18,15 @@ class Basket:
         # Get existing session data or new empty dictionary basket
         self.basket = basket
 
+    def __len__(self):
+        """Count the number of keys in the basket. This represents the
+        number of individual products in the basket.
+
+        Returns:
+            Number of keys found in the session basket
+        """
+        return len(self.basket.keys())
+
     def add(self, product):
         # Get product id which is provided by the add to basket view
         product_id = product.pk

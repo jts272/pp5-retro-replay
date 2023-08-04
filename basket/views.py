@@ -1,4 +1,4 @@
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.shortcuts import get_object_or_404, render
 
 from products.models import Product
@@ -34,4 +34,12 @@ def add_to_basket(request):
 
         response = JsonResponse({"product": product.pk})
         print(response.content)
+        print(basket.basket)
+        print(basket.basket.keys())
+        print(basket.basket.keys().__len__())
+        print(basket.__len__())
         return response
+
+    else:
+        print(basket.__len__())
+        return HttpResponse(basket.__len__())
