@@ -70,15 +70,19 @@
       </ul>
       <!-- END Navigation links -->
       <!-- Basket link -->
-      <a href="{% url 'basket:basket_summary' %}" class="btn btn-light mb-2">Basket: <span>0</span> <i class="bi bi-basket"></i></a>
-      <!-- END Basket link -->
-      <form class="d-flex" role="search">
-        <input class="form-control me-2"
-               type="search"
-               placeholder="Search"
-               aria-label="Search" />
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      <a href="{% url 'basket:basket_summary' %}" class="btn btn-light mb-2">
+        Basket:
+        <span>
+          {% with basket_qty=basket|length %}{{ basket_qty }}{% endwith %}
+        </span> <i class="bi bi-basket"></i></a>
+        <!-- END Basket link -->
+        <form class="d-flex" role="search">
+          <input class="form-control me-2"
+                 type="search"
+                 placeholder="Search"
+                 aria-label="Search" />
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
