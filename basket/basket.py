@@ -92,7 +92,6 @@ class Basket:
         """
         # Get product id which is provided by the remove from basket view
         product_id = product
-        print(product_id)
 
         if product_id in self.basket:
             # Remove the product from the basket

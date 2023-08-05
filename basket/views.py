@@ -38,13 +38,10 @@ def add_to_basket(request):
         product_id = str(request.POST.get("productId"))
         # Get the referenced product from the database
         product = get_object_or_404(Product, pk=product_id)
-        print(f"product pk = {product.pk}")
 
         if str(product.pk) not in basket.basket.keys():
             # Add product to the Basket instance
             basket.add(product=product)
-        else:
-            print("already added!")
 
         basket_qty = basket.__len__()
         basket_contents = basket.basket
