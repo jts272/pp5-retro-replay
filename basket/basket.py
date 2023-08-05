@@ -80,6 +80,26 @@ class Basket:
         # Mark the session as modified to save it
         self.session.modified = True
 
+    def remove(self, product):
+        """Removes the given item from the basket
+
+        Arguments:
+            product -- product to remove, captured in ajax and passed in
+            from the remove from basket view
+
+        Reference:
+        https://youtu.be/VOwfGW-ZTIY?list=PLOLrQ9Pn6caxY4Q1U9RjO1bulQp5NDYS_
+        """
+        # Get product id which is provided by the remove from basket view
+        product_id = product
+
+        if product_id in self.basket:
+            # Remove the product from the basket
+            del self.basket[product_id]
+
+        # Mark the session as modified to save it
+        self.session.modified = True
+
     def get_subtotal(self):
         """Performs a sum of all basket items to return the subtotal.
 

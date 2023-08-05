@@ -64,7 +64,7 @@ def add_to_basket(request):
 
 
 def remove_from_basket(request):
-    """Removes a given product stored in the basket
+    """Removes a given product stored in the basket.
 
     Arguments:
         request -- HttpRequest
