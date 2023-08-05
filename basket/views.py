@@ -8,7 +8,17 @@ from .basket import Basket
 
 # Create your views here.
 def basket_summary(request):
-    return render(request, "basket/basket.html")
+    """A summary of all the items in the user's basket.
+
+    Arguments:
+        request -- HttpRequest
+
+    Returns:
+        HTML template with request and context variables available
+    """
+    basket = Basket(request)
+    context = {"basket": basket}
+    return render(request, "basket/basket.html", context)
 
 
 def add_to_basket(request):
