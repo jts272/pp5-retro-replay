@@ -68,3 +68,11 @@ class Basket:
 
         # Mark the session as modified to save it
         self.session.modified = True
+
+    def get_subtotal(self):
+        """Performs a sum of all basket items to return the subtotal.
+
+        Returns:
+            Sum of price values from the basket
+        """
+        return sum(Decimal(item["price"]) for item in self.basket.values())
