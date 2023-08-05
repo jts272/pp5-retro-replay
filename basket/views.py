@@ -81,5 +81,12 @@ def remove_from_basket(request):
         # Call basket method to remove product from the basket
         basket.remove(product=product_id)
 
-        response = JsonResponse({"product removed": product_id})
+        # Provide basket quantity to update the template
+
+        response = JsonResponse(
+            {
+                "product removed": product_id,
+                "basket quantity": basket.__len__(),
+            }
+        )
         return response
