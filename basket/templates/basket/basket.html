@@ -4,4 +4,15 @@
 {% endblock title %}
 {% block content %}
   <h2>This is the basket summary page!</h2>
+  <h3>Basket: {{ basket }}</h3>
+  <ul>
+    {% for item in basket %}
+      <h4>Basket item: {{ item }}</h4>
+      {% with product=item.product %}
+        <li>{{ product.name }}</li>
+        <li>£{{ product.price }}</li>
+        <hr />
+      {% endwith %}
+    {% endfor %}
+  </ul>
 {% endblock content %}
