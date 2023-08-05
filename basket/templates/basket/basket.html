@@ -5,26 +5,26 @@
 {% block content %}
   <h2>This is the basket summary page!</h2>
   <h3>Basket: {{ basket }}</h3>
-  <ul>
-    {% for item in basket %}
-      <li>
-        <h4>Basket item: {{ item }}</h4>
-      </li>
-      {% with product=item.product %}
-        <li>Product: {{ product }}</li>
-        <li>Price: £{{ product.price }}</li>
-        <li>
-          <button type="button"
-                  class="btn btn-outline-danger remove-from-basket"
-                  data-removal-index="{{ product.pk }}">Remove</button>
-        </li>
-        <li>
-          <hr />
-        </li>
-      {% endwith %}
-    {% endfor %}
-  </ul>
+  <hr />
+  <!-- Basket item(s) -->
+  <!-- START individual basket item loop -->
+  {% for item in basket %}
+    {% with product=item.product %}
+      <div class="basket-single-item" data-removal-index="{{ product.pk }}">
+        <p>Product: {{ product }}</p>
+        <p>Price: £{{ product.price }}</p>
+        <button type="button"
+                class="btn btn-outline-danger remove-from-basket"
+                data-removal-index="{{ product.pk }}">Remove</button>
+        <hr />
+      </div>
+    {% endwith %}
+  {% endfor %}
+  <!-- END individual basket item loop -->
+  <!-- END Basket item(s) -->
+  <!-- Basket summary -->
   <h4>Basket subtotal: {{ basket.get_subtotal }}</h4>
+  <!-- END Basket summary -->
 {% endblock content %}
 {% block additional_scripts %}
   <script>
