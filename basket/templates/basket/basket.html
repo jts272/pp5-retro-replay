@@ -38,7 +38,7 @@
       // Data is returned into the success function argument
       success: function (json) {
         console.log(json);
-        console.log(json["basket quantity"])
+        console.log(json["product removed"])
         // Update basket quantity counter without refreshing the page
         document.getElementById("basket-qty").innerText = json["basket quantity"]
       },

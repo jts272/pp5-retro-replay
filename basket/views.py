@@ -80,3 +80,6 @@ def remove_from_basket(request):
         product_id = str(request.POST.get("productId"))
         # Call basket method to remove product from the basket
         basket.remove(product=product_id)
+
+        response = JsonResponse({"product removed": product_id})
+        return response
