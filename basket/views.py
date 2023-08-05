@@ -56,10 +56,7 @@ def add_to_basket(request):
                 "basket contents": basket_contents,
             }
         )
-        print(f"response.content: {response.content}")
-        print(f"basket: {basket.basket}")
-        print(f"basket keys: {basket.basket.keys()}")
-        print(f"basket length: {basket.__len__()}")
+
         return response
 
 
@@ -81,8 +78,6 @@ def remove_from_basket(request):
         # Call basket method to remove product from the basket
         basket.remove(product=product_id)
 
-        # Provide basket quantity to update the template
-
         response = JsonResponse(
             {
                 "product removed": product_id,
@@ -90,4 +85,5 @@ def remove_from_basket(request):
                 "basket subtotal": basket.get_subtotal(),
             }
         )
+
         return response
