@@ -8,13 +8,14 @@ class CategoryModelAdmin(admin.ModelAdmin):
 
 
 class ProductModelAdmin(admin.ModelAdmin):
-    list_display = ["name", "region", "platform", "category", "price"]
+    list_display = ["pk", "name", "region", "platform", "category", "price"]
     search_fields = [
         "name",
         "region__name",
         "platform__name",
         "category__name",
         "price",
+        "pk",
     ]
     readonly_fields = ["slug"]
 
