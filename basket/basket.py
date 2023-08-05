@@ -54,10 +54,21 @@ class Basket:
 
         Returns:
             Number of keys found in the session basket
+
+        Reference:
+        https://youtu.be/VOwfGW-ZTIY?list=PLOLrQ9Pn6caxY4Q1U9RjO1bulQp5NDYS_&t=8998
         """
         return len(self.basket.keys())
 
     def add(self, product):
+        """Gets the product provided and adds it to the basket if not present.
+
+        Arguments:
+            product -- product to query the database for
+
+        Reference:
+        https://youtu.be/VOwfGW-ZTIY?list=PLOLrQ9Pn6caxY4Q1U9RjO1bulQp5NDYS_&t=7710
+        """
         # Get product id which is provided by the add to basket view
         product_id = product.pk
         # Check if product is present in basket from class init method
@@ -74,5 +85,8 @@ class Basket:
 
         Returns:
             Sum of price values from the basket
+
+        Reference:
+        https://youtu.be/VOwfGW-ZTIY?list=PLOLrQ9Pn6caxY4Q1U9RjO1bulQp5NDYS_&t=11009
         """
         return sum(Decimal(item["price"]) for item in self.basket.values())
