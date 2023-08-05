@@ -30,6 +30,9 @@
   <script>
   $(document).on("click", ".remove-from-basket", function (e) {
     e.preventDefault();
+    // The div to be removed when the user removes an item from their basket
+    // The div is given the same data attribute and value as the remove button
+    const divToRemove = $(this).data('removal-index');
     $.ajax({
       type: "POST",
       // Connect to a URL, which is connected to a view
@@ -46,6 +49,8 @@
         console.log(json["product removed"])
         // Update basket quantity counter without refreshing the page
         document.getElementById("basket-qty").innerText = json["basket quantity"]
+        // Remove the div that contains the basket item
+        $(".basket-single-item[data-removal-index='" + divToRemove + "']").remove();
       },
       error: function (xhr, errmsg, err) {
         console.log(errmsg, err)
