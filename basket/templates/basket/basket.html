@@ -15,8 +15,11 @@
         <li>Price: £{{ product.price }}</li>
         <li>
           <button type="button"
-                  class="btn btn-outline-danger"
+                  class="btn btn-outline-danger remove-from-basket"
+                  data-removal-index="{{ product.pk }}"
+                  {% comment %}
                   id="remove-from-basket"
+                  {% endcomment %}
                   value="{{ product.pk }}">Remove</button>
         </li>
         <li>
@@ -29,14 +32,14 @@
 {% endblock content %}
 {% block additional_scripts %}
   <script>
-  $(document).on("click", "#remove-from-basket", function (e) {
+  $(document).on("click", ".remove-from-basket", function (e) {
     e.preventDefault();
     $.ajax({
       type: "POST",
       // Connect to a URL, which is connected to a view
       url: "{% url 'basket:remove_from_basket' %}",
       data: {
-        productId: $("#remove-from-basket").val(),
+        productId: $(this).data('removal-index'),
         csrfmiddlewaretoken: "{{ csrf_token }}",
         // Action that can be tested for type of request
         action: "post",
