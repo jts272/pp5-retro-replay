@@ -87,6 +87,7 @@ def remove_from_basket(request):
             {
                 "product removed": product_id,
                 "basket quantity": basket.__len__(),
+                "basket subtotal": basket.get_subtotal(),
             }
         )
         return response

@@ -23,7 +23,9 @@
   <!-- END individual basket item loop -->
   <!-- END Basket item(s) -->
   <!-- Basket summary -->
-  <h4>Basket subtotal: {{ basket.get_subtotal }}</h4>
+  <h4>
+    Basket subtotal: £<span id="basket-subtotal">{{ basket.get_subtotal }}</span>
+  </h4>
   <!-- END Basket summary -->
 {% endblock content %}
 {% block additional_scripts %}
@@ -51,6 +53,8 @@
         document.getElementById("basket-qty").innerText = json["basket quantity"]
         // Remove the div that contains the basket item
         $(".basket-single-item[data-removal-index='" + divToRemove + "']").remove();
+        // Update basket subtotal
+        document.getElementById("basket-subtotal").innerText = json["basket subtotal"]
       },
       error: function (xhr, errmsg, err) {
         console.log(errmsg, err)
