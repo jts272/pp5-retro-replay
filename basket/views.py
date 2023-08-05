@@ -61,3 +61,22 @@ def add_to_basket(request):
         print(f"basket keys: {basket.basket.keys()}")
         print(f"basket length: {basket.__len__()}")
         return response
+
+
+def remove_from_basket(request):
+    """Removes a given product stored in the basket
+
+    Arguments:
+        request -- HttpRequest
+
+    Reference:
+    https://youtu.be/VOwfGW-ZTIY?list=PLOLrQ9Pn6caxY4Q1U9RjO1bulQp5NDYS_&t=11585
+    """
+    # Session data to perform actions within the Basket class
+    basket = Basket(request)
+    # Test action specified in ajax script data dictionary
+    if request.POST.get("action") == "post":
+        # Get product id captured in ajax data dictionary
+        product_id = str(request.POST.get("productId"))
+        # Call basket method to remove product from the basket
+        basket.remove(product=product_id)
