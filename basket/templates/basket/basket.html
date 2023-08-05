@@ -9,8 +9,8 @@
     {% for item in basket %}
       <h4>Basket item: {{ item }}</h4>
       {% with product=item.product %}
-        <li>{{ product.name }}</li>
-        <li>£{{ product.price }}</li>
+        <li>Product: {{ product }}</li>
+        <li>Price: £{{ product.price }}</li>
         <hr />
       {% endwith %}
     {% endfor %}
