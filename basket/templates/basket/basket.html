@@ -7,15 +7,21 @@
   <h3>Basket: {{ basket }}</h3>
   <ul>
     {% for item in basket %}
-      <h4>Basket item: {{ item }}</h4>
+      <li>
+        <h4>Basket item: {{ item }}</h4>
+      </li>
       {% with product=item.product %}
         <li>Product: {{ product }}</li>
         <li>Price: £{{ product.price }}</li>
-        <button type="button"
-                class="btn btn-outline-danger"
-                id="remove-from-basket"
-                value="{{ product.pk }}">Remove</button>
-        <hr />
+        <li>
+          <button type="button"
+                  class="btn btn-outline-danger"
+                  id="remove-from-basket"
+                  value="{{ product.pk }}">Remove</button>
+        </li>
+        <li>
+          <hr />
+        </li>
       {% endwith %}
     {% endfor %}
   </ul>
