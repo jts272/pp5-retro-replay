@@ -1,3 +1,7 @@
+from decimal import Decimal
+from products.models import Product
+
+
 class Basket:
     def __init__(self, request):
         """Get or create the user's basket data using Django sessions.
@@ -17,6 +21,32 @@ class Basket:
             basket = self.session["session_key"] = {}
         # Get existing session data or new empty dictionary basket
         self.basket = basket
+
+    def __iter__(self):
+        """Allow iteration of the Basket class for showing summary data.
+
+        Yields:
+            Item price in number format
+
+        Reference:
+        https://youtu.be/VOwfGW-ZTIY?list=PLOLrQ9Pn6caxY4Q1U9RjO1bulQp5NDYS_&t=9977
+        """
+
+        # Iterate over session keys to get product keys contained within
+        product_ids = self.basket.keys()
+        # Get basket items from the database
+        products = Product.objects.filter(pk__in=product_ids)
+        # Make copy of the session data for further processing
+        basket = self.basket.copy()
+
+        for product in products:
+            # Give each product access to its product data
+            basket[str(product.pk)]["product"] = product
+
+        for item in basket.values():
+            # Convert str price from add function to decimal for calculations
+            item["price"] = Decimal(item["price"])
+            yield item
 
     def __len__(self):
         """Count the number of keys in the basket. This represents the
