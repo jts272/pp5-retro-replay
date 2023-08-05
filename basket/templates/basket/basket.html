@@ -21,3 +21,31 @@
   </ul>
   <h4>Basket subtotal: {{ basket.get_subtotal }}</h4>
 {% endblock content %}
+{% block additional_scripts %}
+  <script>
+  $(document).on("click", "#remove-from-basket", function (e) {
+    e.preventDefault();
+    $.ajax({
+      type: "POST",
+      // Connect to a URL, which is connected to a view
+      url: "{% url 'basket:remove_from_basket' %}",
+      data: {
+        productId: $("#remove-from-basket").val(),
+        csrfmiddlewaretoken: "{{ csrf_token }}",
+        // Action that can be tested for type of request
+        action: "post",
+      },
+      // Data is returned into the success function argument
+      success: function (json) {
+        console.log(json);
+        console.log(json["basket quantity"])
+        // Update basket quantity counter without refreshing the page
+        document.getElementById("basket-qty").innerText = json["basket quantity"]
+      },
+      error: function (xhr, errmsg, err) {
+        console.log(errmsg, err)
+      },
+    });
+  });
+  </script>
+{% endblock additional_scripts %}
