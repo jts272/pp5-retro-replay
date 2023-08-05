@@ -11,6 +11,10 @@
       {% with product=item.product %}
         <li>Product: {{ product }}</li>
         <li>Price: £{{ product.price }}</li>
+        <button type="button"
+                class="btn btn-outline-danger"
+                id="remove-from-basket"
+                value="{{ product.pk }}">Remove</button>
         <hr />
       {% endwith %}
     {% endfor %}
