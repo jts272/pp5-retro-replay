@@ -17,7 +17,6 @@
   </div>
 {% endblock content %}
 {% block additional_scripts %}
-  {% comment %} <script src="{% static 'js/basket.js' %}"></script> {% endcomment %}
   <script>
     $(document).on("click", "#add-to-basket", function (e) {
       e.preventDefault();
@@ -33,13 +32,16 @@
         },
         // Data is returned into the success function argument
         success: function (json) {
-          console.log(json);
-          console.log(json["basket quantity"])
           // Update basket quantity counter without refreshing the page
-          document.getElementById("basket-qty").innerText = json["basket quantity"]
+          document.getElementById("basket-qty").innerText = json["basket quantity"];
         },
-        error: function (xhr, errmsg, err) {
-          console.log(errmsg, err)
+        // Alert error information if returned
+        error: function (jqXHR, textStatus, errorThrown) {
+          window.alert(`
+            An error occured:
+            Error status: ${textStatus}
+            Error thrown: ${errorThrown}
+            Status code: ${jqXHR.status}`);
         },
       });
     });
