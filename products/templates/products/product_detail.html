@@ -7,43 +7,17 @@
       <div>Price: £{{ product.price }}</div>
       <div>Category: {{ product.category }}</div>
       <div>Region: {{ product.region }}</div>
+      {% csrf_token %}
       <button type="button"
               class="btn btn-success"
               id="add-to-basket"
-              value="{{ product.pk }}">
+              value="{{ product.pk }}"
+              data-url="{% url 'basket:add_to_basket' %}">
         Add to Basket <i class="bi bi-basket"></i>
       </button>
     </div>
   </div>
 {% endblock content %}
 {% block additional_scripts %}
-  <script>
-    $(document).on("click", "#add-to-basket", function (e) {
-      e.preventDefault();
-      $.ajax({
-        type: "POST",
-        // Connect to a URL, which is connected to a view
-        url: "{% url 'basket:add_to_basket' %}",
-        data: {
-          productId: $("#add-to-basket").val(),
-          csrfmiddlewaretoken: "{{ csrf_token }}",
-          // Action that can be tested for type of request
-          action: "post",
-        },
-        // Data is returned into the success function argument
-        success: function (json) {
-          // Update basket quantity counter without refreshing the page
-          document.getElementById("basket-qty").innerText = json["basket quantity"];
-        },
-        // Alert error information if returned
-        error: function (jqXHR, textStatus, errorThrown) {
-          window.alert(`
-            An error occured:
-            Error status: ${textStatus}
-            Error thrown: ${errorThrown}
-            Status code: ${jqXHR.status}`);
-        },
-      });
-    });
-  </script>
+  <script src="{% static 'js/add-to-basket.js' %}"></script>
 {% endblock additional_scripts %}
