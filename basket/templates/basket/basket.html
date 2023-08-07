@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}
   Retro Replay | Your Basket
 {% endblock title %}
@@ -13,9 +14,12 @@
       <div class="basket-single-item" data-removal-index="{{ product.pk }}">
         <p>Product: {{ product }}</p>
         <p>Price: £{{ product.price }}</p>
+        {% csrf_token %}
         <button type="button"
                 class="btn btn-outline-danger remove-from-basket"
-                data-removal-index="{{ product.pk }}">Remove</button>
+                id="remove-from-basket"
+                data-removal-index="{{ product.pk }}"
+                data-url="{% url 'basket:remove_from_basket' %}">Remove</button>
         <hr />
       </div>
     {% endwith %}
@@ -29,44 +33,5 @@
   <!-- END Basket summary -->
 {% endblock content %}
 {% block additional_scripts %}
-  <script>
-    $(document).on("click", ".remove-from-basket", function (e) {
-      e.preventDefault();
-      // The div to be removed when the user removes an item from their basket
-      // The div is given the same data attribute and value as the remove button
-      const divToRemove = $(this).data("removal-index");
-      $.ajax({
-        type: "POST",
-        // Connect to a URL, which is connected to a view
-        url: "{% url 'basket:remove_from_basket' %}",
-        data: {
-          productId: $(this).data("removal-index"),
-          csrfmiddlewaretoken: "{{ csrf_token }}",
-          // Action that can be tested for type of request
-          action: "post",
-        },
-        // Data is returned into the success function argument
-        success: function (json) {
-          // Update basket quantity counter without refreshing the page
-          document.getElementById("basket-qty").innerText = json["basket quantity"];
-          // Remove the div that contains the basket item
-          $(
-            ".basket-single-item[data-removal-index='" + divToRemove + "']"
-          ).remove();
-          // Update basket subtotal
-          document.getElementById("basket-subtotal").innerText =
-            json["basket subtotal"];
-        },
-        // Alert error information if returned
-        error: function (jqXHR, textStatus, errorThrown) {
-          window.alert(`
-            An error occured:
-            Error status: ${textStatus}
-            Error thrown: ${errorThrown}
-            Status code: ${jqXHR.status}`);
-        },
-      });
-    });
-    
-  </script>
+  <script src="{% static 'js/remove-from-basket.js' %}"></script>
 {% endblock additional_scripts %}
