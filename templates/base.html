@@ -26,6 +26,13 @@
     <!-- https://getbootstrap.com/docs/5.3/components/navbar/ -->
     {% include "includes/navbar.html" %}
     <!-- END Navbar -->
+    <!-- Django Messages -->
+    {% if messages %}
+      <div class="dj-messages">
+        {% for message in messages %}{{ message }}{% endfor %}
+      </div>
+    {% endif %}
+    <!-- END Django Messages -->
     <div class="container">
       {% block content %}
       {% endblock content %}
