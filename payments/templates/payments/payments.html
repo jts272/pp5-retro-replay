@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}
+  Retro Replay | Checkout
+{% endblock title %}
+{% block content %}
+  <div>
+    <h3>Checkout page</h3>
+    <h4>Items to purchase:</h4>
+    {% for item in basket %}
+      {% with product=item.product %}
+        <div class="basket-single-item">
+          <p>Product: {{ product }}</p>
+          <p>Price: £{{ product.price }}</p>
+          <hr />
+        </div>
+      {% endwith %}
+    {% endfor %}
+  </div>
+{% endblock content %}
