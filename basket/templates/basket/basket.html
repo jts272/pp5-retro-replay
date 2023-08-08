@@ -31,6 +31,7 @@
     Basket subtotal: £<span id="basket-subtotal">{{ basket.get_subtotal }}</span>
   </h4>
   <!-- END Basket summary -->
+  <a href="{% url 'payments:checkout' %}" class="btn btn-success">Checkout</a>
 {% endblock content %}
 {% block additional_scripts %}
   <script src="{% static 'js/remove-from-basket.js' %}"></script>

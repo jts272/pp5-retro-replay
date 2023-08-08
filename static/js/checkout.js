@@ -17,5 +17,15 @@ const elements = stripe.elements(options);
 // Create and mount the Address Element in shipping mode
 const addressElement = elements.create("address", {
   mode: "shipping",
+  allowedCountries: ["gb"],
 });
 addressElement.mount("#address-element");
+
+addressElement.on("change", (event) => {
+  if (event.complete) {
+    // Extract potentially complete address
+    const address = event.value.address;
+    console.log(address);
+    console.log(event);
+  }
+});
