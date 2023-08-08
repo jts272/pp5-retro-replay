@@ -23,10 +23,13 @@
       <div id="address-element">
         <!-- Elements will create form elements here -->
       </div>
+      <button type="submit" class="btn btn-primary" data-stripe-client-secret={{ client_secret }}>Pay
+      </button>
     </form>
   </div>
 {% endblock content %}
 {% block additional_scripts %}
+  <script>const CSRF_TOKEN = {{ csrf_token }}</script>
   <script src="https://js.stripe.com/v3/"></script>
   <script src="{% static 'js/checkout.js' %}"></script>
 {% endblock additional_scripts %}
