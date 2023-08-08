@@ -29,3 +29,6 @@ addressElement.on("change", (event) => {
     console.log(event);
   }
 });
+
+const payBtn = document.getElementById("pay-btn");
+const clientSecret = payBtn.getAttribute("data-stripe-client-secret");
