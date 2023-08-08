@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     "products.apps.ProductsConfig",
     "home.apps.HomeConfig",
     "basket.apps.BasketConfig",
+    "payments.apps.PaymentsConfig",
     # Additional apps
     "django_extensions",
     # Required for `allauth`
