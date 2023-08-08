@@ -7,4 +7,4 @@ from basket.basket import Basket
 def checkout(request):
     basket = Basket(request)
     context = {"basket": basket}
-    return render(request, "basket/basket.html", context)
+    return render(request, "payments/payments.html", context)
