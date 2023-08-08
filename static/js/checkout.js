@@ -2,17 +2,22 @@ const stripe = Stripe(
   "pk_test_51NMu8PEPb8OObKzZJEtyxn1AEAmJVbitHxGiYBMIOoVDEHgedK0qnuQexEHWPB3kbmS5C66CWj9uNtQCQRdTq9Px00oxNbOOdG"
 );
 
-const options = {
-  // Fully customizable with appearance API.
-  appearance: {
-    /* ... */
-  },
-};
+const payBtn = document.getElementById("pay-btn");
+const clientSecret = payBtn.getAttribute("data-stripe-client-secret");
+console.log(clientSecret);
 
-// Only need to create this if no elements group exist yet.
-// Create a new Elements instance if needed, passing the
-// optional appearance object.
-const elements = stripe.elements(options);
+const elements = stripe.elements({ clientSecret: clientSecret });
+
+// const options = {
+//   // Fully customizable with appearance API.
+//   appearance: {
+//     /* ... */
+//   },
+// };
+
+// // Only need to create this if no elements group exist yet.
+// // Create a new Elements instance if needed, passing the
+// // optional appearance object.
 
 // Create and mount the Address Element in shipping mode
 const addressElement = elements.create("address", {
@@ -30,5 +35,9 @@ addressElement.on("change", (event) => {
   }
 });
 
-const payBtn = document.getElementById("pay-btn");
-const clientSecret = payBtn.getAttribute("data-stripe-client-secret");
+const paymentElement = elements.create("payment");
+paymentElement.mount("#payment-element");
+
+paymentElement.on("change", (event) => {
+  console.log(event);
+});

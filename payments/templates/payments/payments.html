@@ -19,17 +19,23 @@
   </div>
   <div>
     <form id="address-form">
-      <h3>Address</h3>
+      <h3>Shipping Address</h3>
       <div id="address-element">
         <!-- Elements will create form elements here -->
       </div>
+      <hr />
+      <h3>Payment</h3>
+      <div id="payment-element">
+        <!--Stripe.js injects the Payment Element-->
+      </div>
+      <hr />
       <button type="submit" class="btn btn-primary" id="pay-btn" data-stripe-client-secret={{ client_secret }}>Pay
       </button>
     </form>
   </div>
 {% endblock content %}
 {% block additional_scripts %}
-  <script>const CSRF_TOKEN = {{ csrf_token }}</script>
+  <script>const CSRF_TOKEN = "{{ csrf_token }}"</script>
   <script src="https://js.stripe.com/v3/"></script>
   <script src="{% static 'js/checkout.js' %}"></script>
 {% endblock additional_scripts %}
