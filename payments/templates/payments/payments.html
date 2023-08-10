@@ -18,7 +18,7 @@
     {% endfor %}
   </div>
   <div>
-    <form id="address-form">
+    <form id="payment-form">
       <h3>Shipping Address</h3>
       <div id="address-element">
         <!-- Elements will create form elements here -->
@@ -29,6 +29,9 @@
         <!--Stripe.js injects the Payment Element-->
       </div>
       <hr />
+      <div id="error-message">
+        <!-- Display error message to your customers here -->
+      </div>
       <button type="submit" class="btn btn-primary" id="pay-btn" data-stripe-client-secret={{ client_secret }}>Pay
       </button>
     </form>
