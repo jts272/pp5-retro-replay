@@ -18,7 +18,8 @@
     {% endfor %}
   </div>
   <div>
-    <form id="payment-form">
+    <!-- Return url for submission to Stripe in data attribute -->
+    <form id="payment-form" data-return-url="{% url 'home:home' %}">
       <h3>Shipping Address</h3>
       <div id="address-element">
         <!-- Elements will create form elements here -->

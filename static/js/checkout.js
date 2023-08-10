@@ -27,11 +27,15 @@ const form = document.getElementById("payment-form");
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
 
+  const returnUrl = form.getAttribute("data-return-url");
+
   const { error } = await stripe.confirmPayment({
     //`Elements` instance that was used to create the Payment Element
     elements,
     confirmParams: {
-      return_url: "/",
+      // Requires absolute url path - Django relative urls are not valid
+      // Reference: https://css-tricks.com/snippets/javascript/get-url-and-url-parts-in-javascript/
+      return_url: `${window.location.protocol}//${window.location.host}${returnUrl}`,
     },
   });
 
