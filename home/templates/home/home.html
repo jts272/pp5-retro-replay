@@ -1,9 +1,11 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}
   Retro Replay | Home
 {% endblock title %}
 {% block content %}
   <h1>Retro Replay Homepage!</h1>
+  <div id="message"></div>
   <p>{{ recent_products.count }} product{{ recent_products.count|pluralize }} found:</p>
   {% for product in recent_products %}
     <ul>
@@ -17,3 +19,7 @@
     </ul>
   {% endfor %}
 {% endblock content %}
+{% block additional_scripts %}
+  <script src="https://js.stripe.com/v3/"></script>
+  <script src="{% static 'js/status.js' %}"></script>
+{% endblock additional_scripts %}
