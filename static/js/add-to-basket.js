@@ -1,3 +1,4 @@
+// Reference: https://youtu.be/VOwfGW-ZTIY?list=PLOLrQ9Pn6caxY4Q1U9RjO1bulQp5NDYS_&t=7011
 $(document).on("click", "#add-to-basket", function (e) {
   e.preventDefault();
   $.ajax({
@@ -19,7 +20,7 @@ $(document).on("click", "#add-to-basket", function (e) {
     // Alert error information if returned
     error: function (jqXHR, textStatus, errorThrown) {
       window.alert(`
-        An error occured:
+        An error occurred:
         Error status: ${textStatus}
         Error thrown: ${errorThrown}
         Status code: ${jqXHR.status}`);
