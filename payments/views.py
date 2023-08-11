@@ -32,10 +32,7 @@ def checkout(request):
 
         print(intent.client_secret)
 
-        context = {
-            "basket": basket,
-            # "client_secret": intent.client_secret
-        }
+        context = {"basket": basket, "client_secret": intent.client_secret}
     else:
         context = {
             "basket": basket,
