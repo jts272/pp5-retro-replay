@@ -62,5 +62,7 @@
 {% block additional_scripts %}
   <script>const CSRF_TOKEN = "{{ csrf_token }}"</script>
   <script src="https://js.stripe.com/v3/"></script>
-  <script src="{% static 'js/checkout.js' %}"></script>
+  {% if basket %}
+    <script src="{% static 'js/checkout.js' %}"></script>
+  {% endif %}
 {% endblock additional_scripts %}
