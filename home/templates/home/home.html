@@ -20,6 +20,8 @@
   {% endfor %}
 {% endblock content %}
 {% block additional_scripts %}
+  <script>const CSRF_TOKEN = '{{ csrf_token }}' </script>
   <script src="https://js.stripe.com/v3/"></script>
   <script src="{% static 'js/status.js' %}"></script>
+  <script>console.log(CSRF_TOKEN)</script>
 {% endblock additional_scripts %}
