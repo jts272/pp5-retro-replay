@@ -27,6 +27,13 @@ const form = document.getElementById("payment-form");
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
 
+  // Get loader and toggle visibility when submitted
+  const loader = document.querySelector("#pacman-loader");
+  loader.classList.toggle("d-none");
+  // Update status on button text
+  const payBtn = document.querySelector("#pay-btn-text");
+  payBtn.textContent = "Processing...";
+
   const returnUrl = form.getAttribute("data-return-url");
 
   const { error } = await stripe.confirmPayment({
@@ -45,6 +52,11 @@ form.addEventListener("submit", async (event) => {
     // details incomplete)
     const messageContainer = document.querySelector("#error-message");
     messageContainer.textContent = error.message;
+
+    // Toggle loader visibility that would have been added on submit
+    loader.classList.toggle("d-none");
+    // Update status on button text
+    payBtn.textContent = "Retry payment";
   } else {
     // Your customer will be redirected to your `return_url`. For some payment
     // methods like iDEAL, your customer will be redirected to an intermediate

@@ -4,6 +4,7 @@
   Retro Replay | Checkout
 {% endblock title %}
 {% block content %}
+  <link rel="stylesheet" href="{% static 'css/pacman-awesome.css' %}" />
   <div>
     <h3>Checkout page</h3>
     <h4>Items to purchase:</h4>
@@ -33,7 +34,28 @@
       <div id="error-message">
         <!-- Display error message to your customers here -->
       </div>
-      <button type="submit" class="btn btn-primary" id="pay-btn" data-stripe-client-secret={{ client_secret }}>Pay
+      <button type="submit" class="btn btn-primary" id="pay-btn" data-stripe-client-secret={{ client_secret }}>
+        <span id="pay-btn-text">Pay now</span>
+        <span id="pacman-loader" class="d-none">
+          <!-- Pac-Man loading spinner customized at https://icons8.com/preloaders/en/search/pac+man -->
+          <svg xmlns:svg="http://www.w3.org/2000/svg"
+               xmlns="http://www.w3.org/2000/svg"
+               xmlns:xlink="http://www.w3.org/1999/xlink"
+               version="1.0"
+               width="16px"
+               height="16px"
+               viewBox="0 0 128 128"
+               xml:space="preserve">
+            <g>
+            <path fill="#ffffff" d="M64,0a64,64,0,0,1,64,64H0A64,64,0,0,1,64,0Z" />
+            <animateTransform attributeName="transform" type="rotate" values="0 64 64;-40 64 64;0 64 64" dur="600ms" repeatCount="indefinite"></animateTransform>
+            </g>
+            <g>
+            <path fill="#ffffff" d="M64,128A64,64,0,0,1,0,64H128A64,64,0,0,1,64,128Z" />
+            <animateTransform attributeName="transform" type="rotate" values="0 64 64;40 64 64;0 64 64" dur="600ms" repeatCount="indefinite"></animateTransform>
+            </g>
+          </svg>
+        </span>
       </button>
     </form>
   </div>
