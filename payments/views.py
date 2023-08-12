@@ -62,7 +62,8 @@ def webhook_view(request):
         payment_intent = event.data.object  # contains a stripe.PaymentIntent
         # Then define and call a method to handle the successful payment intent.
         # handle_payment_intent_succeeded(payment_intent)
-        print(f"webhook payment intent: {payment_intent}")
+        # print(f"webhook payment intent: {payment_intent}")
+        create_order(payment_intent)
     elif event.type == "payment_method.attached":
         payment_method = event.data.object  # contains a stripe.PaymentMethod
         # Then define and call a method to handle the successful attachment of a PaymentMethod.
@@ -73,3 +74,20 @@ def webhook_view(request):
         print("Unhandled event type {}".format(event.type))
 
     return HttpResponse(status=200)
+
+
+# Webhook handler functions
+def create_order(stripe_response):
+    # Get data returned from Stripe to create the Order instance
+    # Key: model field, Value: Stripe JSON response
+    data = stripe_response
+    returned_data = {
+        "name": data.shipping.name,
+        "address_line1": data.shipping.address.line1,
+        "address_line2": data.shipping.address.line2,
+        "city": data.shipping.address.city,
+        "postal_code": data.shipping.address.postal_code,
+        "amount": data.amount,
+        "paid": True,
+    }
+    print(returned_data)
