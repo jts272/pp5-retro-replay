@@ -91,12 +91,13 @@ def create_order(stripe_response):
     # Key: model field, Value: Stripe JSON response
     print(f"full Stripe response: {stripe_response}")
     data = stripe_response
+    address = stripe_response.shipping
     returned_data = {
-        "name": data.shipping.name,
-        "address_line1": data.shipping.address.line1,
-        "address_line2": data.shipping.address.line2,
-        "city": data.shipping.address.city,
-        "postal_code": data.shipping.address.postal_code,
+        "name": address.name,
+        "address_line1": address.address.line1,
+        "address_line2": address.address.line2,
+        "city": address.address.city,
+        "postal_code": address.address.postal_code,
         "amount": data.amount,
         "paid": True,
     }
