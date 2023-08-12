@@ -20,11 +20,15 @@ def checkout(request):
     basket = Basket(request)
 
     if basket:
-        print(basket.basket.keys())
-        order_item_ids = {i for i in basket.basket.keys()}
-        print(order_item_ids)
-        for i in order_item_ids:
-            print(i)
+        # Build a JSON-like order item dictionary
+        basket_keys = list(basket.basket.keys())
+        order_items = {}
+        for i in range(len(basket)):
+            order_items.update({f"order_item{i + 1}": f"{basket_keys[i]}"})
+
+        # Format as JSON to pass to Stripe as metadata
+        order_items = json.dumps(order_items)
+        print(order_items)
 
         # Get subtotal as integer with no decimals for Stripe
         total = str(basket.get_subtotal())
@@ -39,19 +43,15 @@ def checkout(request):
             currency="gbp",
             metadata={
                 "user_id": request.user.pk,
-                "order_item_ids": order_item_ids,
+                "order_items": order_items,
             },
         )
 
-        print(intent.client_secret)
-
         context = {"basket": basket, "client_secret": intent.client_secret}
     else:
-        context = {
-            "basket": basket,
-            # "client_secret": intent.client_secret
-        }
-        print(basket.basket)
+        # Client secret not present as no Stripe elements will be built
+        context = {"basket": basket}
+
     return render(request, "payments/payments.html", context)
 
 
