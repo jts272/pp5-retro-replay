@@ -92,6 +92,7 @@ def create_order(stripe_response):
     print(f"full Stripe response: {stripe_response}")
     data = stripe_response
     address = stripe_response.shipping
+    metadata = stripe_response.metadata
     returned_data = {
         "name": address.name,
         "address_line1": address.address.line1,
@@ -100,5 +101,6 @@ def create_order(stripe_response):
         "postal_code": address.address.postal_code,
         "amount": data.amount,
         "paid": True,
+        "order_item_ids": metadata.order_item_ids,
     }
     print(returned_data)
