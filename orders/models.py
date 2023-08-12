@@ -1,5 +1,8 @@
 import uuid
+
 from django.db import models
+
+from products.models import Product
 
 
 # Create your models here.
@@ -35,3 +38,15 @@ class Order(models.Model):
 
     def __str__(self):
         return f"{self.name}'s order on {self.created}"
+
+
+class OrderItem(models.Model):
+    """A model to represent each individual item in a related order."""
+
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    # For instances where the item may be discounted
+    price = models.DecimalField(max_digits=6, decimal_places=2)
+
+    def __str__(self):
+        return f"Order Item id: {self.pk} - Item: {self.product}"
