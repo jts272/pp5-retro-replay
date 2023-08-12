@@ -2,11 +2,13 @@ import json
 import os
 
 import stripe
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
-from django.http import HttpResponse
+
 from basket.basket import Basket
+from orders.models import Order, OrderItem
 
 if os.path.isfile("env.py"):
     import env  # noqa
@@ -21,6 +23,8 @@ def checkout(request):
         print(basket.basket.keys())
         order_item_ids = {i for i in basket.basket.keys()}
         print(order_item_ids)
+        for i in order_item_ids:
+            print(i)
 
         # Get subtotal as integer with no decimals for Stripe
         total = str(basket.get_subtotal())
@@ -104,3 +108,18 @@ def create_order(stripe_response):
         "order_item_ids": metadata.order_item_ids,
     }
     print(returned_data)
+
+    # Create model entries using the data returned from the webhook
+    try:
+        order = Order.objects.create(
+            name=address.name,
+            address_line1=address.address.line1,
+            address_line2=address.address.line2,
+            city=address.address.city,
+            postal_code=address.address.postal_code,
+            amount=data.amount,
+            paid=True,
+        )
+        order.save()
+    except Exception as e:
+        print(f"ERROR: {e}")
