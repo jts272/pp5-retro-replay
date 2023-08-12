@@ -9,6 +9,7 @@ from django.views.decorators.http import require_POST
 
 from basket.basket import Basket
 from orders.models import Order, OrderItem
+from products.models import Product
 
 if os.path.isfile("env.py"):
     import env  # noqa
@@ -105,11 +106,12 @@ def create_order(stripe_response):
         "postal_code": address.address.postal_code,
         "amount": data.amount,
         "paid": True,
-        "order_item_ids": metadata.order_item_ids,
+        "order_items": metadata.order_items,
     }
     print(returned_data)
 
     # Create model entries using the data returned from the webhook
+    # Order model
     try:
         order = Order.objects.create(
             name=address.name,
@@ -121,5 +123,26 @@ def create_order(stripe_response):
             paid=True,
         )
         order.save()
+    except Exception as e:
+        print(f"ERROR: {e}")
+
+    # Order items model
+    try:
+        # Parse JSON string to Python object
+        py_metadata = json.loads(metadata.order_items)
+        # Get list of primary keys for each item ordered
+        ordered_items = [i for i in py_metadata.values()]
+        # Create an order item entry for each item in the list
+        for i in range(len(ordered_items)):
+            order_item = OrderItem.objects.create(
+                # Attach to newly created order
+                order=order,
+                # Get product by PK sent with Stripe metadata
+                product=Product.objects.get(pk=ordered_items[i]),
+                # *** Placeholder price for not null constraint ***
+                price=9.99,
+            )
+        order_item.save()
+
     except Exception as e:
         print(f"ERROR: {e}")
