@@ -46,7 +46,11 @@ class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     # For instances where the item may be discounted
-    price = models.DecimalField(max_digits=6, decimal_places=2)
+    price = models.DecimalField(
+        max_digits=6,
+        decimal_places=2,
+        help_text="Price paid at time of purchase",
+    )
 
     def __str__(self):
         return f"Order Item id: {self.pk} - Item: {self.product}"
