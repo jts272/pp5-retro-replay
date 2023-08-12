@@ -18,6 +18,10 @@ def checkout(request):
     basket = Basket(request)
 
     if basket:
+        print(basket.basket.keys())
+        order_item_ids = {i for i in basket.basket.keys()}
+        print(order_item_ids)
+
         # Get subtotal as integer with no decimals for Stripe
         total = str(basket.get_subtotal())
         total = total.replace(".", "")
@@ -27,7 +31,12 @@ def checkout(request):
         stripe.api_key = os.getenv("STRIPE_SECRET_KEY")
 
         intent = stripe.PaymentIntent.create(
-            amount=total, currency="gbp", metadata={"user_id": request.user.pk}
+            amount=total,
+            currency="gbp",
+            metadata={
+                "user_id": request.user.pk,
+                "order_item_ids": order_item_ids,
+            },
         )
 
         print(intent.client_secret)
@@ -80,6 +89,7 @@ def webhook_view(request):
 def create_order(stripe_response):
     # Get data returned from Stripe to create the Order instance
     # Key: model field, Value: Stripe JSON response
+    print(f"full Stripe response: {stripe_response}")
     data = stripe_response
     returned_data = {
         "name": data.shipping.name,
