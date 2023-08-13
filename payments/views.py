@@ -23,9 +23,17 @@ def checkout(request):
     if basket:
         # Build a JSON-like order item dictionary
         basket_keys = list(basket.basket.keys())
+        print(basket.basket)
         order_items = {}
         for i in range(len(basket)):
-            order_items.update({f"order_item{i + 1}": f"{basket_keys[i]}"})
+            order_items.update(
+                {
+                    f"order_item{i + 1}": {
+                        "id": f"{basket_keys[i]}",
+                        "price": f"{basket.basket[basket_keys[i]]['price']}",
+                    }
+                }
+            )
 
         # Format as JSON to pass to Stripe as metadata
         order_items = json.dumps(order_items)
@@ -138,9 +146,9 @@ def create_order(stripe_response):
                 # Attach to newly created order
                 order=order,
                 # Get product by PK sent with Stripe metadata
-                product=Product.objects.get(pk=ordered_items[i]),
-                # *** Placeholder price for not null constraint ***
-                price=9.99,
+                product=Product.objects.get(pk=ordered_items[i]["id"]),
+                # *** Model expecting positive integer field ***
+                price=str(ordered_items[i]["price"]).replace(".", ""),
             )
         order_item.save()
 
