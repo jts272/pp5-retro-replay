@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render
 
@@ -7,6 +8,7 @@ from .basket import Basket
 
 
 # Create your views here.
+@login_required
 def basket_summary(request):
     """A summary of all the items in the user's basket.
 
@@ -21,6 +23,7 @@ def basket_summary(request):
     return render(request, "basket/basket.html", context)
 
 
+@login_required
 def add_to_basket(request):
     """Adds the selected item to the basket from the session.
 
@@ -57,6 +60,7 @@ def add_to_basket(request):
         return response
 
 
+@login_required
 def remove_from_basket(request):
     """Removes a given product stored in the basket.
 
