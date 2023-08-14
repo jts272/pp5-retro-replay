@@ -127,7 +127,8 @@ def create_order(stripe_response):
             address_line2=address.address.line2,
             city=address.address.city,
             postal_code=address.address.postal_code,
-            amount=data.amount,
+            # Create decimal value from integer returned by Stripe
+            amount=data.amount / 100,
             paid=True,
         )
         order.save()
