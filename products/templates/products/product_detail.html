@@ -8,13 +8,17 @@
       <div>Category: {{ product.category }}</div>
       <div>Region: {{ product.region }}</div>
       {% csrf_token %}
-      <button type="button"
-              class="btn btn-success"
-              id="add-to-basket"
-              value="{{ product.pk }}"
-              data-url="{% url 'basket:add_to_basket' %}">
-        Add to Basket <i class="bi bi-basket"></i>
-      </button>
+      {% if not user.is_authenticated %}
+        <a href="{% url 'account_login' %}" class="btn btn-outline-success">Login to buy <i class="bi bi-basket"></i></a>
+      {% else %}
+        <button type="button"
+                class="btn btn-success"
+                id="add-to-basket"
+                value="{{ product.pk }}"
+                data-url="{% url 'basket:add_to_basket' %}">
+          Add to Basket <i class="bi bi-basket"></i>
+        </button>
+      {% endif %}
     </div>
   </div>
 {% endblock content %}
