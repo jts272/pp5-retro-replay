@@ -150,7 +150,7 @@ def create_order(stripe_response):
                 order=order,
                 # Get product by PK sent with Stripe metadata
                 product=Product.objects.get(pk=ordered_items[i]["id"]),
-                # *** Model expecting positive integer field ***
+                # Price returned in decimal format from webhook metadata
                 price=ordered_items[i]["price"],
             )
 
