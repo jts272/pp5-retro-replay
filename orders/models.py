@@ -27,8 +27,8 @@ class Order(models.Model):
     city = models.CharField(max_length=80)
     postal_code = models.CharField(max_length=10)
     # Transactional information
-    # Payment intent is set up as an integer in pence - process further
-    amount = models.PositiveIntegerField()
+    # Payment intent returns a string - format in webhook to create decimal
+    amount = models.DecimalField(max_digits=6, decimal_places=2)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     paid = models.BooleanField(default=False)
