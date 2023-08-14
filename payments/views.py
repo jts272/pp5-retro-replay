@@ -129,6 +129,7 @@ def create_order(stripe_response):
     try:
         order = Order.objects.create(
             name=address.name,
+            email=metadata.user_email,
             address_line1=address.address.line1,
             address_line2=address.address.line2,
             city=address.address.city,
