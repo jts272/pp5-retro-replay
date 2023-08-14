@@ -2,6 +2,7 @@ import json
 import os
 
 import stripe
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
@@ -16,6 +17,7 @@ if os.path.isfile("env.py"):
 
 
 # Create your views here.
+@login_required
 def checkout(request):
     # https://youtu.be/ncsCnC3Ynlw?list=PLOLrQ9Pn6caxY4Q1U9RjO1bulQp5NDYS_&t=12452
     basket = Basket(request)
