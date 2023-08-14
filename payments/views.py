@@ -163,3 +163,8 @@ def create_order(stripe_response):
 
     except Exception as e:
         print(f"ERROR: {e}")
+
+
+def checkout_status(request):
+    # User is redirected here by Stripe.js after payment
+    return render(request, "payments/payment_status.html")
