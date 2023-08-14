@@ -22,6 +22,8 @@ def checkout(request):
     # https://youtu.be/ncsCnC3Ynlw?list=PLOLrQ9Pn6caxY4Q1U9RjO1bulQp5NDYS_&t=12452
     basket = Basket(request)
 
+    print(request.user.email)
+
     if basket:
         # Build a JSON-like order item dictionary
         basket_keys = list(basket.basket.keys())
@@ -54,6 +56,7 @@ def checkout(request):
             currency="gbp",
             metadata={
                 "user_id": request.user.pk,
+                "user_email": request.user.email,
                 "order_items": order_items,
             },
         )
@@ -110,6 +113,7 @@ def create_order(stripe_response):
     metadata = stripe_response.metadata
     returned_data = {
         "name": address.name,
+        "email": metadata.user_email,
         "address_line1": address.address.line1,
         "address_line2": address.address.line2,
         "city": address.address.city,
