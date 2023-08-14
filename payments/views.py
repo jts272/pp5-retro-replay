@@ -148,8 +148,9 @@ def create_order(stripe_response):
                 # Get product by PK sent with Stripe metadata
                 product=Product.objects.get(pk=ordered_items[i]["id"]),
                 # *** Model expecting positive integer field ***
-                price=str(ordered_items[i]["price"]).replace(".", ""),
+                price=ordered_items[i]["price"],
             )
+
         order_item.save()
 
     except Exception as e:
