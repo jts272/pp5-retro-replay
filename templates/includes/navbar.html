@@ -96,19 +96,27 @@
       <hr />
       <!-- END Authentication controls -->
       <!-- Basket link -->
-      <a href="{% url 'basket:basket_summary' %}" class="btn btn-light mb-2">
-        Basket:
-        <span id="basket-qty">
-          {% with basket_qty=basket|length %}{{ basket_qty }}{% endwith %}
-        </span> <i class="bi bi-basket"></i></a>
-        <!-- END Basket link -->
-        <form class="d-flex" role="search">
-          <input class="form-control me-2"
-                 type="search"
-                 placeholder="Search"
-                 aria-label="Search" />
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-      </div>
+      {% if not user.is_authenticated %}
+        <a href="{% url 'account_login' %}" class="btn btn-light mb-2">
+          Login to view basket
+          <i class="bi bi-basket"></i>
+        </a>
+      {% else %}
+        <a href="{% url 'basket:basket_summary' %}" class="btn btn-light mb-2">
+          Basket:
+          <span id="basket-qty">
+            {% with basket_qty=basket|length %}{{ basket_qty }}{% endwith %}
+          </span> <i class="bi bi-basket"></i>
+        </a>
+      {% endif %}
+      <!-- END Basket link -->
+      <form class="d-flex" role="search">
+        <input class="form-control me-2"
+               type="search"
+               placeholder="Search"
+               aria-label="Search" />
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
     </div>
-  </nav>
+  </div>
+</nav>
