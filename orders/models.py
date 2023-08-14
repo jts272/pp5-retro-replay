@@ -22,6 +22,7 @@ class Order(models.Model):
     order_id = models.UUIDField(default=uuid.uuid4, editable=False)
     # Shipping information
     name = models.CharField(max_length=80)
+    email = models.EmailField(max_length=255)
     address_line1 = models.CharField(max_length=255)
     address_line2 = models.CharField(max_length=255, null=True, blank=True)
     city = models.CharField(max_length=80)
