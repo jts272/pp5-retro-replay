@@ -3,6 +3,13 @@
 {% block content %}
   <h2>Payment success page</h2>
   <div id="message"></div>
+  <div id="redirects">
+    <a href="{% url 'home:home' %}">Back to home</a>
+    <!-- Link to checkout hidden by default; enabled by status.js in event of payment failure -->
+    <a href="{% url 'payments:checkout' %}"
+       class="d-none"
+       id="checkout-redirect">Back to checkout</a>
+  </div>
 {% endblock content %}
 {% block additional_scripts %}
   <script src="https://js.stripe.com/v3/"></script>

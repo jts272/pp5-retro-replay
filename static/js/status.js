@@ -36,6 +36,8 @@ if (clientSecret) {
           "Payment failed. Please try another payment method.";
         // Redirect your user back to your payment page to attempt collecting
         // payment again
+        const checkoutRedirect = document.querySelector("checkout-redirect");
+        checkoutRedirect.classList.remove("d-none");
         break;
 
       default:
