@@ -35,7 +35,7 @@ def create_or_update_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
     # Save the profile for existing users
-    instance.profile.save()
+    # instance.profile.save()
 
 
 class Address(models.Model):
