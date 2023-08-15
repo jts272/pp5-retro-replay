@@ -2,6 +2,8 @@ import uuid
 
 from django.contrib.auth.models import User
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 # Create your models here.
@@ -16,11 +18,32 @@ class Profile(models.Model):
         return f"{self.user.username}'s profile"
 
 
+@receiver(post_save, sender=User)
+def create_or_update_profile(sender, instance, created, **kwargs):
+    """Creates or updates a profile instance when a Django user is
+    created or updated using signals.
+
+    Arguments:
+        sender -- model that sends the signal
+        instance -- instance being saved
+        created -- boolean which is True if the record was created
+
+    Reference:
+    https://youtu.be/YOf1GMOD9Bc?t=126
+    https://docs.djangoproject.com/en/3.2/ref/signals/#post-save
+    """
+    if created:
+        Profile.objects.create(user=instance)
+    # Save the profile for existing users
+    instance.profile.save()
+
+
 class Address(models.Model):
     """Allows a user to create, update and delete addresses to prefill
     the Stripe address form for a faster checkout.
 
-     Reference: https://youtu.be/8SP76dopYVo?list=PLOLrQ9Pn6caxY4Q1U9RjO1bulQp5NDYS_&t=749
+    Reference:
+    https://youtu.be/8SP76dopYVo?list=PLOLrQ9Pn6caxY4Q1U9RjO1bulQp5NDYS_&t=749
     """
 
     # The profile that this address instance is linked to
