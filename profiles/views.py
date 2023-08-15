@@ -7,16 +7,15 @@ from profiles.models import Profile
 # Create your views here.
 @login_required
 def profile(request):
-    """Display the user's profile to perform actions relating to saved
-    addresses and past orders.
+    """The landing page for the logged in user's profile management
+    tools. From here they can select appropriate address or order history
+    actions.
 
     Arguments:
         request -- HttpRequest
     """
     profile = get_object_or_404(Profile, user=request.user)
-    # Use the selected profile to get its related orders
-    orders = profile.order_set.all()
-    context = {"profile": profile, "orders": orders}
+    context = {"profile": profile}
     return render(request, "profiles/profile.html", context)
 
 
