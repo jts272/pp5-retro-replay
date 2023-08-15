@@ -13,6 +13,7 @@ class OrderItemInline(admin.TabularInline):
 class OrderModelAdmin(admin.ModelAdmin):
     list_display = [
         "order_id",
+        "profile",
         "name",
         "amount",
         "created",
