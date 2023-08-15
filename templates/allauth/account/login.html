@@ -39,4 +39,6 @@ for a {{ site_name }} account and sign in below:{% endblocktrans %}
        href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
     <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
   </form>
+  <hr />
+  <div class="d-flex justify-content-center">{% include "includes/home-button.html" %}</div>
 {% endblock %}
