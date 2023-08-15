@@ -3,6 +3,7 @@ import uuid
 from django.db import models
 
 from products.models import Product
+from profiles.models import Profile
 
 
 # Create your models here.
@@ -20,6 +21,11 @@ class Order(models.Model):
 
     # A unique identifier to perform checks against
     order_id = models.UUIDField(default=uuid.uuid4, editable=False)
+    # Link each order to a profile, which is linked to a Django user instance
+    # Set null to keep the order if the user gets deleted
+    profile = models.ForeignKey(
+        Profile, on_delete=models.SET_NULL, null=True, blank=True
+    )
     # Shipping information
     name = models.CharField(max_length=80)
     email = models.EmailField(max_length=255)
