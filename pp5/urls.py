@@ -23,4 +23,5 @@ urlpatterns = [
     path("basket/", include("basket.urls")),
     path("accounts/", include("allauth.urls")),
     path("payments/", include("payments.urls")),
+    path("profile/", include("profiles.urls")),
 ]
