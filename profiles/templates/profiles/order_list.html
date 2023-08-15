@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>This is the profile page!</h2>
+  <h3>Whose profile?</h3>
+  <p>{{ profile }}</p>
+  <h3>Your order History</h3>
+  {% if not orders %}
+    You have not placed any orders yet
+  {% else %}
+    {% for order in orders %}
+      {{ order.amount }}
+      <hr />
+    {% endfor %}
+  {% endif %}
+{% endblock content %}
