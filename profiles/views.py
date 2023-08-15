@@ -14,5 +14,7 @@ def profile(request):
         request -- HttpRequest
     """
     profile = get_object_or_404(Profile, user=request.user)
-    context = {"profile": profile}
+    # Use the selected profile to get its related orders
+    orders = profile.order_set.all()
+    context = {"profile": profile, "orders": orders}
     return render(request, "profiles/profile.html", context)

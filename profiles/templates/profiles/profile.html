@@ -2,6 +2,14 @@
 {% block content %}
   <h2>This is the profile page!</h2>
   <h3>Whose profile?</h3>
-  <h4>{{ profile }}</h4>
-  <p>{{ profile.order_set.all }}</p>
+  <p>{{ profile }}</p>
+  <h3>Your order History</h3>
+  {% if not orders %}
+    You have not placed any orders yet
+  {% else %}
+    {% for order in orders %}
+      {{ order }}
+      <hr />
+    {% endfor %}
+  {% endif %}
 {% endblock content %}
