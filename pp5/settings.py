@@ -62,6 +62,8 @@ INSTALLED_APPS = [
     "profiles.apps.ProfilesConfig",
     # Additional apps
     "django_extensions",
+    "crispy_forms",
+    "crispy_bootstrap5",
     # Required for `allauth`
     "django.contrib.auth",
     "django.contrib.messages",
@@ -180,3 +182,7 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Crispy forms
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
