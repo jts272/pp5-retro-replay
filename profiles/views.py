@@ -105,3 +105,21 @@ def address_edit(request, uuid):
         form = ProfileAddressForm(instance=address)
     context = {"form": form}
     return render(request, "profiles/address_form.html", context)
+
+
+@login_required
+def address_delete(request, uuid):
+    """Delete the selected address instance.
+
+    Arguments:
+        request -- HttpRequest
+        uuid -- Unique identifier for address object
+
+    Returns:
+        Removes the selected address and redirects to the list view
+
+    Reference:
+    https://youtu.be/8SP76dopYVo?list=PLOLrQ9Pn6caxY4Q1U9RjO1bulQp5NDYS_
+    """
+    Address.objects.get(uuid=uuid, profile=request.user.profile).delete()
+    return HttpResponseRedirect(reverse("profiles:address_list"))

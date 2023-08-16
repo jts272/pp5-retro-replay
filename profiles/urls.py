@@ -13,4 +13,9 @@ urlpatterns = [
     path(
         "addresses/edit/<slug:uuid>/", views.address_edit, name="address_edit"
     ),
+    path(
+        "addresses/delete/<slug:uuid>/",
+        views.address_delete,
+        name="address_delete",
+    ),
 ]
