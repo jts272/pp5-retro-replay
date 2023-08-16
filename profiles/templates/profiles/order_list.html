@@ -22,8 +22,9 @@
             <td>{{ order.created|date:"d/m/Y - G:i" }}</td>
             <td>£{{ order.amount }}</td>
             <td>
-              <span class="visually-hidden">View more</span>
-              <i class="bi bi-chevron-right"></i>
+              <a href="{{ order.get_absolute_url }}">
+                <span class="visually-hidden">View more</span>
+                <i class="bi bi-chevron-right"></i></a>
             </td>
           </tr>
         {% endfor %}

@@ -1,6 +1,7 @@
 import uuid
 
 from django.db import models
+from django.urls import reverse
 
 from products.models import Product
 from profiles.models import Profile
@@ -44,6 +45,11 @@ class Order(models.Model):
 
     def __str__(self):
         return f"{self.name}'s order on {self.created}"
+
+    def get_absolute_url(self):
+        return reverse(
+            "profiles:order_detail", kwargs={"order_id": self.order_id}
+        )
 
 
 class OrderItem(models.Model):
