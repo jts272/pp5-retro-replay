@@ -15,4 +15,7 @@ for (let i = 0; i < confirmDeleteBtns.length; i++) {
   confirmBtn.addEventListener("click", function (event) {
     deleteBtn.classList.toggle("visually-hidden");
   });
+  confirmBtn.addEventListener("focusout", function (event) {
+    deleteBtn.classList.add("visually-hidden");
+  });
 }
