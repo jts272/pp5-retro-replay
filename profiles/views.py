@@ -95,12 +95,13 @@ def address_add(request):
 def address_edit(request, uuid):
     if request.method == "POST":
         address = Address.objects.get(uuid=uuid, profile=request.user.profile)
-        form = ProfileAddressForm(instance=address)
+        form = ProfileAddressForm(instance=address, data=request.POST)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse("profiles:address_list"))
     else:
         address = Address.objects.get(uuid=uuid, profile=request.user.profile)
+        print(address)
         form = ProfileAddressForm(instance=address)
-    context = {"form": ProfileAddressForm()}
+    context = {"form": form}
     return render(request, "profiles/address_form.html", context)
