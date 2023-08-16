@@ -2,7 +2,38 @@
 {% block content %}
   <h3>Saved Addresses</h3>
   {% if not addresses %}<p>You currently have no saved addresses. You can add an address below.</p>{% endif %}
-  {{ addresses }}
-  {% for address in addresses %}{{ address }}{% endfor %}
+  {% for address in addresses %}
+    <div class="row border rounded p-2 m-2">
+      <div class="col-12">
+        <h4>Saved Address {{ forloop.counter }}</h4>
+        {% if address.default %}
+          <p class="col-12 bg-success-subtle rounded text-center">Default address at checkout</p>
+        {% endif %}
+      </div>
+      <hr />
+      <div class="col-4 text-muted">Name</div>
+      <div class="col-8">{{ address.name }}</div>
+      <hr />
+      <div class="col-4 text-muted">Address line 1</div>
+      <div class="col-8">{{ address.address_line1 }}</div>
+      <hr />
+      {% if address.address_line2 %}
+        <div class="col-4 text-muted">Address line 2</div>
+        <div class="col-8">{{ address.address_line2 }}</div>
+        <hr />
+      {% endif %}
+      <div class="col-4 text-muted">City</div>
+      <div class="col-8">{{ address.city }}</div>
+      <hr />
+      <div class="col-4 text-muted">Postal code</div>
+      <div class="col-8">{{ address.postal_code }}</div>
+      <hr />
+      {% if address.updated %}
+        <div class="col-4 text-muted">Updated at</div>
+        <div class="col-8">{{ address.updated|date:"d/m/Y" }}</div>
+        <hr />
+      {% endif %}
+    </div>
+  {% endfor %}
   <a href="{% url 'profiles:profile' %}" class="btn btn-primary"><i class="bi bi-chevron-left"></i> Back to Profile Management</a>
 {% endblock content %}
