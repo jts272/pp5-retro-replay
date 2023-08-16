@@ -1,12 +1,18 @@
-// Achieve autofocus effect on modal
-// Adapted from https://getbootstrap.com/docs/5.3/components/modal/
+// Get the 'ask' and 'do' buttons on the page as iterables
+const confirmDeleteBtns = Array.from(
+  document.getElementsByClassName("delete-ask")
+);
+const actualDeleteBtns = Array.from(
+  document.getElementsByClassName("delete-do")
+);
 
-const addressDeleteModal = document.getElementById("exampleModal");
-const modalInputs = Array.from(document.getElementsByClassName("modal-input"));
+// Iterate through each 'ask' button on the page
+for (let i = 0; i < confirmDeleteBtns.length; i++) {
+  const confirmBtn = confirmDeleteBtns[i];
+  const deleteBtn = actualDeleteBtns[i];
 
-for (let i = 0; i < modalInputs.length; i++) {
-  const element = modalInputs[i];
-  element.addEventListener("shown.bs.modal", () => {
-    element.focus();
+  // Open the clicked 'ask' button to reveal the corresponding 'do' delete button
+  confirmBtn.addEventListener("click", function (event) {
+    deleteBtn.classList.toggle("visually-hidden");
   });
 }

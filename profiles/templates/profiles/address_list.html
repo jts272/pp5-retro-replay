@@ -35,46 +35,30 @@
         <hr />
       {% endif %}
       <!-- Update and Delete controls -->
-      <div class="row">
-        <div class="col-12 d-flex justify-content-around">
-          <!-- Button trigger modal -->
-          <button class="btn btn-outline-danger modal-input"
-                  data-bs-toggle="modal"
-                  data-bs-target="#exampleModal">
-            Remove address <i class="bi bi-house-dash"></i>
-          </button>
-          <a href="{% url 'profiles:address_edit' address.uuid %}"
-             class="btn btn-outline-primary">Update address <i class="bi bi-chevron-right"></i></a>
+      <div class="col-12 d-flex justify-content-around">
+        <!-- Button trigger delete confirmation -->
+        <button class="btn btn-outline-danger delete-ask">
+          Remove <i class="bi bi-house-dash"></i>
+        </button>
+        <!-- END Button trigger delete confirmation -->
+        <!-- Update address link -->
+        <a href="{% url 'profiles:address_edit' address.uuid %}"
+           class="btn btn-outline-primary">
+          Update <i class="bi bi-chevron-right"></i>
+        </a>
+        <!-- END Update address link -->
+      </div>
+      <!-- Hidden delete confirmation control -->
+      <div class="row p-2 delete-do visually-hidden">
+        <div class="col-12">
+          <strong>This will remove this address from your list of saved addresses.</strong>
+          <a href="{% url 'profiles:address_delete' address.uuid %}"
+             class="btn btn-danger col-12">Confirm Deletion</a>
         </div>
       </div>
+      <!--  END Hidden delete confirmation control -->
       <!-- END Update and Delete controls -->
     </div>
-    <!-- Confirm address delete modal -->
-    <!-- Modal inside loop to retain uuid context -->
-    <div class="modal fade"
-         id="exampleModal"
-         tabindex="-1"
-         aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Remove Address?</h1>
-            <button type="button"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"></button>
-          </div>
-          <div class="modal-body">This will remove this address from your list of saved addresses.</div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <a href="{% url 'profiles:address_delete' address.uuid %}"
-               class="btn btn-danger">Remove</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- END Confirm address delete modal -->
   {% endfor %}
   <!-- Add address control -->
   <div class="row border rounded p-2 m-2 bg-success-subtle text-end">
