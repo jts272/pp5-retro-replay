@@ -10,4 +10,7 @@ urlpatterns = [
     path("addresses/", views.address_list, name="address_list"),
     # Paths for CRUD functions
     path("addresses/add/", views.address_add, name="address_add"),
+    path(
+        "addresses/edit/<slug:uuid>/", views.address_edit, name="address_edit"
+    ),
 ]
