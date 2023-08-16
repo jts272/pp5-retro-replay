@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+  <h3>Order Details</h3>
+  <!-- Summary box -->
+  <div class="row border rounded p-2">
+    <div class="col-4 text-muted">Order date</div>
+    <div class="col-8">{{ order.created }}</div>
+    <div class="col-4 text-muted">Order number</div>
+    <div class="col-8">{{ order.order_id }}</div>
+    <div class="col-4 text-muted">Order total</div>
+    <div class="col-8">
+      £{{ order.amount }} <span class="text-muted">({{ items.count }} item{{ items.count|pluralize }})</span>
+    </div>
+  </div>
+  <!-- END Summary box -->
+  <!-- Shipping info box -->
+{% endblock content %}
