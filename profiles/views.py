@@ -41,5 +41,6 @@ def order_detail(request, order_id):
     order = get_object_or_404(
         Order, order_id=order_id, profile=request.user.profile
     )
-    context = {"order": order}
+    items = order.orderitem_set.all()
+    context = {"order": order, "items": items}
     return render(request, "profiles/order_detail.html", context)
