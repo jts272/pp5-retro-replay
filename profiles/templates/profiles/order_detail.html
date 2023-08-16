@@ -5,8 +5,10 @@
   <div class="row border rounded p-2 m-2">
     <div class="col-4 text-muted">Order date</div>
     <div class="col-8">{{ order.created }}</div>
+    <hr />
     <div class="col-4 text-muted">Order number</div>
     <div class="col-8">{{ order.order_id }}</div>
+    <hr />
     <div class="col-4 text-muted">Order total</div>
     <div class="col-8">
       £{{ order.amount }} <span class="text-muted">({{ items.count }} item{{ items.count|pluralize }})</span>
@@ -23,4 +25,23 @@
     <div class="col-12">{{ order.postal_code }}</div>
   </div>
   <!-- END Shipping info box -->
+  <!-- Order items -->
+  <h3>Order items</h3>
+  {% for item in items %}
+    <!-- Bootstrap 5 horizontal card: https://getbootstrap.com/docs/5.3/components/card/#horizontal -->
+    <div class="card p-2 m-2">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img src="..." class="img-fluid rounded-start" alt="..." />
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">{{ item.product.name }}</h5>
+            <p class="card-text">£{{ item.product.price }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+  <!-- END Order items -->
 {% endblock content %}
