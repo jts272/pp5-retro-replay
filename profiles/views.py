@@ -1,7 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, render
 
-from profiles.models import Profile
+from .models import Profile
+from orders.models import Order
 
 
 # Create your views here.
@@ -32,3 +33,13 @@ def order_list(request):
     orders = profile.order_set.all()
     context = {"profile": profile, "orders": orders}
     return render(request, "profiles/order_list.html", context)
+
+
+@login_required
+def order_detail(request, order_id):
+    # Match order by order id (uuid) and the profile of the current user
+    order = get_object_or_404(
+        Order, order_id=order_id, profile=request.user.profile
+    )
+    context = {"order": order}
+    return render(request, "profiles/order_detail.html", context)
