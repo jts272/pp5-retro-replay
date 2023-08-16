@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 {% block content %}
   <h3>Saved Addresses</h3>
   {% if not addresses %}<p>You currently have no saved addresses. You can add an address below.</p>{% endif %}
@@ -36,7 +37,8 @@
       <!-- Update and Delete controls -->
       <div class="row">
         <div class="col-12 d-flex justify-content-around">
-          <a href="#" class="btn btn-outline-danger">Remove address <i class="bi bi-house-dash"></i></a>
+          <a href="{% url 'profiles:address_delete' address.uuid %}"
+             class="btn btn-outline-danger">Remove address <i class="bi bi-house-dash"></i></a>
           <a href="{% url 'profiles:address_edit' address.uuid %}"
              class="btn btn-outline-primary">Update address <i class="bi bi-chevron-right"></i></a>
         </div>
@@ -51,4 +53,40 @@
     </a>
   </div>
   <a href="{% url 'profiles:profile' %}" class="btn btn-primary"><i class="bi bi-chevron-left"></i> Back to Profile Management</a>
+  <!-- Confirm address delete modal -->
+  <!-- Bootstrap 5 modal:  -->
+  <!-- Button trigger modal -->
+  <button type="button"
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#staticBackdrop">Launch static backdrop modal</button>
+  <!-- Modal -->
+  <div class="modal fade"
+       id="staticBackdrop"
+       data-bs-backdrop="static"
+       data-bs-keyboard="false"
+       tabindex="-1"
+       aria-labelledby="staticBackdropLabel"
+       aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+          <button type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"></button>
+        </div>
+        <div class="modal-body">...</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Understood</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END Confirm address delete modal -->
 {% endblock content %}
+{% block additional_scripts %}
+  <script src="{% static 'js/confirm-address-delete.js' %}"></script>
+{% endblock additional_scripts %}
