@@ -1,6 +1,12 @@
-const myModal = document.getElementById("myModal");
-const myInput = document.getElementById("myInput");
+// Achieve autofocus effect on modal
+// Adapted from https://getbootstrap.com/docs/5.3/components/modal/
 
-myModal.addEventListener("shown.bs.modal", () => {
-  myInput.focus();
-});
+const addressDeleteModal = document.getElementById("exampleModal");
+const modalInputs = Array.from(document.getElementsByClassName("modal-input"));
+
+for (let i = 0; i < modalInputs.length; i++) {
+  const element = modalInputs[i];
+  element.addEventListener("shown.bs.modal", () => {
+    element.focus();
+  });
+}
