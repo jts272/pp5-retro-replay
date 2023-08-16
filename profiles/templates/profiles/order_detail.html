@@ -2,7 +2,7 @@
 {% block content %}
   <h3>Order Details</h3>
   <!-- Summary box -->
-  <div class="row border rounded p-2">
+  <div class="row border rounded p-2 m-2">
     <div class="col-4 text-muted">Order date</div>
     <div class="col-8">{{ order.created }}</div>
     <div class="col-4 text-muted">Order number</div>
@@ -14,4 +14,13 @@
   </div>
   <!-- END Summary box -->
   <!-- Shipping info box -->
+  <h3>Shipping Information</h3>
+  <div class="row border rounded p-2 m-2">
+    <div class="col-12">{{ order.name }}</div>
+    <div class="col-12">{{ order.address_line1 }}</div>
+    {% if order.address_line2 %}<div class="col-12">{{ order.address_line2 }}</div>{% endif %}
+    <div class="col-12">{{ order.city }}</div>
+    <div class="col-12">{{ order.postal_code }}</div>
+  </div>
+  <!-- END Shipping info box -->
 {% endblock content %}
