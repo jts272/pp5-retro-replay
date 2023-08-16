@@ -1,8 +1,11 @@
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
+from django.urls import reverse
 
 from orders.models import Order
 
+from .forms import ProfileAddressForm
 from .models import Address, Profile
 
 
@@ -49,6 +52,40 @@ def order_detail(request, order_id):
 
 @login_required
 def address_list(request):
+    print(request.method)
     addresses = Address.objects.filter(profile=request.user.profile)
     context = {"addresses": addresses}
     return render(request, "profiles/address_list.html", context)
+
+
+@login_required
+def address_add(request):
+    """Adds an address model instance to the user's profile.
+
+    In addition to manually entered fields, the address instance is
+    attached to the user's profile. The uuid field is automatically
+    generated from the field's own `default` attribute when created.
+
+    Arguments:
+        request -- HttpRequest
+
+    Returns:
+        Template for user to enter valid saved address information.
+        Redirects to address list page on success.
+
+    Reference:
+    https://youtu.be/8SP76dopYVo?list=PLOLrQ9Pn6caxY4Q1U9RjO1bulQp5NDYS_&t=2825
+    """
+    if request.method == "POST":
+        form = ProfileAddressForm(data=request.POST)
+        if form.is_valid():
+            form = form.save(commit=False)
+            form.profile = request.user.profile
+            form.save()
+            return HttpResponseRedirect(reverse("profiles:address_list"))
+
+    else:
+        form = ProfileAddressForm()
+
+    context = {"form": ProfileAddressForm()}
+    return render(request, "profiles/address_form.html", context)
