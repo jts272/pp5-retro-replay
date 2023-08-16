@@ -2,10 +2,11 @@
 {% load crispy_forms_tags %}
 {% block content %}
   <h3>Add an address</h3>
-  <form action="{% url 'profiles:address_add' %}" method="post">
+  <!-- Form action posts to the view that rendered it for CRUD functionality -->
+  <form action="." method="post">
     {% csrf_token %}
     {{ form|crispy }}
-    <button type="submit" class="btn btn-success">Add Address</button>
+    <button type="submit" class="btn btn-success">Save Address</button>
   </form>
   <a href="{% url 'profiles:address_list' %}" class="btn btn-primary"><i class="bi bi-chevron-left"></i> Back to Saved Addresses</a>
 {% endblock content %}
