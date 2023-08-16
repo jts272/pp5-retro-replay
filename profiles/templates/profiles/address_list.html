@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block content %}
+  <h3>Saved Addresses</h3>
+  {% if not addresses %}<p>You currently have no saved addresses. You can add an address below</p>{% endif %}
+  {{ addresses }}
+  {% for address in addresses %}{{ address }}{% endfor %}
+{% endblock content %}
