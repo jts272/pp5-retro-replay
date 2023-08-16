@@ -1,8 +1,9 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, render
 
-from .models import Profile
 from orders.models import Order
+
+from .models import Address, Profile
 
 
 # Create your views here.
@@ -44,3 +45,10 @@ def order_detail(request, order_id):
     items = order.orderitem_set.all()
     context = {"order": order, "items": items}
     return render(request, "profiles/order_detail.html", context)
+
+
+@login_required
+def address_list(request):
+    addresses = Address.objects.filter(profile=request.user.profile)
+    context = {"addresses": addresses}
+    return render(request, "profiles/address_list.html", context)
