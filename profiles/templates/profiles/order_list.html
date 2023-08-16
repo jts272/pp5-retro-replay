@@ -1,15 +1,33 @@
 {% extends "base.html" %}
 {% block content %}
-  <h2>This is the profile page!</h2>
-  <h3>Whose profile?</h3>
-  <p>{{ profile }}</p>
   <h3>Your order History</h3>
   {% if not orders %}
     You have not placed any orders yet
   {% else %}
-    {% for order in orders %}
-      {{ order.amount }}
-      <hr />
-    {% endfor %}
+    <!-- START Order history table -->
+    <!-- Bootstrap 5 table: https://getbootstrap.com/docs/5.3/content/tables/ -->
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Date placed</th>
+          <th scope="col">Total</th>
+          <th scope="col">Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for order in orders %}
+          <tr>
+            <th scope="row">{{ forloop.revcounter }}</th>
+            <td>{{ order.created|date:"d/m/Y - G:i" }}</td>
+            <td>£{{ order.amount }}</td>
+            <td>
+              <span class="visually-hidden">View more</span>
+              <i class="bi bi-chevron-right"></i>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   {% endif %}
 {% endblock content %}
