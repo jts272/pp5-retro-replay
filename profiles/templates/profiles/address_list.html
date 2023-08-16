@@ -35,5 +35,11 @@
       {% endif %}
     </div>
   {% endfor %}
+  <div class="row border rounded p-2 m-2 bg-success-subtle text-end">
+    <a href="{% url 'profiles:address_add' %}"
+       class="text-decoration-none link-dark">
+      Add an address <i class="bi bi-chevron-right"></i>
+    </a>
+  </div>
   <a href="{% url 'profiles:profile' %}" class="btn btn-primary"><i class="bi bi-chevron-left"></i> Back to Profile Management</a>
 {% endblock content %}
