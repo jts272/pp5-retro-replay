@@ -8,8 +8,6 @@ urlpatterns = [
     path("orders/", views.order_list, name="order_list"),
     path("orders/<slug:order_id>/", views.order_detail, name="order_detail"),
     path("addresses/", views.address_list, name="address_list"),
-    # path(
-    #     "addresses/<slug:uuid>/", views.address_detail, name="address_detail"
-    # ),
-    # Include urls for editing views as they are made
+    # Paths for CRUD functions
+    path("addresses/add/", views.address_add, name="address_add"),
 ]
