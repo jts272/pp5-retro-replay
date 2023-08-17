@@ -1,30 +1,14 @@
 {% extends "base.html" %}
-{% load static %}
 {% block title %}
   Retro Replay | Products
 {% endblock title %}
 {% block content %}
   <p>{{ products.count }} product{{ products.count|pluralize }} found:</p>
+  <!-- Product card loop by queryset -->
   <div class="row">
     {% for product in products %}
-      <div class="col-6 col-md-3">
-        <div class="card mb-3">
-          <div class="img-thumbnail m-3">
-            <img src="{{ product.image.url }}"
-                 class="card-img-top "
-                 alt="Product image" />
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">{{ product.name }}</h5>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">£{{ product.price }}</li>
-              <li class="list-group-item">{{ product.platform }}</li>
-            </ul>
-            <a href="{{ product.get_absolute_url }}"
-               class="btn btn-success float-end">View <i class="bi bi-chevron-right"></i></a>
-          </div>
-        </div>
-      </div>
+      {% include "includes/product-list-card.html" %}
     {% endfor %}
   </div>
+  <!-- END Product card loop by queryset -->
 {% endblock content %}

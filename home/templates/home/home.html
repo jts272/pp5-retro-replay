@@ -7,26 +7,13 @@
   <h1>Retro Replay Homepage!</h1>
   <div id="message"></div>
   <p>{{ recent_products.count }} product{{ recent_products.count|pluralize }} found:</p>
+  <!-- Recent products card loop -->
   <div class="row">
     {% for product in recent_products %}
-      <div class="col-6 col-md-3">
-        <div class="card mb-3">
-          <div class="img-thumbnail m-3">
-            <img src="{{ product.image }}" class="card-img-top " alt="Product image" />
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">{{ product.name }}</h5>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">£{{ product.price }}</li>
-              <li class="list-group-item">{{ product.platform }}</li>
-            </ul>
-            <a href="{{ product.get_absolute_url }}"
-               class="btn btn-success float-end">View <i class="bi bi-chevron-right"></i></a>
-          </div>
-        </div>
-      </div>
+      {% include "includes/product-list-card.html" %}
     {% endfor %}
   </div>
+  <!-- END Recent products card loop -->
 {% endblock content %}
 {% block additional_scripts %}
   <script>const CSRF_TOKEN = '{{ csrf_token }}' </script>
