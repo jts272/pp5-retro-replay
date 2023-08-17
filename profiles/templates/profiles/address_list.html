@@ -2,15 +2,20 @@
 {% load static %}
 {% block content %}
   <h3>Saved Addresses</h3>
-  {% if not addresses %}<p>You currently have no saved addresses. You can add an address below.</p>{% endif %}
+  {% if not addresses %}
+    <p>You currently have no saved addresses. You can add an address below.</p>
+  {% else %}
+    <p>Set a default address from your saved addresses list to save time at your next checkout.</p>
+  {% endif %}
   {% for address in addresses %}
     <div class="row border rounded p-2 m-2">
-      <div class="col-12">
+      <div class="col-12 d-flex justify-content-between align-items-baseline mb-2">
         <h4>Saved Address {{ forloop.counter }}</h4>
-        {% if address.default %}
-          <p class="col-12 bg-success-subtle rounded text-center">Default address at checkout</p>
-        {% endif %}
+        {% if not address.default %}<a href="#" class="btn btn-sm btn-primary">Set Default</a>{% endif %}
       </div>
+      {% if address.default %}
+        <div class="col-12 bg-success-subtle rounded text-center mb-2">Default address at checkout</div>
+      {% endif %}
       <hr />
       <div class="col-4 text-muted">Name</div>
       <div class="col-8">{{ address.name }}</div>
