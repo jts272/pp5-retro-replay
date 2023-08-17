@@ -57,11 +57,16 @@
         <!-- END Update address link -->
       </div>
       <!-- Hidden delete confirmation control -->
-      <div class="row p-2 delete-do visually-hidden">
-        <div class="col-12">
-          <strong>Confirm to remove this address from your list of saved addresses.</strong>
+      <div class="delete-do visually-hidden">
+        <div class="col-12 d-flex justify-content-around">
+          <div class="col-12 py-2">
+            <strong>Confirm to remove this address from your list of saved addresses.</strong>
+          </div>
+        </div>
+        <div class="col-12 d-flex justify-content-around">
           <a href="{% url 'profiles:address_delete' address.uuid %}"
-             class="btn btn-danger col-12">Confirm Deletion</a>
+             class="btn btn-danger">Delete</a>
+          <div class="btn btn-outline-secondary delete-go-back">Go Back</div>
         </div>
       </div>
       <!--  END Hidden delete confirmation control -->
