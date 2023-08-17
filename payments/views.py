@@ -21,15 +21,19 @@ if os.path.isfile("env.py"):
 @login_required
 def checkout(request):
     if request.user.profile.address_set.exists():
-        print("addresses exist on this profile")
-        # Which address are we interested in
-        address = Address.objects.get(
-            profile=request.user.profile, default=True
-        )
-        print(address.get_address_object())
+        try:
+            print("addresses exist on this profile")
+            # Which address are we interested in
+            address = Address.objects.get(
+                profile=request.user.profile, default=True
+            )
+
+            print(address.get_address_object())
+        except Exception as e:
+            print(f"Exception: {e} No default address is set on this profile.")
 
     else:
-        print("No addresses exist on this profile")
+        print("No addresses exist on this profile.")
 
     # https://youtu.be/ncsCnC3Ynlw?list=PLOLrQ9Pn6caxY4Q1U9RjO1bulQp5NDYS_&t=12452
     basket = Basket(request)
