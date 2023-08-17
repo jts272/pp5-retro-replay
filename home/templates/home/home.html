@@ -9,6 +9,7 @@
   <p>{{ recent_products.count }} product{{ recent_products.count|pluralize }} found:</p>
   {% for product in recent_products %}
     <ul>
+      <img src="{{ product.image }}" alt="Product image" />
       <li>Product: {{ product.name }}</li>
       <li>Price: {{ product.price }}</li>
       <li>Category: {{ product.category }}</li>

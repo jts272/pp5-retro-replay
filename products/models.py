@@ -22,6 +22,7 @@ class Product(models.Model):
     region = models.ForeignKey(
         "Region", on_delete=models.SET_NULL, null=True, blank=True
     )
+    image = models.ImageField(default="./static/images/no-photo.png")
 
     class Meta:
         ordering = ["-pk"]
