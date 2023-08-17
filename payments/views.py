@@ -20,6 +20,8 @@ if os.path.isfile("env.py"):
 # Create your views here.
 @login_required
 def checkout(request):
+    # Null address object unless found in query
+    address_object = None
     if request.user.profile.address_set.exists():
         try:
             print("addresses exist on this profile")
