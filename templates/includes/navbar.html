@@ -23,7 +23,7 @@
              href="#"
              role="button"
              data-bs-toggle="dropdown"
-             aria-expanded="false">Shop by Category</a>
+             aria-expanded="false">Categories</a>
           <ul class="dropdown-menu">
             {% for category in categories %}
               <li>
@@ -40,7 +40,7 @@
              href="#"
              role="button"
              data-bs-toggle="dropdown"
-             aria-expanded="false">Shop by Platform</a>
+             aria-expanded="false">Platforms</a>
           <ul class="dropdown-menu">
             {% for platform in platforms %}
               <li>
@@ -57,7 +57,7 @@
              href="#"
              role="button"
              data-bs-toggle="dropdown"
-             aria-expanded="false">Shop by Region</a>
+             aria-expanded="false">Regions</a>
           <ul class="dropdown-menu">
             {% for region in regions %}
               <li>
@@ -77,7 +77,7 @@
           <li class="nav-item">
             <span class="visually-hidden">Logged in as</span>
             <a href="{% url 'profiles:profile' %}" class="nav-link">
-              <i class="bi bi-person-fill-check"></i> {{ user.username }} - Manage profile
+              <i class="bi bi-person-fill-check"></i> {{ user.username }} - Manage
             </a>
           </li>
           <li class="nav-item">
@@ -112,13 +112,10 @@
         </a>
       {% endif %}
       <!-- END Basket link -->
-      <form class="d-flex" role="search">
-        <input class="form-control me-2"
-               type="search"
-               placeholder="Search"
-               aria-label="Search" />
+      {% comment %} <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
         <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      </form> {% endcomment %}
     </div>
   </div>
 </nav>

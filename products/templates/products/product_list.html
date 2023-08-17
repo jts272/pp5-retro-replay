@@ -1,18 +1,30 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}
   Retro Replay | Products
 {% endblock title %}
 {% block content %}
   <p>{{ products.count }} product{{ products.count|pluralize }} found:</p>
-  {% for product in products %}
-    <ul>
-      <li>Product: {{ product.name }}</li>
-      <li>Price: {{ product.price }}</li>
-      <li>Category: {{ product.category }}</li>
-      <li>Platform: {{ product.platform }}</li>
-      <li>
-        <a href="{% url 'products:product_detail' product.slug %}">More details</a>
-      </li>
-    </ul>
-  {% endfor %}
+  <div class="row">
+    {% for product in products %}
+      <div class="col-6 col-md-3">
+        <div class="card mb-3">
+          <div class="img-thumbnail m-3">
+            <img src="{{ product.image.url }}"
+                 class="card-img-top "
+                 alt="Product image" />
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">£{{ product.price }}</li>
+              <li class="list-group-item">{{ product.platform }}</li>
+            </ul>
+            <a href="{{ product.get_absolute_url }}"
+               class="btn btn-success float-end">View <i class="bi bi-chevron-right"></i></a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
 {% endblock content %}
