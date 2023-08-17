@@ -20,5 +20,4 @@ class ProfileAddressForm(forms.ModelForm):
             "address_line2",
             "city",
             "postal_code",
-            "default",
         ]
