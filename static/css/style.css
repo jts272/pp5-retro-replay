@@ -1,15 +1,11 @@
 .brand-logo {
-  -webkit-text-stroke: 2px black;
-  color: white;
+  -webkit-text-stroke: 2px white;
+  color: black;
   font-display: swap;
   font-family: "Pricedown Bl", sans-serif;
   font-size: 3rem;
 }
 
-.brand-logo:hover {
-  color: white;
-}
-
 .brand-navbar {
-  background-color: darkorange !important;
+  background-color: #ffab00 !important;
 }
