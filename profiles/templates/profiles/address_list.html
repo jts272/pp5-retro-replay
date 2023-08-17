@@ -3,11 +3,18 @@
 {% block content %}
   <h3>Saved Addresses</h3>
   {% if not addresses %}
-    <p>You currently have no saved addresses. You can add an address below.</p>
-  {% else %}
-    <p>Set a default address from your saved addresses list to save time at your next checkout.</p>
+    <p>
+      You currently have no saved addresses. You can add an address below. Once you have added an address, you can select one as default to make your next checkout faster.
+    </p>
   {% endif %}
   {% for address in addresses %}
+    {% if not address.default %}
+      <p>You currently have no default address set. Select a saved address to make your next checkout faster.</p>
+    {% else %}
+      <p>
+        Your current default address can be viewed below. You may add more addresses and set a new default address if required.
+      </p>
+    {% endif %}
     <div class="row border rounded p-2 m-2">
       <div class="col-12 d-flex justify-content-between align-items-baseline mb-2">
         <h4>Saved Address {{ forloop.counter }}</h4>
