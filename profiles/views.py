@@ -123,3 +123,32 @@ def address_delete(request, uuid):
     """
     Address.objects.get(uuid=uuid, profile=request.user.profile).delete()
     return HttpResponseRedirect(reverse("profiles:address_list"))
+
+
+@login_required
+def address_set_default(request, uuid):
+    """A view for setting a single default address from the list of
+    saved addresses. Any existing address set as default will have its
+    default property removed, so the newly selected address is the
+    single selected default
+
+    Arguments:
+        request -- HttpRequest
+        uuid -- Unique identifier for address object
+
+    Returns:
+        Selects the single address objects that has its `default` property
+        set to `True`
+
+    Reference:
+    https://youtu.be/8SP76dopYVo?list=PLOLrQ9Pn6caxY4Q1U9RjO1bulQp5NDYS_&t=3873
+    """
+    # Get existing default address if present and set False
+    Address.objects.filter(profile=request.user.profile, default=True).update(
+        default=False
+    )
+    # Update the selected object's `default` property to True
+    Address.objects.filter(uuid=uuid, profile=request.user.profile).update(
+        default=True
+    )
+    return HttpResponseRedirect(reverse("profiles:address_list"))
