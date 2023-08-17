@@ -28,7 +28,9 @@ def checkout(request):
                 profile=request.user.profile, default=True
             )
 
-            print(address.get_address_object())
+            # Get the address object from the model method
+            address_object = address.get_address_object()
+            print(address_object)
         except Exception as e:
             print(f"Exception: {e} No default address is set on this profile.")
 
@@ -77,7 +79,11 @@ def checkout(request):
             },
         )
 
-        context = {"basket": basket, "client_secret": intent.client_secret}
+        context = {
+            "basket": basket,
+            "client_secret": intent.client_secret,
+            "address_object": address_object,
+        }
     else:
         # Client secret not present as no Stripe elements will be built
         context = {"basket": basket}

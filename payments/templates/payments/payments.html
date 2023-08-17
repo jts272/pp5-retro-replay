@@ -9,6 +9,7 @@
   {% else %}
     <div>
       <h3>Checkout page</h3>
+      <h4>{{ address_object }}</h4>
       <h4>Items to purchase:</h4>
       {% for item in basket %}
         {% with product=item.product %}
