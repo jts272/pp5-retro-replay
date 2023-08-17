@@ -11,6 +11,7 @@ from django.views.decorators.http import require_POST
 from basket.basket import Basket
 from orders.models import Order, OrderItem
 from products.models import Product
+from profiles.models import Address
 
 if os.path.isfile("env.py"):
     import env  # noqa
@@ -19,6 +20,10 @@ if os.path.isfile("env.py"):
 # Create your views here.
 @login_required
 def checkout(request):
+    # Which address are we interested in
+    address = Address.objects.get(profile=request.user.profile, default=True)
+    print(address.get_address_object())
+
     # https://youtu.be/ncsCnC3Ynlw?list=PLOLrQ9Pn6caxY4Q1U9RjO1bulQp5NDYS_&t=12452
     basket = Basket(request)
 

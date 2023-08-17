@@ -65,5 +65,32 @@ class Address(models.Model):
     class Meta:
         verbose_name_plural = "Addresses"
 
+    def get_address_object(self):
+        # Make an object that can be passed to Stripe payment intent
+        # for `defaultValues`
+
+        self.address_object = {
+            "name": self.name,
+            "address": {
+                "line1": self.address_line1,
+                "line2": self.address_line2,
+                "city": self.city,
+                "postal_code": self.postal_code,
+            },
+        }
+
+        return self.address_object
+
+        # Stripe object format for `defaultValues`:
+        # billingDetails = {
+        #     name: '',
+        #     address: {
+        #         line1: '',
+        #         line2: '',
+        #         city: '',
+        #         postal_code: '',
+        #     }
+        # }
+
     def __str__(self):
         return "Saved Address"
