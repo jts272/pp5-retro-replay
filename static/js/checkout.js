@@ -14,6 +14,15 @@ const elements = stripe.elements({ clientSecret: clientSecret });
 const addressElement = elements.create("address", {
   mode: "shipping",
   allowedCountries: ["gb"],
+  defaultValues: {
+    name: "peter piper",
+    address: {
+      line1: "12 address street",
+      line2: "34 secondary lane",
+      city: "london",
+      postal_code: "a11 1aa",
+    },
+  },
 });
 addressElement.mount("#address-element");
 
