@@ -18,4 +18,9 @@ urlpatterns = [
         views.address_delete,
         name="address_delete",
     ),
+    path(
+        "addresses/set-default/<slug:uuid>/",
+        views.address_set_default,
+        name="address_set_default",
+    ),
 ]
