@@ -3,41 +3,8 @@
 {% block content %}
   <div class="row">
     <!-- Detail product card -->
-    <div class="col-12 col-lg-6 offset-lg-3">
-      <div class="card mb-3">
-        <div class="img-thumbnail m-2 m-lg-3">
-          <img src="{{ product.image.url }}"
-               class="card-img-top "
-               alt="Product image" />
-        </div>
-        <div class="card-body">
-          <h4 class="card-title">{{ product.name }}</h4>
-          <p class="card-text">Platform: {{ product.platform }}</p>
-          <p class="card-text">Region: {{ product.region }}</p>
-          <p class="card-text">£{{ product.price }}</p>
-        </div>
-      </div>
-    </div>
+    {% include "includes/product-detail-card.html" %}
     <!-- END Detail product card -->
-    <!-- Purchase controls -->
-    <div class="col-12 col-lg-6 offset-lg-3 d-flex justify-content-between">
-      <button onclick="history.back()" class="btn btn-outline-primary">
-        <i class="bi bi-chevron-left"></i> Go Back
-      </button>
-      {% csrf_token %}
-      {% if not user.is_authenticated %}
-        <a href="{% url 'account_login' %}" class="btn btn-outline-success">Login to buy <i class="bi bi-basket"></i></a>
-      {% else %}
-        <button type="button"
-                class="btn btn-success"
-                id="add-to-basket"
-                value="{{ product.pk }}"
-                data-url="{% url 'basket:add_to_basket' %}">
-          Add to Basket <i class="bi bi-basket"></i>
-        </button>
-      {% endif %}
-    </div>
-    <!--  END Purchase controls -->
   </div>
 {% endblock content %}
 {% block additional_scripts %}
