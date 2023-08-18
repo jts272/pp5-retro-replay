@@ -6,6 +6,11 @@
   font-size: 3rem;
 }
 
+.brand-logo:hover {
+  -webkit-text-stroke: 2px black;
+  color: white;
+}
+
 .brand-navbar {
   background-color: #ffab00 !important;
 }
