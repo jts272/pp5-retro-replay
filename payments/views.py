@@ -11,7 +11,7 @@ from django.views.decorators.http import require_POST
 from basket.basket import Basket
 from orders.models import Order, OrderItem
 from products.models import Product
-from profiles.models import Address
+from profiles.models import Address, Profile
 
 if os.path.isfile("env.py"):
     import env  # noqa
@@ -82,6 +82,7 @@ def checkout(request):
                 "user_id": request.user.pk,
                 "user_email": request.user.email,
                 "order_items": order_items,
+                "profile": request.user.profile.pk,
             },
         )
 
@@ -149,12 +150,16 @@ def create_order(stripe_response):
         "amount": data.amount,
         "paid": True,
         "order_items": metadata.order_items,
+        "profile": metadata.profile,
     }
     print(returned_data)
 
     # Create model entries using the data returned from the webhook
     # Order model
     try:
+        # Get profile instance the order will be added to
+        profile = Profile.objects.get(pk=metadata.profile)
+
         order = Order.objects.create(
             name=address.name,
             email=metadata.user_email,
@@ -165,6 +170,7 @@ def create_order(stripe_response):
             # Create decimal value from integer returned by Stripe
             amount=data.amount / 100,
             paid=True,
+            profile=profile,
         )
         order.save()
     except Exception as e:
