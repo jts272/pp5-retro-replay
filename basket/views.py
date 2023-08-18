@@ -6,6 +6,9 @@ from products.models import Product
 
 from .basket import Basket
 
+STANDARD_DELIVERY_CHARGE = 1.99
+FREE_DELIVERY_THRESHOLD = 30
+
 
 # Create your views here.
 @login_required
@@ -88,3 +91,23 @@ def remove_from_basket(request):
         )
 
         return response
+
+
+def print_basket(request):
+    # Get the delivery charge, based on the basket subtotal
+    basket = Basket(request)
+
+    print(f"basket subtotal: {basket.get_subtotal()}")
+
+    delivery_charge = STANDARD_DELIVERY_CHARGE
+
+    if basket.get_subtotal() > FREE_DELIVERY_THRESHOLD:
+        delivery_charge = 0
+
+    print(f"delivery_charge: {delivery_charge}")
+    return JsonResponse(
+        {
+            "basket subtotal": basket.get_subtotal(),
+            "delivery charge": delivery_charge,
+        }
+    )
