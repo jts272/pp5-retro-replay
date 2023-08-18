@@ -29,10 +29,6 @@ function updateDeliveryCharge() {
 // Invoke the fetching of the delivery charge
 updateDeliveryCharge();
 
-// Test manual update the delivery charge by clicking a button
-const updateBtn = document.getElementById("update-basket");
-updateBtn.addEventListener("click", updateDeliveryCharge);
-
 // Listen for DOM changes (i.e, item removed from basket)
 // https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver#example
 const basketContainer = document.getElementById("basket-container");

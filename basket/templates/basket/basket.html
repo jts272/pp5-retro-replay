@@ -55,9 +55,10 @@
     </span>
   </span>
 </h4>
-<button id="update-basket">Update basket</button>
 <!-- END Basket summary -->
-<a href="{% url 'payments:checkout' %}" class="btn btn-success">Checkout</a>
+<!-- Proceed to checkout -->
+<a href="{% url 'payments:checkout' %}"
+   class="btn btn-success float-end">Checkout <i class="bi bi-chevron-right"></i></a>
 {% endif %}
 {% endblock content %}
 {% block additional_scripts %}

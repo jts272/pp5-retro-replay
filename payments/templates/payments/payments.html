@@ -39,8 +39,11 @@
         <div id="error-message">
           <!-- Display error message to your customers here -->
         </div>
-        <button type="submit" class="btn btn-primary" id="pay-btn" data-stripe-client-secret={{ client_secret }}>
-          <span id="pay-btn-text">Pay now</span>
+        <!-- Form controls -->
+        <a href="{% url 'basket:basket_summary' %}"
+           class="btn btn-outline-primary"><i class="bi bi-chevron-left"></i> Back to Basket</a>
+        <button type="submit" class="btn btn-success float-end" id="pay-btn" data-stripe-client-secret={{ client_secret }}>
+          <span id="pay-btn-text"><i class="bi bi-credit-card-2-back"></i> Pay now</span>
           <span id="pacman-loader" class="d-none">
             <!-- Pac-Man loading spinner customized at https://icons8.com/preloaders/en/search/pac+man -->
             <svg xmlns:svg="http://www.w3.org/2000/svg"
@@ -62,6 +65,7 @@
             </svg>
           </span>
         </button>
+        <!-- END Form controls -->
       </form>
     </div>
   {% endif %}
