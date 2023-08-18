@@ -20,39 +20,53 @@ if os.path.isfile("env.py"):
 # Create your views here.
 @login_required
 def checkout(request):
+    """The main view for handling all payment information, which is
+    passed to Stripe to generate the payment intent.
+
+    Responsibilities:
+        1. Get user's default saved address, if present
+        2. Generate a JSON-style object to pass Stripe metadata
+        3. Create the `PaymentIntent` for Stripe payment
+
+    Arguments:
+        request -- HttpRequest
+
+    Returns:
+        Template with context for submitting payment to Stripe. If the
+        basket is empty, only the basket context is returned and no Stripe
+        elements are rendered.
+
+    Reference:
+    https://youtu.be/ncsCnC3Ynlw?list=PLOLrQ9Pn6caxY4Q1U9RjO1bulQp5NDYS_&t=12452
+    """
+    # 1. Get user's default saved address, if present
     # Null address object unless found in query
     address_object = None
     address_object_json = None
     if request.user.profile.address_set.exists():
         try:
-            print("addresses exist on this profile")
-            # Which address are we interested in
+            print("Addresses exist on this profile")
+            # Select the user's default saved address from profile
             address = Address.objects.get(
                 profile=request.user.profile, default=True
             )
-
             # Get the address object from the model method
             address_object = address.get_address_object()
-            print(address_object)
             # Convert to JSON before handing off to template context
             address_object_json = json.dumps(address_object)
-            print("address object as json: " + json.dumps(address_object))
         except Exception as e:
             print(f"Exception: {e} No default address is set on this profile.")
-
     else:
         print("No addresses exist on this profile.")
 
-    # https://youtu.be/ncsCnC3Ynlw?list=PLOLrQ9Pn6caxY4Q1U9RjO1bulQp5NDYS_&t=12452
+    # 2. Generate a JSON-style object to pass Stripe metadata
     basket = Basket(request)
-
-    print(request.user.email)
 
     if basket:
         # Build a JSON-like order item dictionary
         basket_keys = list(basket.basket.keys())
-        print(basket.basket)
         order_items = {}
+
         for i in range(len(basket)):
             order_items.update(
                 {
@@ -65,16 +79,14 @@ def checkout(request):
 
         # Format as JSON to pass to Stripe as metadata
         order_items = json.dumps(order_items)
-        print(order_items)
 
         # Get subtotal as integer with no decimals for Stripe
         total = str(basket.get_subtotal())
         total = total.replace(".", "")
         total = int(total)
-        print(total)
 
+        # 3. Create the `PaymentIntent` for Stripe payment
         stripe.api_key = os.getenv("STRIPE_SECRET_KEY")
-
         intent = stripe.PaymentIntent.create(
             amount=total,
             currency="gbp",
