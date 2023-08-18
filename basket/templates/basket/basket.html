@@ -6,33 +6,38 @@
 {% block content %}
   <h2>Your Basket Summary:</h2>
   <hr />
-  <!-- Basket item(s) -->
-  <!-- START individual basket item loop -->
-  {% for item in basket %}
-    {% with product=item.product %}
-      <div class="basket-single-item" data-removal-index="{{ product.pk }}">
-        <strong>{{ product }}</strong>
-        <p class="text-muted">£{{ product.price }}</p>
-        {% csrf_token %}
-        <button type="button"
-                class="btn btn-outline-danger remove-from-basket"
-                id="remove-from-basket"
-                data-removal-index="{{ product.pk }}"
-                data-url="{% url 'basket:remove_from_basket' %}">Remove</button>
-        <a href="{{ product.get_absolute_url }}"
-           class="btn btn-outline-primary float-end">View <i class="bi bi-chevron-right"></i></a>
-        <hr />
-      </div>
-    {% endwith %}
-  {% endfor %}
-  <!-- END individual basket item loop -->
-  <!-- END Basket item(s) -->
-  <!-- Basket summary -->
-  <h4>
-    Basket subtotal: £<span id="basket-subtotal">{{ basket.get_subtotal }}</span>
-  </h4>
-  <!-- END Basket summary -->
-  <a href="{% url 'payments:checkout' %}" class="btn btn-success">Checkout</a>
+  {% if not basket %}
+    <p>Your basket is empty! Come back after you have added something to your basket.</p>
+    <a href="{% url 'products:all_products' %}" class="btn btn-primary"><i class="bi bi-chevron-left"></i> View all products</a>
+  {% else %}
+    <!-- Basket item(s) -->
+    <!-- START individual basket item loop -->
+    {% for item in basket %}
+      {% with product=item.product %}
+        <div class="basket-single-item" data-removal-index="{{ product.pk }}">
+          <strong>{{ product }}</strong>
+          <p class="text-muted">£{{ product.price }}</p>
+          {% csrf_token %}
+          <button type="button"
+                  class="btn btn-outline-danger remove-from-basket"
+                  id="remove-from-basket"
+                  data-removal-index="{{ product.pk }}"
+                  data-url="{% url 'basket:remove_from_basket' %}">Remove</button>
+          <a href="{{ product.get_absolute_url }}"
+             class="btn btn-outline-primary float-end">View <i class="bi bi-chevron-right"></i></a>
+          <hr />
+        </div>
+      {% endwith %}
+    {% endfor %}
+    <!-- END individual basket item loop -->
+    <!-- END Basket item(s) -->
+    <!-- Basket summary -->
+    <h4>
+      Basket subtotal: £<span id="basket-subtotal">{{ basket.get_subtotal }}</span>
+    </h4>
+    <!-- END Basket summary -->
+    <a href="{% url 'payments:checkout' %}" class="btn btn-success">Checkout</a>
+  {% endif %}
 {% endblock content %}
 {% block additional_scripts %}
   <script src="{% static 'js/remove-from-basket.js' %}"></script>
