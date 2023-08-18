@@ -1,5 +1,6 @@
 function updateDeliveryCharge() {
-  fetch("http://localhost:8000/basket/print/")
+  url = `${window.location.href}print/`;
+  fetch(url)
     .then((response) => response.json())
     .then((data) => {
       // AJAX delivery and grand total handling

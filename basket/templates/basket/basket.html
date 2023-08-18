@@ -49,15 +49,16 @@
   </p>
   <!-- AJAX grand total -->
   <h4>
-    Grand total: £<span id="grand-total">
-    <span class="spinner-border" role="status">
-      <span class="visually-hidden">Loading...</span>
+    Grand total: £
+    <span id="grand-total">
+      <span class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </span>
     </span>
-  </span>
-</h4>
-<button id="update-basket">Update basket</button>
-<!-- END Basket summary -->
-<a href="{% url 'payments:checkout' %}" class="btn btn-success">Checkout</a>
+  </h4>
+  <button id="update-basket">Update basket</button>
+  <!-- END Basket summary -->
+  <a href="{% url 'payments:checkout' %}" class="btn btn-success">Checkout</a>
 {% endif %}
 {% endblock content %}
 {% block additional_scripts %}
