@@ -22,6 +22,7 @@ if os.path.isfile("env.py"):
 def checkout(request):
     # Null address object unless found in query
     address_object = None
+    address_object_json = None
     if request.user.profile.address_set.exists():
         try:
             print("addresses exist on this profile")
@@ -33,6 +34,9 @@ def checkout(request):
             # Get the address object from the model method
             address_object = address.get_address_object()
             print(address_object)
+            # Convert to JSON before handing off to template context
+            address_object_json = json.dumps(address_object)
+            print("address object as json: " + json.dumps(address_object))
         except Exception as e:
             print(f"Exception: {e} No default address is set on this profile.")
 
@@ -84,7 +88,7 @@ def checkout(request):
         context = {
             "basket": basket,
             "client_secret": intent.client_secret,
-            "address_object": address_object,
+            "address_object_json": address_object_json,
         }
     else:
         # Client secret not present as no Stripe elements will be built

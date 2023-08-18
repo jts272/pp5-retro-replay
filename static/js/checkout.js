@@ -10,19 +10,25 @@ const clientSecret = payBtn.getAttribute("data-stripe-client-secret");
 // Set up Stripe.js Elements, using the client secret
 const elements = stripe.elements({ clientSecret: clientSecret });
 
+// Get customer's address data if present
+let addressObjectParsed;
+const form = document.getElementById("payment-form");
+const value = form.getAttribute("data-address-object");
+
+if (value !== "None") {
+  addressObjectJson = form.dataset.addressObject;
+  // Convert JSON returned from the view to an object
+  addressObjectParsed = JSON.parse(addressObjectJson);
+}
+
 // Create and mount the Address Element in shipping mode
 const addressElement = elements.create("address", {
   mode: "shipping",
   allowedCountries: ["gb"],
-  defaultValues: {
-    name: "peter piper",
-    address: {
-      line1: "12 address street",
-      line2: "34 secondary lane",
-      city: "london",
-      postal_code: "a11 1aa",
-    },
-  },
+  autocomplete: { mode: "automatic" },
+
+  // Fill address element with customer's saved address if present
+  defaultValues: addressObjectParsed,
 });
 addressElement.mount("#address-element");
 
@@ -31,8 +37,6 @@ const paymentElement = elements.create("payment");
 paymentElement.mount("#payment-element");
 
 // Submit the payment to Stripe
-const form = document.getElementById("payment-form");
-
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
 

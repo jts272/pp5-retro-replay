@@ -25,7 +25,7 @@
       <!-- Return url for submission to Stripe in data attribute -->
       <form id="payment-form"
             data-return-url="{% url 'payments:checkout_status' %}"
-            data-address-object="{{ address_object }}">
+            data-address-object="{{ address_object_json }}">
         <h3>Shipping Address</h3>
         <div id="address-element">
           <!-- Elements will create form elements here -->

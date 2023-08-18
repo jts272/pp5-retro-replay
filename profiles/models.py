@@ -76,6 +76,7 @@ class Address(models.Model):
                 "line2": self.address_line2,
                 "city": self.city,
                 "postal_code": self.postal_code,
+                "country": "GB",
             },
         }
 
