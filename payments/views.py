@@ -26,7 +26,8 @@ def checkout(request):
     Responsibilities:
         1. Get user's default saved address, if present
         2. Generate a JSON-style object to pass Stripe metadata
-        3. Create the `PaymentIntent` for Stripe payment
+        3. Perform calculations to provide accurate grand total
+        4. Create the `PaymentIntent` for Stripe payment
 
     Arguments:
         request -- HttpRequest
@@ -66,7 +67,6 @@ def checkout(request):
         # Build a JSON-like order item dictionary
         basket_keys = list(basket.basket.keys())
         order_items = {}
-
         for i in range(len(basket)):
             order_items.update(
                 {
@@ -76,32 +76,30 @@ def checkout(request):
                     }
                 }
             )
-
         # Format as JSON to pass to Stripe as metadata
         order_items = json.dumps(order_items)
 
+        # 3. Perform calculations to provide accurate grand total
+        # Basket subtotal before any calculations
+        subtotal = float(basket.get_subtotal())
+        print(f"BASKET SUBTOTAL: {subtotal}")
+
         # Calculate delivery charge
         delivery_charge = Order.STANDARD_DELIVERY_CHARGE
-        if float(basket.get_subtotal()) > Order.FREE_DELIVERY_THRESHOLD:
+        if subtotal > Order.FREE_DELIVERY_THRESHOLD:
             delivery_charge = 0
         print(f"DELIVERY CHARGE: {delivery_charge}")
 
         # Calculate grand total
         # Two decimal places specified for float arithmetic
-        grand_total = round(float(basket.get_subtotal()) + delivery_charge, 2)
+        grand_total = round(subtotal + delivery_charge, 2)
         print(f"GRAND TOTAL: {grand_total}")
 
         # Convert grand total to integer in pence for Stripe
         amount = int(grand_total * 100)
         print(f"STRIPE AMOUNT: {amount}")
 
-        # Get subtotal as integer with no decimals for Stripe
-        # total = str(basket.get_subtotal())
-        # total = total.replace(".", "")
-        # total = int(total)
-        # print(total)
-
-        # 3. Create the `PaymentIntent` for Stripe payment
+        # 4. Create the `PaymentIntent` for Stripe payment
         stripe.api_key = os.getenv("STRIPE_SECRET_KEY")
         intent = stripe.PaymentIntent.create(
             amount=amount,
@@ -119,6 +117,7 @@ def checkout(request):
             "basket": basket,
             "client_secret": intent.client_secret,
             "address_object_json": address_object_json,
+            "subtotal": subtotal,
             "delivery_charge": delivery_charge,
             "grand_total": grand_total,
         }
