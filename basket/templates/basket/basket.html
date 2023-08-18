@@ -4,16 +4,15 @@
   Retro Replay | Your Basket
 {% endblock title %}
 {% block content %}
-  <h2>This is the basket summary page!</h2>
-  <h3>Basket: {{ basket }}</h3>
+  <h2>Your Basket Summary:</h2>
   <hr />
   <!-- Basket item(s) -->
   <!-- START individual basket item loop -->
   {% for item in basket %}
     {% with product=item.product %}
       <div class="basket-single-item" data-removal-index="{{ product.pk }}">
-        <p>Product: {{ product }}</p>
-        <p>Price: £{{ product.price }}</p>
+        <strong>{{ product }}</strong>
+        <p class="text-muted">£{{ product.price }}</p>
         {% csrf_token %}
         <button type="button"
                 class="btn btn-outline-danger remove-from-basket"
