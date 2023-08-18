@@ -51,6 +51,10 @@ class Order(models.Model):
             "profiles:order_detail", kwargs={"order_id": self.order_id}
         )
 
+    # Delivery charge variables
+    STANDARD_DELIVERY_CHARGE = 1.99
+    FREE_DELIVERY_THRESHOLD = 30
+
 
 class OrderItem(models.Model):
     """A model to represent each individual item in a related order."""

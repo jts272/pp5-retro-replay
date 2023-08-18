@@ -2,12 +2,10 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render
 
+from orders.models import Order
 from products.models import Product
 
 from .basket import Basket
-
-STANDARD_DELIVERY_CHARGE = 1.99
-FREE_DELIVERY_THRESHOLD = 30
 
 
 # Create your views here.
@@ -99,9 +97,9 @@ def print_basket(request):
 
     print(f"basket subtotal: {basket.get_subtotal()}")
 
-    delivery_charge = STANDARD_DELIVERY_CHARGE
+    delivery_charge = Order.STANDARD_DELIVERY_CHARGE
 
-    if basket.get_subtotal() > FREE_DELIVERY_THRESHOLD:
+    if basket.get_subtotal() > Order.FREE_DELIVERY_THRESHOLD:
         delivery_charge = 0
 
     print(f"delivery_charge: {delivery_charge}")
