@@ -10,67 +10,62 @@
     <p>Your have nothing to check out! Come back after you have added some items to your basket.</p>
     <a href="{% url 'products:all_products' %}" class="btn btn-primary"><i class="bi bi-chevron-left"></i> View all products</a>
   {% else %}
-    <div>
-      <h3>Checkout page</h3>
-      <h4>{{ address_object }}</h4>
-      <h4>Items to purchase:</h4>
-      {% for item in basket %}
-        {% with product=item.product %}
-          <div class="basket-single-item">
-            <p>Product: {{ product }}</p>
-            <p>Price: £{{ product.price }}</p>
-            <hr />
-          </div>
-        {% endwith %}
-      {% endfor %}
+    <h3>Order summary</h3>
+    <div class="text-end">
+      <p>
+        <strong>Items:</strong> <span class="text-muted">£{{ subtotal }}</span>
+      </p>
+      <p>
+        <strong>Delivery:</strong> <span class="text-muted">£{{ delivery_charge }}</span>
+      </p>
+      <h4>Grand Total: £{{ grand_total }}</h4>
     </div>
-    <div>
-      <!-- Return url for submission to Stripe in data attribute -->
-      <form id="payment-form"
-            data-return-url="{% url 'payments:checkout_status' %}"
-            data-address-object="{{ address_object_json }}">
-        <h3>Shipping Address</h3>
-        <div id="address-element">
-          <!-- Elements will create form elements here -->
-        </div>
-        <hr />
-        <h3>Payment</h3>
-        <div id="payment-element">
-          <!--Stripe.js injects the Payment Element-->
-        </div>
-        <hr />
-        <div id="error-message">
-          <!-- Display error message to your customers here -->
-        </div>
-        <!-- Form controls -->
-        <a href="{% url 'basket:basket_summary' %}"
-           class="btn btn-outline-primary"><i class="bi bi-chevron-left"></i> Back to Basket</a>
-        <button type="submit" class="btn btn-success float-end" id="pay-btn" data-stripe-client-secret={{ client_secret }}>
-          <span id="pay-btn-text"><i class="bi bi-credit-card-2-back"></i> Pay now</span>
-          <span id="pacman-loader" class="d-none">
-            <!-- Pac-Man loading spinner customized at https://icons8.com/preloaders/en/search/pac+man -->
-            <svg xmlns:svg="http://www.w3.org/2000/svg"
-                 xmlns="http://www.w3.org/2000/svg"
-                 xmlns:xlink="http://www.w3.org/1999/xlink"
-                 version="1.0"
-                 width="16px"
-                 height="16px"
-                 viewBox="0 0 128 128"
-                 xml:space="preserve">
-              <g>
-              <path fill="#ffffff" d="M64,0a64,64,0,0,1,64,64H0A64,64,0,0,1,64,0Z" />
-              <animateTransform attributeName="transform" type="rotate" values="0 64 64;-40 64 64;0 64 64" dur="600ms" repeatCount="indefinite"></animateTransform>
-              </g>
-              <g>
-              <path fill="#ffffff" d="M64,128A64,64,0,0,1,0,64H128A64,64,0,0,1,64,128Z" />
-              <animateTransform attributeName="transform" type="rotate" values="0 64 64;40 64 64;0 64 64" dur="600ms" repeatCount="indefinite"></animateTransform>
-              </g>
-            </svg>
-          </span>
-        </button>
-        <!-- END Form controls -->
-      </form>
-    </div>
+    <hr />
+    <!-- Return url for submission to Stripe in data attribute -->
+    <form id="payment-form"
+          data-return-url="{% url 'payments:checkout_status' %}"
+          data-address-object="{{ address_object_json }}">
+      <h3>Shipping Address</h3>
+      <div id="address-element">
+        <!-- Elements will create form elements here -->
+      </div>
+      <hr />
+      <h3>Payment</h3>
+      <div id="payment-element">
+        <!--Stripe.js injects the Payment Element-->
+      </div>
+      <hr />
+      <div id="error-message">
+        <!-- Display error message to your customers here -->
+      </div>
+      <!-- Form controls -->
+      <a href="{% url 'basket:basket_summary' %}"
+         class="btn btn-outline-primary"><i class="bi bi-chevron-left"></i> Back to Basket</a>
+      <button type="submit" class="btn btn-success float-end" id="pay-btn" data-stripe-client-secret={{ client_secret }}>
+        <span id="pay-btn-text"><i class="bi bi-credit-card-2-back"></i> Pay now</span>
+        <span id="pacman-loader" class="d-none">
+          <!-- Pac-Man loading spinner customized at https://icons8.com/preloaders/en/search/pac+man -->
+          <svg xmlns:svg="http://www.w3.org/2000/svg"
+               xmlns="http://www.w3.org/2000/svg"
+               xmlns:xlink="http://www.w3.org/1999/xlink"
+               version="1.0"
+               width="16px"
+               height="16px"
+               viewBox="0 0 128 128"
+               xml:space="preserve">
+            <g>
+            <path fill="#ffffff" d="M64,0a64,64,0,0,1,64,64H0A64,64,0,0,1,64,0Z" />
+            <animateTransform attributeName="transform" type="rotate" values="0 64 64;-40 64 64;0 64 64" dur="600ms" repeatCount="indefinite"></animateTransform>
+            </g>
+            <g>
+            <path fill="#ffffff" d="M64,128A64,64,0,0,1,0,64H128A64,64,0,0,1,64,128Z" />
+            <animateTransform attributeName="transform" type="rotate" values="0 64 64;40 64 64;0 64 64" dur="600ms" repeatCount="indefinite"></animateTransform>
+            </g>
+          </svg>
+        </span>
+      </button>
+      <!-- END Form controls -->
+    </form>
   {% endif %}
 {% endblock content %}
 {% block additional_scripts %}
