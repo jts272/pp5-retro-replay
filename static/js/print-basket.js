@@ -1,7 +1,28 @@
 function updateDeliveryCharge() {
   fetch("http://localhost:8000/basket/print/")
     .then((response) => response.json())
-    .then((data) => console.log(data));
+    .then((data) => {
+      // AJAX delivery and grand total handling
+      // Get elements
+      const subtotalEl = document.getElementById("basket-subtotal");
+      const deliveryEl = document.getElementById("delivery-charge");
+      const totalEl = document.getElementById("grand-total");
+
+      // Populate delivery charge with response data
+      deliveryEl.innerText = Number(data["delivery charge"]);
+
+      // Perform calculation to render grand total
+      let grandTotal;
+      const basketSubtotal = Number(subtotalEl.innerText);
+      const deliveryCharge = Number(deliveryEl.innerText);
+      grandTotal = (basketSubtotal + deliveryCharge).toFixed(2);
+      totalEl.innerText = grandTotal;
+
+      // Reload if all items are removed to render template guard clause
+      if (basketSubtotal === 0) {
+        location.reload();
+      }
+    });
 }
 
 // Invoke the fetching of the delivery charge

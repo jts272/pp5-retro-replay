@@ -35,13 +35,30 @@
     <!-- END individual basket item loop -->
     <!-- END Basket item(s) -->
     <!-- Basket summary -->
-    <h4>
-      Basket subtotal: £<span id="basket-subtotal">{{ basket.get_subtotal }}</span>
-    </h4>
-    <button id="update-basket">Update basket</button>
-    <!-- END Basket summary -->
-    <a href="{% url 'payments:checkout' %}" class="btn btn-success">Checkout</a>
-  {% endif %}
+    <strong>
+      Item subtotal: £<span id="basket-subtotal">{{ basket.get_subtotal }}</span>
+    </strong>
+    <!-- AJAX delivery charge -->
+    <!-- Bootstrap 5 loading spinner for dynamic calculation -->
+    <p class="text-muted">
+      Delivery charge: £<span id="delivery-charge">
+      <span class="spinner-border spinner-border-sm" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </span>
+    </span>
+  </p>
+  <!-- AJAX grand total -->
+  <h4>
+    Grand total: £<span id="grand-total">
+    <span class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </span>
+  </span>
+</h4>
+<button id="update-basket">Update basket</button>
+<!-- END Basket summary -->
+<a href="{% url 'payments:checkout' %}" class="btn btn-success">Checkout</a>
+{% endif %}
 {% endblock content %}
 {% block additional_scripts %}
   {% comment %} Bring in script only when basket is present {% endcomment %}
