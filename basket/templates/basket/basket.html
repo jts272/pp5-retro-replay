@@ -19,6 +19,8 @@
                 id="remove-from-basket"
                 data-removal-index="{{ product.pk }}"
                 data-url="{% url 'basket:remove_from_basket' %}">Remove</button>
+        <a href="{{ product.get_absolute_url }}"
+           class="btn btn-outline-primary float-end">View <i class="bi bi-chevron-right"></i></a>
         <hr />
       </div>
     {% endwith %}
