@@ -80,21 +80,38 @@ def checkout(request):
         # Format as JSON to pass to Stripe as metadata
         order_items = json.dumps(order_items)
 
+        # Calculate delivery charge
+        delivery_charge = Order.STANDARD_DELIVERY_CHARGE
+        if float(basket.get_subtotal()) > Order.FREE_DELIVERY_THRESHOLD:
+            delivery_charge = 0
+        print(f"DELIVERY CHARGE: {delivery_charge}")
+
+        # Calculate grand total
+        # Two decimal places specified for float arithmetic
+        grand_total = round(float(basket.get_subtotal()) + delivery_charge, 2)
+        print(f"GRAND TOTAL: {grand_total}")
+
+        # Convert grand total to integer in pence for Stripe
+        amount = int(grand_total * 100)
+        print(f"STRIPE AMOUNT: {amount}")
+
         # Get subtotal as integer with no decimals for Stripe
-        total = str(basket.get_subtotal())
-        total = total.replace(".", "")
-        total = int(total)
+        # total = str(basket.get_subtotal())
+        # total = total.replace(".", "")
+        # total = int(total)
+        # print(total)
 
         # 3. Create the `PaymentIntent` for Stripe payment
         stripe.api_key = os.getenv("STRIPE_SECRET_KEY")
         intent = stripe.PaymentIntent.create(
-            amount=total,
+            amount=amount,
             currency="gbp",
             metadata={
                 "user_id": request.user.pk,
                 "user_email": request.user.email,
                 "order_items": order_items,
                 "profile": request.user.profile.pk,
+                "delivery_charge": delivery_charge,
             },
         )
 
@@ -102,6 +119,8 @@ def checkout(request):
             "basket": basket,
             "client_secret": intent.client_secret,
             "address_object_json": address_object_json,
+            "delivery_charge": delivery_charge,
+            "grand_total": grand_total,
         }
     else:
         # Client secret not present as no Stripe elements will be built
