@@ -1,7 +1,11 @@
 {% extends "base.html" %}
 {% load static %}
+{% block title %}
+  Retro Replay | Saved Addresses
+{% endblock title %}
 {% block content %}
   <h3>Saved Addresses</h3>
+  <hr />
   {% if not addresses %}
     <p>
       You currently have no saved addresses. You can add an address below. Once you have added an address, you can select one as default to make your next checkout faster.

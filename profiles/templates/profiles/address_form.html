@@ -1,12 +1,16 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
+{% block title %}
+  Retro Replay | Save Address
+{% endblock title %}
 {% block content %}
-  <h3>Add an address</h3>
+  <h3>Add or Update address</h3>
+  <hr />
   <!-- Form action posts to the view that rendered it for CRUD functionality -->
   <form action="." method="post">
     {% csrf_token %}
     {{ form|crispy }}
     <button type="submit" class="btn btn-success">Save Address</button>
   </form>
-  <a href="{% url 'profiles:address_list' %}" class="btn btn-primary"><i class="bi bi-chevron-left"></i> Back to Saved Addresses</a>
+  <a href="{% url 'profiles:address_list' %}" class="btn btn-primary mt-3"><i class="bi bi-chevron-left"></i> Back to Saved Addresses</a>
 {% endblock content %}
