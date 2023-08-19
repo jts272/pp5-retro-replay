@@ -13,12 +13,12 @@
     <h3>Order summary</h3>
     <div class="text-end">
       <p>
-        <strong>Items:</strong> <span class="text-muted">£{{ subtotal }}</span>
+        <strong>Items:</strong> <span class="text-muted">£{{ subtotal|floatformat:2 }}</span>
       </p>
       <p>
         <strong>Delivery:</strong> <span class="text-muted">£{{ delivery_charge }}</span>
       </p>
-      <h4>Grand Total: £{{ grand_total }}</h4>
+      <h4>Grand Total: £{{ grand_total|floatformat:2 }}</h4>
     </div>
     <hr />
     <!-- Return url for submission to Stripe in data attribute -->
