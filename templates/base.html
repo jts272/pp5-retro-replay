@@ -2,16 +2,23 @@
 {% load static %}
 <html lang="en">
   <head>
+    <!-- Head responsive boilerplate -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- END Head responsive boilerplate -->
+    <!-- Head SEO -->
     <meta name="description"
           content="The best selection of retro video and computer games, consoles and accessories in the UK." />
     <meta name="keywords"
           content="retro, vintage, computer, video, games, ps2, nintendo" />
+    <!-- END Head SEO -->
+    <!-- Dynamic page title -->
     <title>
       {% block title %}
       {% endblock title %}
     </title>
+    <!-- END Dynamic page title -->
+    <!-- CSS dependencies -->
     <link href="https://fonts.cdnfonts.com/css/pricedown" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
           rel="stylesheet"
@@ -20,32 +27,39 @@
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <!-- END CSS dependencies -->
   </head>
   <body>
     <!-- Navbar -->
     <!-- https://getbootstrap.com/docs/5.3/components/navbar/ -->
     {% include "includes/navbar.html" %}
     <!-- END Navbar -->
-    <!-- Django Messages -->
     {% if messages %}
+      <!-- Django Messages -->
       <div class="dj-messages">
         {% for message in messages %}{{ message }}{% endfor %}
       </div>
+      <!-- END Django Messages -->
     {% endif %}
-    <!-- END Django Messages -->
     {% block hero_image %}
     {% endblock hero_image %}
+    <!-- Page content -->
     <div class="container">
       {% block content %}
       {% endblock content %}
     </div>
+    <!-- END Page content -->
+    <!-- Script dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
             crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"
             integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
             crossorigin="anonymous"></script>
+    <!-- END Script dependencies -->
+    <!-- Additional scripts -->
     {% block additional_scripts %}
     {% endblock additional_scripts %}
+    <!-- END Additional scripts -->
   </body>
 </html>
