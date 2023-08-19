@@ -1,5 +1,8 @@
 {% extends "account/base.html" %}
 {% load i18n %}
+{% block title %}
+  Retro Replay | Sign Out
+{% endblock title %}
 {% block head_title %}
   {% trans "Sign Out" %}
 {% endblock %}
@@ -13,8 +16,8 @@
              name="{{ redirect_field_name }}"
              value="{{ redirect_field_value }}" />
     {% endif %}
-    <button type="submit">{% trans 'Sign Out' %}</button>
+    <button type="submit" class="btn btn-danger">{% trans 'Sign Out' %}</button>
   </form>
   <hr />
-  <div class="d-flex justify-content-center">{% include "includes/home-button.html" %}</div>
+  {% include "includes/home-button.html" %}
 {% endblock %}
