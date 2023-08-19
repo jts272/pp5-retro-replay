@@ -53,6 +53,10 @@ body {
   font-size: 20px !important;
 }
 
+.mini-thumbnail {
+  height: 100px !important;
+}
+
 @media screen and (min-width: 767.98px) {
   .hero-image {
     max-height: 33vh;

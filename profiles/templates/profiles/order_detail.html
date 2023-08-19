@@ -1,4 +1,7 @@
 {% extends "base.html" %}
+{% block title %}
+  Retro Replay | Order Details from {{ order.created }}
+{% endblock title %}
 {% block content %}
   <h3>Order Details</h3>
   <!-- Summary box -->
@@ -38,7 +41,7 @@
         </div>
         <div class="col-8">
           <div class="card-body">
-            <h5 class="card-title">{{ item.product.name }}</h5>
+            <p class="card-title h5">{{ item.product.name }}</p>
             <p class="card-text">£{{ item.product.price }}</p>
           </div>
         </div>

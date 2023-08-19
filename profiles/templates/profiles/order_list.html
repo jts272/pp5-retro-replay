@@ -1,8 +1,15 @@
 {% extends "base.html" %}
+{% block title %}
+  Retro Replay | Your Order History
+{% endblock title %}
 {% block content %}
   <h3>Your order History</h3>
+  <hr />
   {% if not orders %}
-    You have not placed any orders yet
+    <p>You have not placed any orders yet.</p>
+    <div class="pb-2">
+      <a href="{% url 'products:all_products' %}" class="btn btn-success"><i class="bi bi-chevron-left"></i> View all products</a>
+    </div>
   {% else %}
     <!-- START Order history table -->
     <!-- Bootstrap 5 table: https://getbootstrap.com/docs/5.3/content/tables/ -->
