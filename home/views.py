@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
 from products.models import Product
+from django.contrib import messages
 
 
 # Create your views here.
@@ -17,5 +18,7 @@ def home(request):
         HTML template with request and context variables available
     """
     recent_products = Product.objects.all()[:4]
+    messages.add_message(request, messages.INFO, "Test message on homepage!")
+
     context = {"recent_products": recent_products}
     return render(request, "home/home.html", context)

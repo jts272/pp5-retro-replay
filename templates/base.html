@@ -36,11 +36,22 @@
     <!-- END Navbar -->
     {% if messages %}
       <!-- Django Messages -->
-      <div class="dj-messages">
-        {% for message in messages %}{{ message }}{% endfor %}
-      </div>
-      <!-- END Django Messages -->
+      <!-- https://ordinarycoders.com/blog/article/django-messages-framework -->
+      <!-- https://getbootstrap.com/docs/5.3/components/alerts/ -->
+      {% for message in messages %}
+        <div class="container">
+          <div class="alert {{ message.tags }} alert-dismissible fade show mt-3"
+               role="alert">
+            <strong>{{ message }}</strong>
+            <button type="button"
+                    class="btn-close"
+                    data-bs-dismiss="alert"
+                    aria-label="Close"></button>
+          </div>
+        </div>
+      {% endfor %}
     {% endif %}
+    <!-- END Django Messages -->
     {% block hero_image %}
     {% endblock hero_image %}
     <!-- Page content -->
