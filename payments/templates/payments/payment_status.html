@@ -1,14 +1,18 @@
 {% extends "base.html" %}
 {% load static %}
+{% block title %}
+  Retro Replay | Checkout Summary
+{% endblock title %}
 {% block content %}
-  <h2>Payment success page</h2>
-  <div id="message"></div>
+  <h2>Checkout Summary</h2>
+  <hr />
+  <div id="message" class="pb-2"></div>
   <div id="redirects">
-    <a href="{% url 'home:home' %}">Back to home</a>
+    {% include "includes/home-button.html" %}
     <!-- Link to checkout hidden by default; enabled by status.js in event of payment failure -->
     <a href="{% url 'payments:checkout' %}"
-       class="d-none"
-       id="checkout-redirect">Back to checkout</a>
+       class="d-none btn btn-success"
+       id="checkout-redirect"><i class="bi bi-basket"></i> Back to checkout</a>
   </div>
 {% endblock content %}
 {% block additional_scripts %}

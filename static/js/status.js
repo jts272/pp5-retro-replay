@@ -1,3 +1,4 @@
+// Reference: https://stripe.com/docs/payments/accept-a-payment?platform=web&ui=elements#web-submit-payment
 // Initialize Stripe.js using your publishable key
 const stripe = Stripe(
   "pk_test_51NMu8PEPb8OObKzZJEtyxn1AEAmJVbitHxGiYBMIOoVDEHgedK0qnuQexEHWPB3kbmS5C66CWj9uNtQCQRdTq9Px00oxNbOOdG"
