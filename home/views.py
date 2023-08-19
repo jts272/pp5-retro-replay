@@ -18,7 +18,5 @@ def home(request):
         HTML template with request and context variables available
     """
     recent_products = Product.objects.all()[:4]
-    messages.add_message(request, messages.INFO, "Test message on homepage!")
-
     context = {"recent_products": recent_products}
     return render(request, "home/home.html", context)

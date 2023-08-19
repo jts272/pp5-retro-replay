@@ -41,7 +41,8 @@
       {% for message in messages %}
         <div class="container">
           <div class="alert {{ message.tags }} alert-dismissible fade show mt-3"
-               role="alert">
+               role="alert"
+               id="alert">
             <strong>{{ message }}</strong>
             <button type="button"
                     class="btn-close"
@@ -50,8 +51,8 @@
           </div>
         </div>
       {% endfor %}
+      <!-- END Django Messages -->
     {% endif %}
-    <!-- END Django Messages -->
     {% block hero_image %}
     {% endblock hero_image %}
     <!-- Page content -->
@@ -67,6 +68,9 @@
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"
             integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
             crossorigin="anonymous"></script>
+    {% if messages %}
+      <script src="{% static 'js/message-auto-dismiss.js' %}"></script>
+    {% endif %}
     <!-- END Script dependencies -->
     <!-- Additional scripts -->
     {% block additional_scripts %}
