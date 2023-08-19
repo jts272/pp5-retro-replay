@@ -1,6 +1,9 @@
 {% extends "account/base.html" %}
 {% load crispy_forms_tags %}
 {% load i18n %}
+{% block title %}
+  Retro Replay | Sign Up
+{% endblock title %}
 {% block head_title %}
   {% trans "Signup" %}
 {% endblock %}
@@ -20,8 +23,10 @@
              name="{{ redirect_field_name }}"
              value="{{ redirect_field_value }}" />
     {% endif %}
-    <button type="submit">{% trans "Sign Up" %} &raquo;</button>
+    <button type="submit" class="btn btn-success">
+      {% trans "Sign Up" %} <i class="bi bi-chevron-right"></i>
+    </button>
   </form>
   <hr />
-  <div class="d-flex justify-content-center">{% include "includes/home-button.html" %}</div>
+  {% include "includes/home-button.html" %}
 {% endblock %}
