@@ -7,15 +7,15 @@ body {
 .brand-logo {
   -webkit-text-stroke: 2px white;
   color: black;
-  font-display: swap;
-  font-family: "Pricedown Bl", sans-serif;
   font-size: 3rem;
+  font-family: "Pricedown Bl", sans-serif;
+  font-display: swap;
 }
 
 .brand-logo:hover {
+  transition: 0.3s;
   -webkit-text-stroke: 2px black;
   color: white;
-  transition: 0.3s;
 }
 
 .brand-navbar {
@@ -23,7 +23,38 @@ body {
 }
 
 .hero-image {
-  height: 33vh;
-  object-fit: cover;
+  -webkit-filter: brightness(50%);
   width: 100%;
+  min-height: 33vh;
+  object-fit: cover;
+}
+
+.hero-cover-parent {
+  position: relative;
+}
+
+.hero-cover {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  margin: auto;
+  border-radius: 15px;
+  background-color: rgba(255, 171, 0, 0.7);
+  padding: 1rem;
+  width: 300px;
+  height: 200px;
+  color: white;
+}
+
+.hero-cover > * {
+  font-weight: bold;
+  font-size: 20px !important;
+}
+
+@media screen and (min-width: 767.98px) {
+  .hero-image {
+    max-height: 33vh;
+  }
 }
