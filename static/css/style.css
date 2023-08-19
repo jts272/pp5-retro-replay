@@ -21,3 +21,9 @@ body {
 .brand-navbar {
   background-color: #ffab00 !important;
 }
+
+.hero-image {
+  height: 33vh;
+  object-fit: cover;
+  width: 100%;
+}
