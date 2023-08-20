@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404
 
 from .models import Product
 
+from basket.basket import Basket
+
 
 # Create your views here.
 def all_products(request):
@@ -64,7 +66,11 @@ def products_by_region(request, region):
 
 
 def product_detail(request, slug):
-    """Returns the detail page for a given product.
+    """Returns the detail page for a given product. Perform a check to
+    see if the product is currently in the basket for conditional
+    rendering of the add to basket button. This is handled by JavaScript
+    in the first instance, however this check handles subsequent visits
+    to the page where the item is in the basket.
 
     Arguments:
         request -- HttpRequest
@@ -73,6 +79,10 @@ def product_detail(request, slug):
     Returns:
         HTML template with request and context variables available
     """
+    basket_keys = list(Basket(request).basket.keys())
+    basket_list = [int(i) for i in basket_keys]
+    print(basket_keys)
+
     product = get_object_or_404(Product, slug=slug)
-    context = {"product": product}
+    context = {"product": product, "basket_list": basket_list}
     return render(request, "products/product_detail.html", context)

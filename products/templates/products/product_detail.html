@@ -5,6 +5,11 @@
 {% endblock title %}
 {% block content %}
   <div class="row">
+    {% if product.pk in basket_list %}
+      This item is in your basket
+    {% else %}
+      This item is not in your basket
+    {% endif %}
     <!-- Detail product card -->
     {% include "includes/product-detail-card.html" %}
     <!-- END Detail product card -->
