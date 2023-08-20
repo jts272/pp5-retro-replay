@@ -110,3 +110,9 @@ class Basket:
         https://youtu.be/VOwfGW-ZTIY?list=PLOLrQ9Pn6caxY4Q1U9RjO1bulQp5NDYS_&t=11009
         """
         return sum(Decimal(item["price"]) for item in self.basket.values())
+
+    def clear_session(self):
+        # Clear the basket by deleting the session key
+        # https://github.com/veryacademy/django-ecommerce-project/blob/main/Part-03%20User%20Payment%20and%20Order%20Management/Final/basket/basket.py
+        del self.session["session_key"]
+        self.session.modified = True

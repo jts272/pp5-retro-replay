@@ -233,4 +233,9 @@ def create_order(stripe_response):
 
 def checkout_status(request):
     # User is redirected here by Stripe.js after payment
+    basket = Basket(request)
+    print("calling basket.clear_session()!")
+    basket.clear_session()
+    print(f"basket: {basket}")
+    print(f"basket basket: {basket.basket}")
     return render(request, "payments/payment_status.html")
