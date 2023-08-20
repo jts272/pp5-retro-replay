@@ -1,7 +1,6 @@
 from django.shortcuts import render
 
 from products.models import Product
-from django.contrib import messages
 
 
 # Create your views here.
