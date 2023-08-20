@@ -181,6 +181,7 @@ def create_order(stripe_response):
         "paid": True,
         "order_items": metadata.order_items,
         "profile": metadata.profile,
+        "delivery_charge": metadata.delivery_charge,
     }
     print(returned_data)
 
@@ -201,6 +202,7 @@ def create_order(stripe_response):
             amount=data.amount / 100,
             paid=True,
             profile=profile,
+            delivery_charge=metadata.delivery_charge,
         )
         order.save()
     except Exception as e:

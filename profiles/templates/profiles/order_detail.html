@@ -12,6 +12,9 @@
     <div class="col-4 text-muted">Order number</div>
     <div class="col-8">{{ order.order_id }}</div>
     <hr />
+    <div class="col-4 text-muted">Delivery charge</div>
+    <div class="col-8">£{{ order.delivery_charge }}</div>
+    <hr />
     <div class="col-4 text-muted">Order total</div>
     <div class="col-8">
       £{{ order.amount }} <span class="text-muted">({{ items.count }} item{{ items.count|pluralize }})</span>
