@@ -26,9 +26,17 @@
             class="btn btn-success"
             id="add-to-basket"
             value="{{ product.pk }}"
-            data-url="{% url 'basket:add_to_basket' %}">
+            data-url="{% url 'basket:add_to_basket' %}"
+            data-in-basket="false">
       Add to Basket <i class="bi bi-basket"></i>
     </button>
   {% endif %}
 </div>
 <!--  END Purchase controls -->
+<!-- Item in basket warning -->
+<div class="container d-none" id="basket-warning-container">
+  <div class="alert alert-danger mt-3" role="alert">
+    Item is already in your basket! <a href="{% url 'basket:basket_summary' %}" class="float-end">View Basket</a>
+  </div>
+</div>
+<!-- END Item in basket warning -->
