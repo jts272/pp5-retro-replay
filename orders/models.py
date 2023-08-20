@@ -20,6 +20,10 @@ class Order(models.Model):
     https://stripe.com/docs/api/payment_intents/object
     """
 
+    # Delivery charge variables
+    STANDARD_DELIVERY_CHARGE = 1.99
+    FREE_DELIVERY_THRESHOLD = 30
+
     # A unique identifier to perform checks against
     order_id = models.UUIDField(default=uuid.uuid4, editable=False)
     # Link each order to a profile, which is linked to a Django user instance
@@ -36,6 +40,9 @@ class Order(models.Model):
     postal_code = models.CharField(max_length=10)
     # Transactional information
     amount = models.DecimalField(max_digits=6, decimal_places=2)
+    delivery_charge = models.DecimalField(
+        max_digits=4, decimal_places=2, default=STANDARD_DELIVERY_CHARGE
+    )
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     paid = models.BooleanField(default=False)
@@ -50,10 +57,6 @@ class Order(models.Model):
         return reverse(
             "profiles:order_detail", kwargs={"order_id": self.order_id}
         )
-
-    # Delivery charge variables
-    STANDARD_DELIVERY_CHARGE = 1.99
-    FREE_DELIVERY_THRESHOLD = 30
 
 
 class OrderItem(models.Model):
