@@ -61,6 +61,7 @@ addBtn.addEventListener("click", () => {
     addBtn.addEventListener("click", () => {
       basketWarningContainer.classList.remove("d-none");
       basketWarningContainer.scrollIntoView();
+      addBtn.classList.add("disabled");
     });
   }
 });

@@ -22,21 +22,36 @@
   {% if not user.is_authenticated %}
     <a href="{% url 'account_login' %}" class="btn btn-outline-success">Login to buy <i class="bi bi-basket"></i></a>
   {% else %}
-    <button type="button"
-            class="btn btn-success"
-            id="add-to-basket"
-            value="{{ product.pk }}"
-            data-url="{% url 'basket:add_to_basket' %}"
-            data-in-basket="false">
-      Add to Basket <i class="bi bi-basket"></i>
-    </button>
+    {% if product.pk not in basket_list %}
+      <button type="button"
+              class="btn btn-success"
+              id="add-to-basket"
+              value="{{ product.pk }}"
+              data-url="{% url 'basket:add_to_basket' %}"
+              data-in-basket="false">
+        Add to Basket <i class="bi bi-basket"></i>
+      </button>
+    {% else %}
+      <div class="btn btn-secondary disabled">
+        In Basket <i class="bi bi-basket "></i>
+      </div>
+    {% endif %}
   {% endif %}
 </div>
 <!--  END Purchase controls -->
 <!-- Item in basket warning -->
+<!-- Dynamic: handle first user attempt to re-add to basket -->
 <div class="container d-none" id="basket-warning-container">
-  <div class="alert alert-danger mt-3" role="alert">
+  <div class="alert alert-warning mt-3" role="alert">
     Item is already in your basket! <a href="{% url 'basket:basket_summary' %}" class="float-end">View Basket</a>
   </div>
 </div>
+<!-- Static: after page refresh -->
+{% if product.pk in basket_list %}
+  <div class="container" id="basket-warning-container">
+    <div class="alert alert-warning mt-3" role="alert">
+      Item is already in your basket! <a href="{% url 'basket:basket_summary' %}" class="float-end">View Basket</a>
+    </div>
+  </div>
+{% endif %}
 <!-- END Item in basket warning -->
