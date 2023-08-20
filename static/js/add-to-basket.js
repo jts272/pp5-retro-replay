@@ -37,10 +37,14 @@ const msgContent = document.getElementById("js-msg-content");
 console.log(msgContent);
 const addBtn = document.getElementById("add-to-basket");
 console.log(addBtn);
+const closeBtn = document.getElementById("js-msg-close-btn");
+console.log(closeBtn);
 
 addBtn.addEventListener("click", () => {
   msgContainer.classList.remove("d-none");
   alertEl.classList.remove("alert-light");
   alertEl.classList.add("alert-success");
   msgContent.innerHTML = `Item added to basket! <a href="/basket/" class="float-end">View Basket</a>`;
+  // Give users time to click the link before auto-dismissing the message
+  setTimeout(() => closeBtn.click(), 8000);
 });
