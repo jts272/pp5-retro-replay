@@ -86,7 +86,7 @@ def checkout(request):
 
         # Calculate delivery charge
         delivery_charge = Order.STANDARD_DELIVERY_CHARGE
-        if subtotal > Order.FREE_DELIVERY_THRESHOLD:
+        if subtotal >= Order.FREE_DELIVERY_THRESHOLD:
             delivery_charge = 0
         print(f"DELIVERY CHARGE: {delivery_charge}")
 

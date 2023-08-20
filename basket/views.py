@@ -107,7 +107,7 @@ def print_basket(request):
 
     delivery_charge = Order.STANDARD_DELIVERY_CHARGE
 
-    if basket.get_subtotal() > Order.FREE_DELIVERY_THRESHOLD:
+    if basket.get_subtotal() >= Order.FREE_DELIVERY_THRESHOLD:
         delivery_charge = 0
 
     print(f"delivery_charge: {delivery_charge}")
