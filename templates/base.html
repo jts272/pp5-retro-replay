@@ -53,6 +53,19 @@
       {% endfor %}
       <!-- END Django Messages -->
     {% endif %}
+    <!-- JavaScript Messages -->
+    <div class="container">
+      <div class="alert alert-light alert-dismissible fade show mt-3"
+           role="alert"
+           id="alert">
+        <strong>JavaScript Message</strong>
+        <button type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+                aria-label="Close"></button>
+      </div>
+    </div>
+    <!-- END JavaScript Messages -->
     {% block hero_image %}
     {% endblock hero_image %}
     <!-- Page content -->
