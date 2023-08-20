@@ -131,6 +131,7 @@ TEMPLATES = [
                 "products.context_processors.platforms",
                 "products.context_processors.regions",
                 "basket.context_processors.basket",
+                "orders.context_processors.delivery_charges",
             ],
         },
     },
