@@ -3,7 +3,7 @@ from .models import Order
 
 def delivery_charges(request):
     """Context processor to make delivery variables from the Order model
-    available in templates
+    available in templates.
 
     Arguments:
         request -- HttpRequest
