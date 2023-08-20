@@ -27,3 +27,20 @@ $(document).on("click", "#add-to-basket", function (e) {
     },
   });
 });
+
+// Show message without using Django messages in the view
+const msgContainer = document.getElementById("js-msg-container");
+console.log(msgContainer);
+const alertEl = document.getElementById("alert");
+console.log(alertEl);
+const msgContent = document.getElementById("js-msg-content");
+console.log(msgContent);
+const addBtn = document.getElementById("add-to-basket");
+console.log(addBtn);
+
+addBtn.addEventListener("click", () => {
+  msgContainer.classList.remove("d-none");
+  alertEl.classList.remove("alert-light");
+  alertEl.classList.add("alert-success");
+  msgContent.innerHTML = `Item added to basket! <a href="/basket/" class="float-end">View Basket</a>`;
+});

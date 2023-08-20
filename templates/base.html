@@ -54,11 +54,11 @@
       <!-- END Django Messages -->
     {% endif %}
     <!-- JavaScript Messages -->
-    <div class="container">
-      <div class="alert alert-light alert-dismissible fade show mt-3"
+    <div class="container d-none" id="js-msg-container">
+      <div class="alert alert-light alert-dismissible show fade mt-3"
            role="alert"
            id="alert">
-        <strong>JavaScript Message</strong>
+        <strong id="js-msg-content">JavaScript Message</strong>
         <button type="button"
                 class="btn-close"
                 data-bs-dismiss="alert"
