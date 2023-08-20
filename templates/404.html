@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h2>That's-a 404!</h2>
+        <p>Click the link below to get back home.</p>
+        <hr />
+        {% include "includes/home-button.html" %}
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-12">
+        <img src="{% static 'images/game-over.png' %}"
+             alt="Pac-Man game over screen"
+             class="img-fluid" />
+      </div>
+    </div>
+  </div>
+{% endblock content %}
