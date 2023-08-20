@@ -3,6 +3,22 @@
 {% block title %}
   Retro Replay | Viewing {{ product }}
 {% endblock title %}
+{% block js_messages %}
+  <!-- JavaScript Messages -->
+  <div class="container d-none" id="js-msg-container">
+    <div class="alert alert-light alert-dismissible show fade mt-3"
+         role="alert"
+         id="alert">
+      <strong id="js-msg-content">JavaScript Message</strong>
+      <button type="button"
+              class="btn-close"
+              data-bs-dismiss="alert"
+              aria-label="Close"
+              id="js-msg-close-btn"></button>
+    </div>
+  </div>
+  <!-- END JavaScript Messages -->
+{% endblock js_messages %}
 {% block content %}
   <div class="row">
     <!-- Detail product card -->
