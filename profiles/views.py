@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
@@ -82,6 +83,11 @@ def address_add(request):
             form = form.save(commit=False)
             form.profile = request.user.profile
             form.save()
+            messages.add_message(
+                request,
+                messages.SUCCESS,
+                "Your new address has been saved.",
+            )
             return HttpResponseRedirect(reverse("profiles:address_list"))
 
     else:
@@ -98,6 +104,9 @@ def address_edit(request, uuid):
         form = ProfileAddressForm(instance=address, data=request.POST)
         if form.is_valid():
             form.save()
+            messages.add_message(
+                request, messages.INFO, "Your address has been updated."
+            )
             return HttpResponseRedirect(reverse("profiles:address_list"))
     else:
         address = Address.objects.get(uuid=uuid, profile=request.user.profile)
@@ -122,6 +131,9 @@ def address_delete(request, uuid):
     https://youtu.be/8SP76dopYVo?list=PLOLrQ9Pn6caxY4Q1U9RjO1bulQp5NDYS_
     """
     Address.objects.get(uuid=uuid, profile=request.user.profile).delete()
+    messages.add_message(
+        request, messages.ERROR, "Your address has been deleted."
+    )
     return HttpResponseRedirect(reverse("profiles:address_list"))
 
 
@@ -150,5 +162,8 @@ def address_set_default(request, uuid):
     # Update the selected object's `default` property to True
     Address.objects.filter(uuid=uuid, profile=request.user.profile).update(
         default=True
+    )
+    messages.add_message(
+        request, messages.SUCCESS, "Your default address has been set."
     )
     return HttpResponseRedirect(reverse("profiles:address_list"))

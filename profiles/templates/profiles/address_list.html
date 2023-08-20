@@ -24,7 +24,7 @@
         <h4>Saved Address {{ forloop.counter }}</h4>
         {% if not address.default %}
           <a href="{% url 'profiles:address_set_default' address.uuid %}"
-             class="btn btn-sm btn-primary">Set Default</a>
+             class="btn btn-sm btn-primary">Make Default</a>
         {% endif %}
       </div>
       {% if address.default %}
