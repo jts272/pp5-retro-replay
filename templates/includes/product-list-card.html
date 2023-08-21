@@ -1,9 +1,16 @@
+{% load static %}
 <div class="col-6 col-md-3 g-2 g-md-3">
   <div class="card mb-3">
     <div class="img-thumbnail m-2">
-      <img src="{{ product.image.url }}"
-           class="card-img-top "
-           alt="Product image" />
+      {% if not product.image %}
+        <img src="{% static 'images/no-photo.png' %}"
+             class="card-img-top "
+             alt="No product image" />
+      {% else %}
+        <img src="{{ product.image.url }}"
+             class="card-img-top "
+             alt="Product image" />
+      {% endif %}
     </div>
     <div class="card-body">
       <p class="card-title h4">{{ product.name }}</p>

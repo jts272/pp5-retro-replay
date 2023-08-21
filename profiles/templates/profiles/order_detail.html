@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}
   Retro Replay | Order Details from {{ order.created }}
 {% endblock title %}
@@ -38,9 +39,15 @@
     <div class="card p-2 m-2">
       <div class="row g-0">
         <div class="col-4">
-          <img src="{{ item.product.image.url }}"
-               class="img-thumbnail mini-thumbnail"
-               alt="Product image" />
+          {% if not item.product.image %}
+            <img src="{% static 'images/no-photo.png' %}"
+                 class="img-thumbnail mini-thumbnail "
+                 alt="No product image" />
+          {% else %}
+            <img src="{{ item.product.image.url }}"
+                 class="img-thumbnail mini-thumbnail"
+                 alt="Product image" />
+          {% endif %}
         </div>
         <div class="col-8">
           <div class="card-body">
