@@ -4,4 +4,9 @@
 {% endblock title %}
 {% block content %}
   <h2>Support content goes here</h2>
+  <hr />
+  {% for faq in faqs %}
+    {{ faq.question }}
+    {{ faq.answer|safe }}
+  {% endfor %}
 {% endblock content %}
