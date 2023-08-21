@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+  Retro Replay | Forbidden request!
+{% endblock title %}
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h2>You weren't supposed to be able to get here you know</h2>
+        <p>Click the link below to get back home.</p>
+        <hr />
+        {% include "includes/home-button.html" %}
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-12 error-403">403 - Busted!</div>
+    </div>
+  </div>
+{% endblock content %}

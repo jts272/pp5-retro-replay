@@ -57,6 +57,15 @@ body {
   height: 100px !important;
 }
 
+.error-403 {
+  -webkit-text-stroke: 0.02em black;
+  color: #dc3534;
+  font-size: 15vw;
+  font-family: "Pricedown Bl", sans-serif;
+  font-display: swap;
+  text-align: center;
+}
+
 @media screen and (min-width: 767.98px) {
   .hero-image {
     max-height: 33vh;
