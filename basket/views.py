@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
 
 from orders.models import Order
 from products.models import Product
@@ -67,6 +67,8 @@ def add_to_basket(request):
         # messages.add_message(request, messages.ERROR, "message")
 
         return response
+    else:
+        return redirect("products:all_products")
 
 
 @login_required
@@ -97,6 +99,8 @@ def remove_from_basket(request):
         )
 
         return response
+    else:
+        return redirect("products:all_products")
 
 
 def print_basket(request):
