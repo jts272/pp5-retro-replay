@@ -3,10 +3,35 @@
   Retro Replay | Support
 {% endblock title %}
 {% block content %}
-  <h2>Support content goes here</h2>
-  <hr />
-  {% for faq in faqs %}
-    {{ faq.question }}
-    {{ faq.answer|safe }}
-  {% endfor %}
+  <div class="row">
+    <div class="col-12">
+      <h2>Support</h2>
+      <hr />
+      <!-- FAQ section -->
+      <h5>Frequently asked questions</h5>
+      <hr />
+      <!-- Bootstrap 5 accordion -->
+      <!-- https://getbootstrap.com/docs/5.3/components/accordion/#example -->
+      <div class="accordion" id="accordionExample">
+        {% for faq in faqs %}
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapse-{{ forloop.counter }}"
+                      aria-expanded="false"
+                      aria-controls="collapse-{{ forloop.counter }}">{{ faq.question }}</button>
+            </h2>
+            <div id="collapse-{{ forloop.counter }}"
+                 class="accordion-collapse collapse"
+                 data-bs-parent="#accordionExample">
+              <div class="accordion-body">{{ faq.answer|safe }}</div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <!-- END FAQ section -->
+    </div>
+  </div>
 {% endblock content %}
