@@ -205,3 +205,19 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 # https://github.com/summernote/django-summernote#setup
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
+
+# Summernote customization
+# https://github.com/summernote/django-summernote#themes
+SUMMERNOTE_THEME = "bs5"
+SUMMERNOTE_CONFIG = {
+    "summernote": {
+        "width": "100%",
+        "toolbar": [
+            ["font", ["bold", "underline", "italic"]],
+            ["fontname", ["Rubik"]],
+            ["para", ["ul", "ol"]],
+            ["insert", ["link", "picture", "video"]],
+            ["view", ["fullscreen", "codeview", "help"]],
+        ],
+    }
+}
