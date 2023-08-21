@@ -50,20 +50,29 @@
         </div>
         <!-- END Add FAQ control -->
       {% endif %}
-      <hr />
       <!-- END FAQ section -->
-      <!-- Customer queries section -->
-      <h5>Contact</h5>
-      <hr />
-      <p>
-        If the FAQs do not cover what you were looking for, please do not hesitate to contact us. We will get back to you on the email address you logged in with.
-      </p>
-      <div class="col-12 col-md-6 offset-md-3">
-        <form action="." method="post">
-          {{ form|crispy }}
-          <button type="submit" class="btn btn-success">Submit</button>
-        </form>
-      </div>
+      {% if not request.user.is_superuser %}
+        <hr />
+        <!-- Customer queries section -->
+        <h5>Contact</h5>
+        <hr />
+        {% if not user.is_authenticated %}
+          <p>
+            Please <a href="{% url 'account_login' %}">login</a> if you would like to get in touch with us.
+          </p>
+        {% else %}
+          <p>
+            If the FAQs do not cover what you were looking for, please do not hesitate to contact us. We will get back to you on the email address you logged in with.
+          </p>
+          <div class="col-12 col-md-6 offset-md-3">
+            <form action="." method="post">
+              {% csrf_token %}
+              {{ form|crispy }}
+              <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+          </div>
+        {% endif %}
+      {% endif %}
       <!-- END Customer queries section -->
     </div>
   </div>
