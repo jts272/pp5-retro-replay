@@ -204,4 +204,4 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 # Media setup for attachments/uploaded files
 # https://github.com/summernote/django-summernote#setup
 MEDIA_URL = "/media/"
-MEDIA_ROOT = [BASE_DIR / "media"]
+MEDIA_ROOT = BASE_DIR / "media"
