@@ -76,6 +76,7 @@ INSTALLED_APPS = [
     "django_extensions",
     "crispy_forms",
     "crispy_bootstrap5",
+    "django_summernote",
     # Required for `allauth`
     "django.contrib.auth",
     "django.contrib.messages",
@@ -199,3 +200,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Crispy forms
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+# Media setup for attachments/uploaded files
+# https://github.com/summernote/django-summernote#setup
+MEDIA_URL = "/media/"
+MEDIA_ROOT = [BASE_DIR / "media"]
