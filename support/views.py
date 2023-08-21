@@ -8,6 +8,8 @@ from django_summernote.widgets import SummernoteInplaceWidget
 
 from .models import FAQ
 
+from .forms import FAQForm
+
 
 # Create your views here.
 def support(request):
@@ -18,7 +20,7 @@ def support(request):
 
 class AddFAQ(SuccessMessageMixin, CreateView):
     model = FAQ
-    fields = ["question", "answer", "published"]
+    form_class = FAQForm
     answer = SummernoteTextField()
     widgets = {"answer": SummernoteInplaceWidget()}
     success_url = reverse_lazy("support:support")
@@ -27,7 +29,7 @@ class AddFAQ(SuccessMessageMixin, CreateView):
 
 class UpdateFAQ(SuccessMessageMixin, UpdateView):
     model = FAQ
-    fields = ["question", "answer", "published"]
+    form_class = FAQForm
     answer = SummernoteTextField()
     widgets = {"answer": SummernoteInplaceWidget()}
     success_url = reverse_lazy("support:support")

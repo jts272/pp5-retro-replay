@@ -4,7 +4,7 @@ from django_summernote.widgets import SummernoteInplaceWidget
 from django_summernote.fields import SummernoteTextField
 
 
-class FAQform(forms.ModelForm):
+class FAQForm(forms.ModelForm):
     # https://github.com/summernote/django-summernote#form
     class Meta:
         model = FAQ
