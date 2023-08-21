@@ -20,13 +20,14 @@ class FAQ(models.Model):
 
 
 class CustomerQuery(models.Model):
+    MAX_CHARS = 1000
     sender = models.EmailField(
         help_text="Reply to your customer at this address."
     )
     query = models.CharField(
-        max_length=400,
+        max_length=MAX_CHARS,
         help_text=(
-            "Please outline your query for us in less than 400 characters."
+            f"Please outline your query in less than {MAX_CHARS} characters."
         ),
     )
     created = models.DateTimeField(auto_now_add=True)
