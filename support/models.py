@@ -38,6 +38,12 @@ class CustomerQuery(models.Model):
             "Keep track of which customer queries you have replied to."
         ),
     )
+    resolved = models.BooleanField(
+        default=False,
+        help_text=(
+            "Mark as resolved when your customer query has been dealt with."
+        ),
+    )
 
     class Meta:
         verbose_name_plural = "Customer queries"
