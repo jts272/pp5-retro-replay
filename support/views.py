@@ -1,18 +1,35 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from django.shortcuts import render
-from django.urls import reverse_lazy
+from django.shortcuts import redirect, render
+from django.urls import reverse, reverse_lazy
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
-from .forms import FAQForm, CustomerQueryForm
+from .forms import CustomerQueryForm, FAQForm
 from .models import FAQ
 
 
 # Create your views here.
 def support(request):
+    if request.method == "POST":
+        form = CustomerQueryForm(request.POST)
+
+        # https://docs.djangoproject.com/en/3.2/topics/forms/modelforms/#the-save-method
+        if form.is_valid():
+            new_query = form.save(commit=False)
+            new_query.sender = request.user.email
+            new_query.save()
+
+            messages.add_message(
+                request,
+                messages.SUCCESS,
+                "Thanks for sending your query. We will respond soon!",
+            )
+            return redirect(reverse("support:support"))
+    else:
+        form = CustomerQueryForm()
+
     faqs = FAQ.objects.filter(published=True)
-    form = CustomerQueryForm()
     context = {"faqs": faqs, "form": form}
     return render(request, "support/support.html", context)
 
