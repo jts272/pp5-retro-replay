@@ -71,6 +71,7 @@ INSTALLED_APPS = [
     "payments.apps.PaymentsConfig",
     "orders.apps.OrdersConfig",
     "profiles.apps.ProfilesConfig",
+    "support.apps.SupportConfig",
     # Additional apps
     "django_extensions",
     "crispy_forms",
