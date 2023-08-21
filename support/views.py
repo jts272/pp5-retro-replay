@@ -3,12 +3,9 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
-from django_summernote.fields import SummernoteTextField
-from django_summernote.widgets import SummernoteInplaceWidget
-
-from .models import FAQ
 
 from .forms import FAQForm
+from .models import FAQ
 
 
 # Create your views here.
@@ -21,8 +18,6 @@ def support(request):
 class AddFAQ(SuccessMessageMixin, CreateView):
     model = FAQ
     form_class = FAQForm
-    answer = SummernoteTextField()
-    widgets = {"answer": SummernoteInplaceWidget()}
     success_url = reverse_lazy("support:support")
     success_message = "New FAQ has been added!"
 
@@ -30,8 +25,6 @@ class AddFAQ(SuccessMessageMixin, CreateView):
 class UpdateFAQ(SuccessMessageMixin, UpdateView):
     model = FAQ
     form_class = FAQForm
-    answer = SummernoteTextField()
-    widgets = {"answer": SummernoteInplaceWidget()}
     success_url = reverse_lazy("support:support")
     success_message = "Your FAQ has been updated."
 

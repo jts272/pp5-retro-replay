@@ -1,7 +1,8 @@
 from django import forms
-from .models import FAQ
-from django_summernote.widgets import SummernoteInplaceWidget
 from django_summernote.fields import SummernoteTextField
+from django_summernote.widgets import SummernoteWidget
+
+from .models import FAQ
 
 
 class FAQForm(forms.ModelForm):
@@ -10,4 +11,4 @@ class FAQForm(forms.ModelForm):
         model = FAQ
         fields = ["question", "answer", "published"]
         answer = SummernoteTextField()
-        widgets = {"answer": SummernoteInplaceWidget()}
+        widgets = {"answer": SummernoteWidget()}
