@@ -65,6 +65,7 @@ form.addEventListener("submit", async (event) => {
     // details incomplete)
     const messageContainer = document.querySelector("#error-message");
     messageContainer.textContent = error.message;
+    messageContainer.classList.add("alert", "alert-danger");
 
     // Toggle loader visibility that would have been added on submit
     loader.classList.toggle("d-none");
