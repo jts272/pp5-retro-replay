@@ -34,7 +34,8 @@
       {% if user.is_superuser %}
         <!-- Add FAQ control -->
         <div class="row border rounded p-2 m-2 bg-success-subtle text-end">
-          <a href="#" class="text-decoration-none link-dark">
+          <a href="{% url 'support:add_faq' %}"
+             class="text-decoration-none link-dark">
             Add a new FAQ <i class="bi bi-chevron-right"></i>
           </a>
         </div>
