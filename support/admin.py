@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django_summernote.admin import SummernoteModelAdmin
-from .models import FAQ
+from .models import FAQ, CustomerQuery
 
 
 class FAQAdmin(SummernoteModelAdmin):
@@ -10,5 +10,12 @@ class FAQAdmin(SummernoteModelAdmin):
     readonly_fields = ["created", "updated"]
 
 
+class CustomerQueryAdmin(admin.ModelAdmin):
+    fields = ["sender", "query", "created", "updated", "replied"]
+    list_display = ["sender", "created", "replied"]
+    readonly_fields = ["sender", "query", "created", "updated"]
+
+
 # Register your models here.
 admin.site.register(FAQ, FAQAdmin)
+admin.site.register(CustomerQuery, CustomerQueryAdmin)

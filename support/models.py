@@ -34,7 +34,7 @@ class CustomerQuery(models.Model):
     replied = models.BooleanField(
         default=False,
         help_text=(
-            "Keep track of which customer queries you have replied to.",
+            "Keep track of which customer queries you have replied to."
         ),
     )
 
