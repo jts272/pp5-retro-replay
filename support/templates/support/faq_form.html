@@ -4,6 +4,7 @@
   <form action="." method='post'>
     {% csrf_token %}
     {{ form|crispy }}
-    <button type="submit" class="btn btn-success">Submit</button>
+    <button type="submit" class="btn btn-success float-end">Submit</button>
   </form>
+  {% include "includes/go-back-button.html" %}
 {% endblock content %}
