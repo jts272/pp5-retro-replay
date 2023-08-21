@@ -27,14 +27,14 @@
                  class="accordion-collapse collapse"
                  data-bs-parent="#accordionExample">
               <div class="accordion-body">{{ faq.answer|safe }}</div>
-              <div class="accordion-body pt-0">
-                {% if user.is_superuser %}
+              {% if user.is_superuser %}
+                <div class="accordion-body pt-0">
                   <a href="{% url 'support:delete_faq' faq.pk %}"
                      class="btn btn-outline-danger">Delete <i class="bi bi-trash3"></i></a>
                   <a href="{% url 'support:update_faq' faq.pk %}"
                      class="btn btn-outline-primary float-end">Update <i class="bi bi-chevron-right"></i></a>
-                {% endif %}
-              </div>
+                </div>
+              {% endif %}
             </div>
           </div>
         {% endfor %}
