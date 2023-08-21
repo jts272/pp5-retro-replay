@@ -16,6 +16,6 @@ def home(request):
     Returns:
         HTML template with request and context variables available
     """
-    recent_products = Product.objects.all()[:4]
+    recent_products = Product.objects.all().order_by("-pk")[:4]
     context = {"recent_products": recent_products}
     return render(request, "home/home.html", context)

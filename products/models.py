@@ -26,7 +26,7 @@ class Product(models.Model):
     image = models.ImageField(null=True, blank=True)
 
     class Meta:
-        ordering = ["-pk"]
+        ordering = ["name"]
 
     def __str__(self):
         return f"{self.name} for {self.platform} - {self.region}"
