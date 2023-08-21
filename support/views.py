@@ -5,14 +5,15 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
-from .forms import FAQForm
+from .forms import FAQForm, CustomerQueryForm
 from .models import FAQ
 
 
 # Create your views here.
 def support(request):
     faqs = FAQ.objects.filter(published=True)
-    context = {"faqs": faqs}
+    form = CustomerQueryForm()
+    context = {"faqs": faqs, "form": form}
     return render(request, "support/support.html", context)
 
 
