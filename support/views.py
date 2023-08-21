@@ -20,6 +20,7 @@ class AddFAQ(CreateView):
     fields = ["question", "answer", "published"]
     answer = SummernoteTextField()
     widgets = {"answer": SummernoteInplaceWidget()}
+    success_url = reverse_lazy("support:support")
 
 
 class UpdateFAQ(UpdateView):
@@ -27,6 +28,7 @@ class UpdateFAQ(UpdateView):
     fields = ["question", "answer", "published"]
     answer = SummernoteTextField()
     widgets = {"answer": SummernoteInplaceWidget()}
+    success_url = reverse_lazy("support:support")
 
 
 class DeleteFAQ(DeleteView):
