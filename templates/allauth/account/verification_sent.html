@@ -1,5 +1,8 @@
 {% extends "account/base.html" %}
 {% load i18n %}
+{% block title %}
+  Retro Replay | Verification Sent
+{% endblock title %}
 {% block head_title %}
   {% trans "Verify Your E-mail Address" %}
 {% endblock %}
@@ -9,5 +12,5 @@
     {% blocktrans %}We have sent an e-mail to you for verification. Follow the link provided to finalize the signup process. If you do not see the verification e-mail in your main inbox, check your spam folder. Please contact us if you do not receive the verification e-mail within a few minutes.{% endblocktrans %}
   </p>
   <hr />
-  <div class="d-flex justify-content-center">{% include "includes/home-button.html" %}</div>
+  {% include "includes/home-button.html" %}
 {% endblock %}
