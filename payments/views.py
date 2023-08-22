@@ -250,6 +250,7 @@ def checkout_status(request):
 
 
 def send_confirmation_email(order):
+    sender = "console@localhost.com"
     recipient = order.email
     title = render_to_string(
         "includes/email/order-confirm-title.txt", {"order": order}
@@ -257,4 +258,4 @@ def send_confirmation_email(order):
     body = render_to_string(
         "includes/email/order-confirm-body.txt", {"order": order}
     )
-    send_mail(title, body, [recipient])
+    send_mail(title, body, sender, [recipient])
