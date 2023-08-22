@@ -1,20 +1,44 @@
-<div class="container">
-  <div class="row text-center">
-    <hr />
-    <!-- Social links -->
-    <div class="col-12 col-lg-4">
-      <a href="#">Socials</a>
+<footer>
+  <div class="container">
+    <div class="row text-center">
+      <hr />
+      <!-- Social links -->
+      <div class="col-12 col-lg-4 navbar navbar-expand justify-content-center">
+        <ul class="navbar-nav">
+          <li class="navbar-item">
+            <a href="https://www.facebook.com/profile.php?id=61550327891860"
+               rel="noopener"
+               target="_blank"
+               aria-label="Facebook link"
+               class="nav-link social-cta"><i class="bi bi-facebook social-btn"></i></a>
+          </li>
+          <li class="navbar-item">
+            <a href="https://github.com/jts272"
+               rel="noopener"
+               target="_blank"
+               aria-label="GitHub link"
+               class="nav-link social-cta"><i class="bi bi-github social-btn"></i></a>
+          </li>
+          <li class="navbar-item">
+            <a href="https://www.linkedin.com/in/joseph-smith-dev/"
+               rel="noopener"
+               target="_blank"
+               aria-label="LinkedIn link"
+               class="nav-link social-cta"><i class="bi bi-linkedin social-btn"></i></a>
+          </li>
+        </ul>
+      </div>
+      <!-- END Social links -->
+      <!-- Mailing list -->
+      <div class="col-12 col-lg-4">
+        <a href="#">Newsletter</a>
+      </div>
+      <!-- END Mailing list -->
+      <!-- Support -->
+      <div class="col-12 col-lg-4">
+        <a href="{% url 'support:support' %}">FAQs/Contact</a>
+      </div>
+      <!-- END Support -->
     </div>
-    <!-- END Social links -->
-    <!-- Mailing list -->
-    <div class="col-12 col-lg-4">
-      <a href="#">Newsletter</a>
-    </div>
-    <!-- END Mailing list -->
-    <!-- Support -->
-    <div class="col-12 col-lg-4">
-      <a href="{% url 'support:support' %}">FAQs/Contact</a>
-    </div>
-    <!-- END Support -->
   </div>
-</div>
+</footer>

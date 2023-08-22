@@ -66,6 +66,11 @@ body {
   text-align: center;
 }
 
+.social-cta {
+  color: black;
+  font-size: 2rem;
+}
+
 @media screen and (min-width: 767.98px) {
   .hero-image {
     max-height: 33vh;
