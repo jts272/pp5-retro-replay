@@ -21,15 +21,16 @@
   </div>
 </div>
 <!-- Purchase controls -->
-<div class="col-12 col-lg-6 offset-lg-3 d-flex justify-content-between">
+<div class="col-12">
   {% include "includes/go-back-button.html" %}
   {% csrf_token %}
   {% if not user.is_authenticated %}
-    <a href="{% url 'account_login' %}" class="btn btn-outline-success">Login to buy <i class="bi bi-basket"></i></a>
+    <a href="{% url 'account_login' %}"
+       class="btn btn-outline-success float-end">Login to buy <i class="bi bi-basket"></i></a>
   {% else %}
     {% if product.pk not in basket_list %}
       <button type="button"
-              class="btn btn-success"
+              class="btn btn-success float-end"
               id="add-to-basket"
               value="{{ product.pk }}"
               data-url="{% url 'basket:add_to_basket' %}"
@@ -37,7 +38,7 @@
         Add to Basket <i class="bi bi-basket"></i>
       </button>
     {% else %}
-      <div class="btn btn-secondary disabled">
+      <div class="btn btn-secondary float-end disabled">
         In Basket <i class="bi bi-basket "></i>
       </div>
     {% endif %}
