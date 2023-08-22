@@ -1,32 +1,24 @@
 <footer>
   <div class="container">
-    <div class="row text-center">
+    <div class="row text-center ">
       <hr />
       <!-- Social links -->
-      <div class="col-12 col-lg-4 navbar navbar-expand justify-content-center">
-        <ul class="navbar-nav">
-          <li class="navbar-item">
-            <a href="https://www.facebook.com/profile.php?id=61550327891860"
-               rel="noopener"
-               target="_blank"
-               aria-label="Facebook link"
-               class="nav-link social-cta"><i class="bi bi-facebook social-btn"></i></a>
-          </li>
-          <li class="navbar-item">
-            <a href="https://github.com/jts272"
-               rel="noopener"
-               target="_blank"
-               aria-label="GitHub link"
-               class="nav-link social-cta"><i class="bi bi-github social-btn"></i></a>
-          </li>
-          <li class="navbar-item">
-            <a href="https://www.linkedin.com/in/joseph-smith-dev/"
-               rel="noopener"
-               target="_blank"
-               aria-label="LinkedIn link"
-               class="nav-link social-cta"><i class="bi bi-linkedin social-btn"></i></a>
-          </li>
-        </ul>
+      <div class="col-12 col-lg-4 justify-content-evenly d-flex">
+        <a href="https://www.facebook.com/profile.php?id=61550327891860"
+           rel="noopener"
+           target="_blank"
+           aria-label="Facebook link"
+           class="social-cta"><i class="bi bi-facebook social-btn"></i></a>
+        <a href="https://github.com/jts272"
+           rel="noopener"
+           target="_blank"
+           aria-label="GitHub link"
+           class=" social-cta"><i class="bi bi-github social-btn"></i></a>
+        <a href="https://www.linkedin.com/in/joseph-smith-dev/"
+           rel="noopener"
+           target="_blank"
+           aria-label="LinkedIn link"
+           class=" social-cta"><i class="bi bi-linkedin social-btn"></i></a>
       </div>
       <!-- END Social links -->
       <!-- Mailing list -->
@@ -35,8 +27,8 @@
       </div>
       <!-- END Mailing list -->
       <!-- Support -->
-      <div class="col-12 col-lg-4">
-        <a href="{% url 'support:support' %}">FAQs/Contact</a>
+      <div class="col-12 col-lg-4 mb-3">
+        <a href="{% url 'support:support' %}" class="btn btn-outline-dark">FAQs/Contact <i class="bi bi-info-circle"></i></a>
       </div>
       <!-- END Support -->
     </div>
