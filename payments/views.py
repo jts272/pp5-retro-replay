@@ -3,8 +3,10 @@ import os
 
 import stripe
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.template.loader import render_to_string
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 
@@ -146,13 +148,14 @@ def webhook_view(request):
     # Handle the event
     if event.type == "payment_intent.succeeded":
         payment_intent = event.data.object  # contains a stripe.PaymentIntent
-        # Then define and call a method to handle the successful payment intent.
+        # Then define and call a method to handle the successful payment intent
         # handle_payment_intent_succeeded(payment_intent)
         # print(f"webhook payment intent: {payment_intent}")
         create_order(payment_intent)
     elif event.type == "payment_method.attached":
         payment_method = event.data.object  # contains a stripe.PaymentMethod
-        # Then define and call a method to handle the successful attachment of a PaymentMethod.
+        # Then define and call a method to handle the successful attachment of
+        # a PaymentMethod.
         # handle_payment_method_attached(payment_method)
         print(f"webhook payment_method: {payment_method}")
     # ... handle other event types
@@ -230,6 +233,11 @@ def create_order(stripe_response):
     except Exception as e:
         print(f"ERROR: {e}")
 
+    try:
+        send_confirmation_email(order)
+    except Exception as e:
+        print(f"There was an error sending the confirmation email: {e}")
+
 
 def checkout_status(request):
     # User is redirected here by Stripe.js after payment
@@ -239,3 +247,14 @@ def checkout_status(request):
     print(f"basket: {basket}")
     print(f"basket basket: {basket.basket}")
     return render(request, "payments/payment_status.html")
+
+
+def send_confirmation_email(order):
+    recipient = order.email
+    title = render_to_string(
+        "includes/email/order-confirm-title.txt", {"order": order}
+    )
+    body = render_to_string(
+        "includes/email/order-confirm-body.txt", {"order": order}
+    )
+    send_mail(title, body, [recipient])
