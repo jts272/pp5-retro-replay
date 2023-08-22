@@ -5,12 +5,11 @@ This is your confirmation email for your order at Retro Replay.
 Here's a quick summary for you:
 
 Your order will be shipped to:
-{{order.address_line1}}
-{{order.address_line2}}
-{{order.city}}
-{{order.postal_code}}
+{{ order.address_line1 }}
+{{ order.city }}
+{{ order.postal_code }}
 
-You were charged £{{order.amount}} in total, with a delivery charge of £{{order.delivery_charge}}
+You were charged £{{ order.amount|floatformat:2 }} in total, with a delivery charge of £{{ order.delivery_charge }}
 
 View your complete Order History on the site under the Profile Management section.
 Simply login and select 'Manage' in the top bar, next to your username.
