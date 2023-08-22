@@ -2,6 +2,7 @@ import json
 import os
 
 import stripe
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.http import HttpResponse
@@ -250,7 +251,7 @@ def checkout_status(request):
 
 
 def send_confirmation_email(order):
-    sender = "console@localhost.com"
+    sender = settings.DEFAULT_FROM_EMAIL
     recipient = order.email
     title = render_to_string(
         "includes/email/order-confirm-title.txt", {"order": order}
