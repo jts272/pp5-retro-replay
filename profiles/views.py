@@ -93,7 +93,7 @@ def address_add(request):
     else:
         form = ProfileAddressForm()
 
-    context = {"form": ProfileAddressForm()}
+    context = {"form": form}
     return render(request, "profiles/address_form.html", context)
 
 
