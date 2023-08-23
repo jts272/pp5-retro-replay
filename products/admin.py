@@ -13,6 +13,11 @@ def make_product_visible(modeladmin, request, queryset):
     queryset.update(visible=True)
 
 
+@admin.action(description="Mark selected products as invisible")
+def make_product_invisible(modeladmin, request, queryset):
+    queryset.update(visible=False)
+
+
 class ProductModelAdmin(SummernoteModelAdmin):
     # Product id can be sorted in list display, unlike PK
     list_display = [
@@ -35,7 +40,7 @@ class ProductModelAdmin(SummernoteModelAdmin):
     ]
     readonly_fields = ["slug", "created", "updated"]
     summernote_fields = ["description"]
-    actions = [make_product_visible]
+    actions = [make_product_visible, make_product_invisible]
 
 
 class PlatformModelAdmin(admin.ModelAdmin):
