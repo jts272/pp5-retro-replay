@@ -8,15 +8,22 @@ class CategoryModelAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ["name"]}
 
 
+@admin.action(description="Mark selected products as visible")
+def make_product_visible(modeladmin, request, queryset):
+    queryset.update(visible=True)
+
+
 class ProductModelAdmin(SummernoteModelAdmin):
+    # Product id can be sorted in list display, unlike PK
     list_display = [
-        "pk",
         "name",
+        "id",
         "category",
         "platform",
         "region",
         "price",
         "sold",
+        "visible",
     ]
     search_fields = [
         "name",
@@ -24,10 +31,11 @@ class ProductModelAdmin(SummernoteModelAdmin):
         "platform__name",
         "category__name",
         "price",
-        "pk",
+        "id",
     ]
     readonly_fields = ["slug", "created", "updated"]
     summernote_fields = ["description"]
+    actions = [make_product_visible]
 
 
 class PlatformModelAdmin(admin.ModelAdmin):
