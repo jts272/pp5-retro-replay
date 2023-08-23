@@ -38,6 +38,15 @@ class Product(models.Model):
         max_length=20, choices=CONDITION_CHOICES, default="Very Good"
     )
     description = models.TextField(default="Description coming soon!")
+    sold = models.BooleanField(
+        help_text=(
+            "The product will automatically be marked as sold once"
+            " payment has been completed"
+        ),
+        default=False,
+    )
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ["name"]
