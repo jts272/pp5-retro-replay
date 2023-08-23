@@ -9,7 +9,15 @@ class CategoryModelAdmin(admin.ModelAdmin):
 
 
 class ProductModelAdmin(SummernoteModelAdmin):
-    list_display = ["pk", "name", "region", "platform", "category", "price"]
+    list_display = [
+        "pk",
+        "name",
+        "category",
+        "platform",
+        "region",
+        "price",
+        "sold",
+    ]
     search_fields = [
         "name",
         "region__name",
@@ -18,7 +26,7 @@ class ProductModelAdmin(SummernoteModelAdmin):
         "price",
         "pk",
     ]
-    readonly_fields = ["slug"]
+    readonly_fields = ["slug", "created", "updated"]
     summernote_fields = ["description"]
 
 
