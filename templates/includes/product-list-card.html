@@ -1,23 +1,33 @@
 {% load static %}
 <div class="col-6 col-md-3 g-2 g-md-3">
-  <div class="card mb-3">
-    <div class="img-thumbnail m-2">
-      {% if not product.image %}
-        <img src="{% static 'images/no-photo.png' %}"
-             class="card-img-top "
-             alt="No product image is available" />
-      {% else %}
-        <img src="{{ product.image.url }}"
-             class="card-img-top "
-             alt="Product image for {{ product }}" />
+  {% if not product.sold %}
+    <div class="card mb-3">
+    {% else %}
+      <div class="card mb-3 opacity-50">
       {% endif %}
-    </div>
-    <div class="card-body">
-      <p class="card-title h4">{{ product.name }}</p>
-      <p class="card-text text-muted">{{ product.platform }}</p>
-      <p class="card-text ">£{{ product.price }}</p>
-      <a href="{{ product.get_absolute_url }}"
-         class="btn btn-success float-end">View <i class="bi bi-chevron-right"></i></a>
+      <div class="img-thumbnail m-2">
+        {% if not product.image %}
+          <img src="{% static 'images/no-photo.png' %}"
+               class="card-img-top "
+               alt="No product image is available" />
+        {% else %}
+          <img src="{{ product.image.url }}"
+               class="card-img-top "
+               alt="Product image for {{ product }}" />
+        {% endif %}
+      </div>
+      <div class="card-body">
+        <p class="card-title h4">{{ product.name }}</p>
+        <p class="card-text text-muted">{{ product.platform }}</p>
+        {% if not product.sold %}
+          <p class="card-text ">£{{ product.price }}</p>
+        {% else %}
+          <p>
+            <span class="card-text bg-danger-subtle p-2 rounded">Sold out!</span>
+          </p>
+        {% endif %}
+        <a href="{{ product.get_absolute_url }}"
+           class="btn btn-success float-end">View <i class="bi bi-chevron-right"></i></a>
+      </div>
     </div>
   </div>
-</div>
