@@ -42,7 +42,7 @@ def add_to_basket(request):
         # Get product id captured in ajax data dictionary
         product_id = str(request.POST.get("productId"))
         # Get the referenced product from the database
-        product = get_object_or_404(Product, pk=product_id)
+        product = get_object_or_404(Product, pk=product_id, sold=False)
 
         if str(product.pk) not in basket.basket.keys():
             # Add product to the Basket instance
