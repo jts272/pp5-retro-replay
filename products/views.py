@@ -30,7 +30,7 @@ def products_by_category(request, category):
     Returns:
         HTML template with request and context variables available
     """
-    products = Product.objects.filter(category__slug=category)
+    products = Product.available_products.filter(category__slug=category)
     context = {"products": products}
     return render(request, "products/product_list.html", context)
 
@@ -45,7 +45,7 @@ def products_by_platform(request, platform):
     Returns:
         HTML template with request and context variables available
     """
-    products = Product.objects.filter(platform__slug=platform)
+    products = Product.available_products.filter(platform__slug=platform)
     context = {"products": products}
     return render(request, "products/product_list.html", context)
 
@@ -60,7 +60,7 @@ def products_by_region(request, region):
     Returns:
         HTML template with request and context variables available
     """
-    products = Product.objects.filter(region__slug=region)
+    products = Product.available_products.filter(region__slug=region)
     context = {"products": products}
     return render(request, "products/product_list.html", context)
 
