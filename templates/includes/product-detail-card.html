@@ -9,9 +9,9 @@
       {% else %}
         <img src="{{ product.image.url }}"
              class="card-img-top "
-             alt="Product image" />
-      </div>
-    {% endif %}
+             alt="No product image" />
+      {% endif %}
+    </div>
     <div class="card-body">
       <h4 class="card-title">{{ product.name }}</h4>
       <hr />
@@ -25,7 +25,7 @@
   </div>
 </div>
 <!-- Purchase controls -->
-<div class="col-12">
+<div class="col-12 col-lg-6 offset-lg-3">
   {% include "includes/go-back-button.html" %}
   {% csrf_token %}
   {% if not user.is_authenticated %}
