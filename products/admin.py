@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django_summernote.admin import SummernoteModelAdmin
 
 from .models import Category, Platform, Product, Region
 
@@ -7,7 +8,7 @@ class CategoryModelAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ["name"]}
 
 
-class ProductModelAdmin(admin.ModelAdmin):
+class ProductModelAdmin(SummernoteModelAdmin):
     list_display = ["pk", "name", "region", "platform", "category", "price"]
     search_fields = [
         "name",
@@ -18,6 +19,7 @@ class ProductModelAdmin(admin.ModelAdmin):
         "pk",
     ]
     readonly_fields = ["slug"]
+    summernote_fields = ["description"]
 
 
 class PlatformModelAdmin(admin.ModelAdmin):
