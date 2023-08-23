@@ -57,6 +57,11 @@ class Product(models.Model):
     def get_absolute_url(self):
         return reverse("products:product_detail", kwargs={"slug": self.slug})
 
+    def mark_as_sold(self):
+        self.sold = True
+        self.save()
+        return self.sold
+
 
 class Category(models.Model):
     name = models.CharField(max_length=255)

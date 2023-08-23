@@ -229,6 +229,10 @@ def create_order(stripe_response):
                 price=ordered_items[i]["price"],
             )
 
+            # Mark each order item paid for as sold
+            product = Product.objects.get(pk=ordered_items[i]["id"])
+            product.mark_as_sold()
+
         order_item.save()
 
     except Exception as e:
