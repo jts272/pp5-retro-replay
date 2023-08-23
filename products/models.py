@@ -32,7 +32,7 @@ class Product(models.Model):
         "Region", on_delete=models.SET_NULL, null=True, blank=True
     )
     image = models.ImageField(
-        upload_to="product_images/", null=True, blank=True
+        upload_to="product_images/%Y/%m/%d/", null=True, blank=True
     )
     condition = models.CharField(
         max_length=20, choices=CONDITION_CHOICES, default="Very Good"
