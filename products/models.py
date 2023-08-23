@@ -15,6 +15,15 @@ class AvailableProductManager(models.Manager):
         return super().get_queryset().filter(visible=True)
 
 
+class AllProductsManager(models.Manager):
+    """Makes the built-in `<Model>.objects.all()` functionality available
+    after creating custom managers.
+    """
+
+    def get_queryset(self):
+        return super().get_queryset().all()
+
+
 class Product(models.Model):
     CONDITION_CHOICES = [
         ("Sealed", "Sealed"),
@@ -80,6 +89,8 @@ class Product(models.Model):
         self.save()
         return self.sold
 
+    # `objects` must be placed as top manager to show all products
+    objects = AllProductsManager()
     available_products = AvailableProductManager()
 
 
