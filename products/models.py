@@ -6,6 +6,11 @@ from django.urls import reverse
 
 # Create your models here.
 class AvailableProductManager(models.Manager):
+    """Manager to return only products that are set as visible.
+
+    This makes the built-in `Product.objects` unavailable.
+    """
+
     def get_queryset(self) -> QuerySet:
         return super().get_queryset().filter(visible=True)
 
