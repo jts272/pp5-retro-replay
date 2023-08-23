@@ -5,6 +5,14 @@ from django.urls import reverse
 
 # Create your models here.
 class Product(models.Model):
+    CONDITION_CHOICES = [
+        ("Sealed", "Sealed"),
+        ("Like New", "Like New"),
+        ("Very Good", "Very Good"),
+        ("Good", "Good"),
+        ("Acceptable", "Acceptable"),
+    ]
+
     name = models.CharField(max_length=255)
     slug = AutoSlugField(
         populate_from=["name"],
@@ -24,6 +32,9 @@ class Product(models.Model):
         "Region", on_delete=models.SET_NULL, null=True, blank=True
     )
     image = models.ImageField(null=True, blank=True)
+    condition = models.CharField(
+        max_length=20, choices=CONDITION_CHOICES, default="Very Good"
+    )
 
     class Meta:
         ordering = ["name"]
