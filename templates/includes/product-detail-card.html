@@ -5,11 +5,11 @@
       {% if not product.image %}
         <img src="{% static 'images/no-photo.png' %}"
              class="card-img-top "
-             alt="No product image" />
+             alt="No product image is available" />
       {% else %}
         <img src="{{ product.image.url }}"
              class="card-img-top "
-             alt="No product image" />
+             alt="Product image for {{ product }}" />
       {% endif %}
     </div>
     <div class="card-body">
