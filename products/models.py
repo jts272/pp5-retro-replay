@@ -35,6 +35,7 @@ class Product(models.Model):
     condition = models.CharField(
         max_length=20, choices=CONDITION_CHOICES, default="Very Good"
     )
+    description = models.TextField(default="Description coming soon!")
 
     class Meta:
         ordering = ["name"]
