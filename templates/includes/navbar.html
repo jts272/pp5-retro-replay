@@ -64,28 +64,11 @@
               <li>
                 <a class="dropdown-item"
                    href="{% url 'products:products_by_region' region.slug %}">{{ region.name }}
-                  <!-- Assign relevant region icon from static folder -->
-                  {% if region|stringformat:'s' == 'NTSC-J' %}
-                    <img src="{% static 'images/regions/japan.png' %}"
-                         alt="Japan icon"
-                         class="float-end"
-                         height="20"
-                         width="20" />
-                  {% elif region|stringformat:'s' == 'NTSC-U' %}
-                    <img src="{% static 'images/regions/united-states.png' %}"
-                         alt="USA icon"
-                         class="float-end"
-                         height="20"
-                         width="20" />
-                  {% elif region|stringformat:'s' == 'PAL' %}
-                    <img src="{% static 'images/regions/european-union.png' %}"
-                         alt="European union icon"
-                         class="float-end"
-                         height="20"
-                         width="20" />
-                  {% elif region|stringformat:'s' == 'Region Free' %}
-                    <img src="{% static 'images/regions/worldwide.png' %}"
-                         alt="World icon"
+                  <!-- Assign relevant region icon, if provided -->
+                  <!-- Images uploaded from admin panel to media folder specified on the model -->
+                  {% if region.icon %}
+                    <img src="{{ region.icon.url }}"
+                         alt="{{ region }} icon"
                          class="float-end"
                          height="20"
                          width="20" />

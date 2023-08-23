@@ -61,6 +61,7 @@ class Platform(models.Model):
 class Region(models.Model):
     name = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255)
+    icon = models.ImageField(upload_to="regions/", null=True, blank=True)
 
     class Meta:
         ordering = ["name"]
