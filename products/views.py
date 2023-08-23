@@ -15,7 +15,7 @@ def all_products(request):
     Returns:
         HTML template with request and context variables available
     """
-    products = Product.objects.all()
+    products = Product.available_products.all()
     context = {"products": products}
     return render(request, "products/product_list.html", context)
 

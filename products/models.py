@@ -1,9 +1,15 @@
 from django.db import models
+from django.db.models.query import QuerySet
 from django_extensions.db.fields import AutoSlugField
 from django.urls import reverse
 
 
 # Create your models here.
+class AvailableProductManager(models.Manager):
+    def get_queryset(self) -> QuerySet:
+        return super().get_queryset().filter(visible=True)
+
+
 class Product(models.Model):
     CONDITION_CHOICES = [
         ("Sealed", "Sealed"),
@@ -68,6 +74,8 @@ class Product(models.Model):
         self.sold = True
         self.save()
         return self.sold
+
+    available_products = AvailableProductManager()
 
 
 class Category(models.Model):
