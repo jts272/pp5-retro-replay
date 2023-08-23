@@ -47,6 +47,13 @@ class Product(models.Model):
     )
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    visible = models.BooleanField(
+        default=True,
+        help_text=(
+            "Select to make the product visible on the site. This can be"
+            " unchecked to stop sold out products from appearing on the site."
+        ),
+    )
 
     class Meta:
         ordering = ["name"]
