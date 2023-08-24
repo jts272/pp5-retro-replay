@@ -46,18 +46,58 @@ class TestAddToBasketView(TestCase):
 
         Reference: https://youtu.be/VOwfGW-ZTIY?list=PLOLrQ9Pn6caxY4Q1U9RjO1bulQp5NDYS_&t=15091
         """
-        print(f"{self.p.name}, {self.p.price}")
         response = self.c.post(
             "/basket/add/", {"productId": 1, "action": "post"}
         )
-        print(response.json())
-        print(response.content)
         self.assertEqual(
             response.json(),
             {
                 "product just added:": 1,
                 "basket quantity": 1,
                 "basket contents": {"1": {"price": "10.00"}},
+            },
+        )
+
+
+class TestRemoveFromBasketView(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(
+            username="tester", password="secret"
+        )
+        self.user.save()
+        self.c = Client()
+        self.c.login(username="tester", password="secret")
+        self.p1 = Product.objects.create(name="test product 1", price=10.00)
+        self.p1.save()
+        self.p2 = Product.objects.create(name="test product 2", price=20.00)
+        self.p2.save()
+        # Add two products
+        self.basket = self.c.post(
+            "/basket/add/",
+            {"productId": 1, "action": "post"},
+        )
+        self.basket = self.c.post(
+            "/basket/add/",
+            {"productId": 2, "action": "post"},
+        )
+
+    def test_view_url_json_response(self):
+        print(self.p1.name)
+        print(self.p2.name)
+        print(self.basket.json())
+        self.basket = self.c.post(
+            "/basket/remove/",
+            {"productId": 1, "action": "post"},
+        )
+        print(self.basket.json())
+        response = self.basket
+        # Only product 2 should remain
+        self.assertEqual(
+            response.json(),
+            {
+                "product removed": "1",
+                "basket quantity": 1,
+                "basket subtotal": "20.00",
             },
         )
 
