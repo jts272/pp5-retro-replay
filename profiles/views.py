@@ -53,7 +53,6 @@ def order_detail(request, order_id):
 
 @login_required
 def address_list(request):
-    print(request.method)
     addresses = Address.objects.filter(profile=request.user.profile)
     context = {"addresses": addresses}
     return render(request, "profiles/address_list.html", context)

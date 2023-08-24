@@ -104,3 +104,7 @@ class TestProfileViews(TestCase):
     def test_order_list_view_url_200(self):
         response = self.c.get("/profile/orders/")
         self.assertEqual(response.status_code, 200)
+
+    def test_address_list_view_url_200(self):
+        response = self.c.get("/profile/addresses/")
+        self.assertEqual(response.status_code, 200)
