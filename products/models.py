@@ -8,20 +8,12 @@ from django.urls import reverse
 class AvailableProductManager(models.Manager):
     """Manager to return only products that are set as visible.
 
-    This makes the built-in `Product.objects` unavailable.
+    To use the built-in `objects` manager after creating a custom
+    manager, is must be subclassed again explicitly in the model.
     """
 
     def get_queryset(self) -> QuerySet:
         return super().get_queryset().filter(visible=True)
-
-
-class AllProductsManager(models.Manager):
-    """Makes the built-in `<Model>.objects.all()` functionality available
-    after creating custom managers.
-    """
-
-    def get_queryset(self):
-        return super().get_queryset().all()
 
 
 class Product(models.Model):
@@ -89,8 +81,8 @@ class Product(models.Model):
         self.save()
         return self.sold
 
-    # `objects` must be placed as top manager to show all products
-    objects = AllProductsManager()
+    # Django default manager
+    objects = models.Manager()
     available_products = AvailableProductManager()
 
 
