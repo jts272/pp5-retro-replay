@@ -1,9 +1,9 @@
 import factory
 from django.contrib.auth.models import User
-from django.test import TestCase
+from django.test import Client, TestCase
 
 from .forms import ProfileAddressForm
-from .models import Profile, Address
+from .models import Address, Profile
 
 
 class UserFactory(factory.Factory):
@@ -86,3 +86,21 @@ class TestAddressModel(TestCase):
     def test_address_str_method(self):
         self.p = AddressFactory()
         self.assertEqual(self.p.__str__(), "Saved Address")
+
+
+class TestProfileViews(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(
+            username="tester", password="secret"
+        )
+        self.user.save()
+        self.c = Client()
+        self.c.login(username="tester", password="secret")
+
+    def test_profile_view_url_200(self):
+        response = self.c.get("/profile/")
+        self.assertEqual(response.status_code, 200)
+
+    def test_order_list_view_url_200(self):
+        response = self.c.get("/profile/orders/")
+        self.assertEqual(response.status_code, 200)
