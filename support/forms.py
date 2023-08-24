@@ -13,7 +13,30 @@ class FAQForm(forms.ModelForm):
         model = FAQ
         fields = ["question", "answer", "published"]
         answer = SummernoteTextField()
-        widgets = {"answer": SummernoteWidget()}
+        widgets = {
+            "question": forms.TextInput(
+                attrs={"placeholder": "Question title (minimum 10 characters)"}
+            ),
+            "answer": SummernoteWidget(),
+        }
+
+    def clean_question(self):
+        p = re.compile("[a-zA-z]{1-10}")
+        question = self.cleaned_data["question"]
+        if not p.match(question):
+            raise forms.ValidationError(
+                "Please provide a longer question title."
+            )
+        return question
+
+    def clean_answer(self):
+        p = re.compile("[a-zA-z]{1-20}")
+        answer = self.cleaned_data["answer"]
+        if not p.match(answer):
+            raise forms.ValidationError(
+                "Please write 20 or more characters in your answer."
+            )
+        return answer
 
 
 class CustomerQueryForm(forms.ModelForm):

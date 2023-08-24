@@ -9,7 +9,7 @@ class FAQ(models.Model):
     updated = models.DateTimeField(auto_now=True)
     published = models.BooleanField(
         default=True,
-        help_text="Mark as published to make the FAQ visible on the site.",
+        help_text="Mark as published to make this FAQ visible on the site.",
     )
 
     class Meta:
