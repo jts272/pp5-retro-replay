@@ -34,6 +34,10 @@ class TestProductModel(TestCase):
             self.p.__str__(), "test product for test platform - test region"
         )
 
+    def test_product_mark_as_sold_method(self):
+        self.p.mark_as_sold()
+        self.assertTrue(self.p.sold)
+
 
 class TestPlatformModel(TestCase):
     def setUp(self):
