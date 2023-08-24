@@ -80,3 +80,9 @@ class TestProfileModel(TestCase):
                 },
             },
         )
+
+
+class TestAddressModel(TestCase):
+    def test_address_str_method(self):
+        self.p = AddressFactory()
+        self.assertEqual(self.p.__str__(), "Saved Address")
