@@ -1,6 +1,23 @@
+import factory
+from django.contrib.auth.models import User
 from django.test import TestCase
 
 from .forms import ProfileAddressForm
+from .models import Profile
+
+
+class UserFactory(factory.Factory):
+    class Meta:
+        model = User
+
+    username = "Joe"
+
+
+class ProfileFactory(factory.Factory):
+    class Meta:
+        model = Profile
+
+    user = UserFactory()
 
 
 # Create your tests here.
@@ -29,3 +46,9 @@ class TestProfileAddressForm(TestCase):
             }
         )
         self.assertTrue(form.is_valid())
+
+
+class TestProfileModel(TestCase):
+    def test_profile_str_method(self):
+        self.p = ProfileFactory()
+        self.assertEqual(self.p.__str__(), "Joe")

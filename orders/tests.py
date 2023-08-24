@@ -1,7 +1,9 @@
-from django.test import TestCase
 import factory
+from django.test import TestCase
+
+from products.models import Platform, Product, Region
+
 from .models import Order, OrderItem
-from products.models import Product, Platform, Region
 
 
 class OrderFactory(factory.Factory):
