@@ -46,7 +46,8 @@
   </div>
   <!-- Purchase controls -->
   <div class="col-12 col-lg-6 offset-lg-3">
-    {% include "includes/go-back-button.html" %}
+    <a href="{% url 'products:all_products' %}"
+       class="btn btn-outline-primary"><i class="bi bi-chevron-left"></i> All Products</a>
     {% csrf_token %}
     {% if not product.sold %}
       {% if not user.is_authenticated %}
