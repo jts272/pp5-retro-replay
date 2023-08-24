@@ -1,5 +1,6 @@
+from django.contrib.auth.models import User
 from django.http import HttpRequest
-from django.test import TestCase
+from django.test import Client, TestCase
 
 from basket.basket import Basket
 from products.models import Product
@@ -7,9 +8,26 @@ from products.models import Product
 
 # Create your tests here.
 class TestBasketView(TestCase):
-    def test_view_url_200_response(self):
-        response = self.client.get("/basket/")
+    def setUp(self):
+        self.user = User.objects.create_user(
+            username="tester", password="secret"
+        )
+        self.user.save()
+        self.c = Client()
+
+    def test_authenticated_url_200(self):
+        self.c.login(username="tester", password="secret")
+        response = self.c.get("/basket/")
         self.assertEqual(response.status_code, 200)
+
+    def test_authenticated_template_used(self):
+        self.c.login(username="tester", password="secret")
+        response = self.c.get("/basket/")
+        self.assertTemplateUsed(response, "basket/basket.html")
+
+    def test_unauthenticated_url_redirect(self):
+        response = self.c.get("/basket/")
+        self.assertRedirects(response, "/accounts/login/?next=/basket/")
 
 
 class TestAddToBasketView(TestCase):
