@@ -67,8 +67,6 @@ def add_to_basket(request):
         # messages.add_message(request, messages.ERROR, "message")
 
         return response
-    else:
-        return redirect("products:all_products")
 
 
 @login_required

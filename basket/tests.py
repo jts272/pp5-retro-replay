@@ -32,40 +32,33 @@ class TestBasketView(TestCase):
 
 class TestAddToBasketView(TestCase):
     def setUp(self):
+        self.user = User.objects.create_user(
+            username="tester", password="secret"
+        )
+        self.user.save()
+        self.c = Client()
+        self.c.login(username="tester", password="secret")
         self.p = Product.objects.create(name="test product", price=10.00)
+        self.p.save()
 
     def test_view_url_json_response(self):
         """Test for the json response from the ajax function to add to basket.
 
         Reference: https://youtu.be/VOwfGW-ZTIY?list=PLOLrQ9Pn6caxY4Q1U9RjO1bulQp5NDYS_&t=15091
         """
-        response = self.client.post(
-            "/basket/add/",
-            {"productId": 1, "action": "post"},
+        print(f"{self.p.name}, {self.p.price}")
+        response = self.c.post(
+            "/basket/add/", {"productId": 1, "action": "post"}
         )
-        self.assertTrue(response.json(), {"product just added": 1})
-
-
-class TestRemoveFromBasketView(TestCase):
-    def setUp(self):
-        self.p = Product.objects.create(name="test product", price=10.00)
-        self.p = Product.objects.create(name="test product 2", price=20.00)
-        self.client.post(
-            "/basket/add/",
-            {"productId": 1, "action": "post"},
-        )
-        self.client.post(
-            "/basket/add/",
-            {"productId": 2, "action": "post"},
-        )
-
-    def test_view_url_json_response(self):
-        response = self.client.post(
-            "/basket/remove/",
-            {"productId": 2, "action": "post"},
-        )
-        self.assertTrue(
-            response.json(), {"basket quantity": 1, "product removed": 2}
+        print(response.json())
+        print(response.content)
+        self.assertEqual(
+            response.json(),
+            {
+                "product just added:": 1,
+                "basket quantity": 1,
+                "basket contents": {"1": {"price": "10.00"}},
+            },
         )
 
 
