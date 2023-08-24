@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.http import HttpRequest
 from django.test import Client, TestCase
+from django.urls import reverse
 
 from basket.basket import Basket
 from products.models import Product
@@ -58,6 +59,10 @@ class TestAddToBasketView(TestCase):
             },
         )
 
+    def test_http_get_redirects(self):
+        response = self.c.get("/basket/add/")
+        self.assertRedirects(response, reverse("products:all_products"))
+
 
 class TestRemoveFromBasketView(TestCase):
     def setUp(self):
@@ -82,14 +87,10 @@ class TestRemoveFromBasketView(TestCase):
         )
 
     def test_view_url_json_response(self):
-        print(self.p1.name)
-        print(self.p2.name)
-        print(self.basket.json())
         self.basket = self.c.post(
             "/basket/remove/",
             {"productId": 1, "action": "post"},
         )
-        print(self.basket.json())
         response = self.basket
         # Only product 2 should remain
         self.assertEqual(
@@ -100,6 +101,10 @@ class TestRemoveFromBasketView(TestCase):
                 "basket subtotal": "20.00",
             },
         )
+
+    def test_http_get_redirects(self):
+        response = self.c.get("/basket/remove/")
+        self.assertRedirects(response, reverse("products:all_products"))
 
 
 class TestBasketClass(TestCase):
