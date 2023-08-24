@@ -107,14 +107,11 @@ def print_basket(request):
     # Get the delivery charge, based on the basket subtotal
     basket = Basket(request)
 
-    print(f"basket subtotal: {basket.get_subtotal()}")
-
     delivery_charge = Order.STANDARD_DELIVERY_CHARGE
 
     if basket.get_subtotal() >= Order.FREE_DELIVERY_THRESHOLD:
         delivery_charge = 0
 
-    print(f"delivery_charge: {delivery_charge}")
     return JsonResponse(
         {
             "basket subtotal": basket.get_subtotal(),

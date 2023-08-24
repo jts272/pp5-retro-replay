@@ -1,3 +1,5 @@
+import json
+
 from django.contrib.auth.models import User
 from django.http import HttpRequest
 from django.test import Client, TestCase
@@ -118,6 +120,26 @@ class TestBasketClass(TestCase):
         # Create an instance of the Basket class
         self.b = Basket(request)
 
+        self.user = User.objects.create_user(
+            username="tester", password="secret"
+        )
+        self.user.save()
+        self.c = Client()
+        self.c.login(username="tester", password="secret")
+        self.p1 = Product.objects.create(name="test product 1", price=10.00)
+        self.p1.save()
+        self.p2 = Product.objects.create(name="test product 2", price=20.00)
+        self.p2.save()
+        # Add two products
+        self.basket = self.c.post(
+            "/basket/add/",
+            {"productId": 1, "action": "post"},
+        )
+        self.basket = self.c.post(
+            "/basket/add/",
+            {"productId": 2, "action": "post"},
+        )
+
     def test_basket_class_is_iterable(self):
         """Current adding and removing tests to not meet coverage for
         the basket class' '__iter__' method. This test is designed to
@@ -127,3 +149,13 @@ class TestBasketClass(TestCase):
         a request object that has session data.
         """
         self.assertTrue(hasattr(self.b, "__iter__"))
+
+    def test_print_basket_method(self):
+        response = self.c.get("/basket/print/")
+        self.assertEqual(
+            response.json(), {"basket subtotal": "30.00", "delivery charge": 0}
+        )
+
+    def test_clear_session_method(self):
+        response = self.b.clear_session()
+        self.assertEqual(response, None)
