@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404, render
 
 from basket.basket import Basket
 
-from .models import Product
+from .models import Category, Platform, Product, Region
 
 
 # Create your views here.
@@ -33,7 +33,7 @@ def all_products(request):
 
             if "include-sold" in request.GET:
                 # Use default manager to show all unfiltered products
-                products = Product.objects.filter(queries)
+                products = products.filter(queries)
 
     all_products_view = True
 
@@ -67,9 +67,17 @@ def products_by_category(request, category):
             products = Product.available_products.filter(queries)
 
             if "include-sold" in request.GET:
-                products = Product.objects.filter(queries)
+                products = products.filter(queries)
 
-    context = {"products": products}
+    # Navigation context
+    collection = "category"
+    filter = Category.objects.get(slug=category)
+
+    context = {
+        "products": products,
+        "collection": collection,
+        "filter": filter,
+    }
 
     return render(request, "products/product_list.html", context)
 
@@ -99,9 +107,17 @@ def products_by_platform(request, platform):
             products = Product.available_products.filter(queries)
 
             if "include-sold" in request.GET:
-                products = Product.objects.filter(queries)
+                products = products.filter(queries)
 
-    context = {"products": products}
+    # Navigation context
+    collection = "platform"
+    filter = Platform.objects.get(slug=platform)
+
+    context = {
+        "products": products,
+        "collection": collection,
+        "filter": filter,
+    }
 
     return render(request, "products/product_list.html", context)
 
@@ -119,6 +135,7 @@ def products_by_region(request, region):
     Returns:
         HTML template with request and context variables available
     """
+
     products = Product.available_products.filter(region__slug=region)
     if request.GET:
         if "q" in request.GET:
@@ -131,9 +148,17 @@ def products_by_region(request, region):
             products = Product.available_products.filter(queries)
 
             if "include-sold" in request.GET:
-                products = Product.objects.filter(queries)
+                products = products.filter(queries)
 
-    context = {"products": products}
+    # Navigation context
+    collection = "region"
+    filter = Region.objects.get(slug=region)
+
+    context = {
+        "products": products,
+        "collection": collection,
+        "filter": filter,
+    }
 
     return render(request, "products/product_list.html", context)
 
@@ -154,6 +179,7 @@ def product_detail(request, slug):
     """
     product = get_object_or_404(Product, slug=slug)
 
+    # Update basket controls if item is already in basket
     basket_keys = list(Basket(request).basket.keys())
     basket_list = [int(i) for i in basket_keys]
 

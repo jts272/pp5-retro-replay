@@ -10,7 +10,7 @@
                type="search"
                name="q"
                required
-               placeholder="Search our entire range..."
+               placeholder="{% if all_products_view %}Search our entire range... {% else %} Search the {{ filter }} {{ collection }}... {% endif %}"
                aria-label="Search" />
         <button class="btn btn-primary" type="submit">
           <i class="bi bi-search"></i>
@@ -26,7 +26,11 @@
     </div>
   </div>
   <hr />
-  <p>{{ products.count }} product{{ products.count|pluralize }} found:</p>
+  {% if all_products_view %}
+    <p>Showing results from all products - {{ products.count }} product{{ products.count|pluralize }} found:</p>
+  {% else %}
+    <p>{{ products.count }} product{{ products.count|pluralize }} found for the {{ filter }} {{ collection }}:</p>
+  {% endif %}
   <!-- Product card loop by queryset -->
   <div class="row">
     {% for product in products %}
