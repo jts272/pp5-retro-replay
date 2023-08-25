@@ -93,6 +93,7 @@ def address_add(request):
         form = ProfileAddressForm()
 
     context = {"form": form}
+
     return render(request, "profiles/address_form.html", context)
 
 
@@ -107,11 +108,13 @@ def address_edit(request, uuid):
                 request, messages.INFO, "Your address has been updated."
             )
             return HttpResponseRedirect(reverse("profiles:address_list"))
+
     else:
         address = Address.objects.get(uuid=uuid, profile=request.user.profile)
-        print(address)
         form = ProfileAddressForm(instance=address)
+
     context = {"form": form}
+
     return render(request, "profiles/address_form.html", context)
 
 
@@ -133,6 +136,7 @@ def address_delete(request, uuid):
     messages.add_message(
         request, messages.ERROR, "Your address has been deleted."
     )
+
     return HttpResponseRedirect(reverse("profiles:address_list"))
 
 
@@ -165,4 +169,5 @@ def address_set_default(request, uuid):
     messages.add_message(
         request, messages.SUCCESS, "Your default address has been set."
     )
+
     return HttpResponseRedirect(reverse("profiles:address_list"))

@@ -82,16 +82,5 @@ class Address(models.Model):
 
         return self.address_object
 
-        # Stripe object format for `defaultValues`:
-        # billingDetails = {
-        #     name: '',
-        #     address: {
-        #         line1: '',
-        #         line2: '',
-        #         city: '',
-        #         postal_code: '',
-        #     }
-        # }
-
     def __str__(self):
         return "Saved Address"

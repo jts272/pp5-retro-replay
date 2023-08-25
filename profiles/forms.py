@@ -75,7 +75,7 @@ class ProfileAddressForm(forms.ModelForm):
 
     def clean_postal_code(self):
         # Adapted from gov.uk 'Appendix C - Valid Postcode Format
-        p = re.compile("[a-zA-Z][a-zA-z0-9][a-zA-z0-9\s]{1,6}")
+        p = re.compile("[a-zA-Z][a-zA-z0-9][a-zA-z0-9\s]{1,6}")  # noqa
         postal_code = self.cleaned_data["postal_code"]
         if not p.match(postal_code):
             raise forms.ValidationError(
