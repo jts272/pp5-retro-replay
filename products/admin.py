@@ -37,7 +37,6 @@ def make_product_sold(modeladmin, request, queryset):
 
 
 class ProductModelAdmin(SummernoteModelAdmin):
-    # Product id can be sorted in list display, unlike PK
     list_display = [
         "name",
         "category",

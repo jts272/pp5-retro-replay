@@ -10,6 +10,9 @@ from .models import Product
 def all_products(request):
     """Returns all products from the database.
 
+    The default queryset is delivered by the `available_products` manager.
+    Users have the option to find sold items using the searchbar.
+
     Arguments:
         request -- HttpRequest
 
@@ -34,12 +37,17 @@ def all_products(request):
                 products = Product.objects.filter(queries)
 
     all_products_view = True
+
     context = {"products": products, "all_products_view": all_products_view}
+
     return render(request, "products/product_list.html", context)
 
 
 def products_by_category(request, category):
     """Returns all products within a given category.
+
+    The default queryset is delivered by the `available_products` manager.
+    Users have the option to find sold items using the searchbar.
 
     Arguments:
         request -- HttpRequest
@@ -63,11 +71,15 @@ def products_by_category(request, category):
                 products = Product.objects.filter(queries)
 
     context = {"products": products}
+
     return render(request, "products/product_list.html", context)
 
 
 def products_by_platform(request, platform):
     """Returns all products within a given platform.
+
+    The default queryset is delivered by the `available_products` manager.
+    Users have the option to find sold items using the searchbar.
 
     Arguments:
         request -- HttpRequest
@@ -91,11 +103,15 @@ def products_by_platform(request, platform):
                 products = Product.objects.filter(queries)
 
     context = {"products": products}
+
     return render(request, "products/product_list.html", context)
 
 
 def products_by_region(request, region):
     """Returns all products within a given region.
+
+    The default queryset is delivered by the `available_products` manager.
+    Users have the option to find sold items using the searchbar.
 
     Arguments:
         request -- HttpRequest
@@ -119,6 +135,7 @@ def products_by_region(request, region):
                 products = Product.objects.filter(queries)
 
     context = {"products": products}
+
     return render(request, "products/product_list.html", context)
 
 
@@ -126,8 +143,8 @@ def product_detail(request, slug):
     """Returns the detail page for a given product. Perform a check to
     see if the product is currently in the basket for conditional
     rendering of the add to basket button. This is handled by JavaScript
-    in the first instance, however this check handles subsequent visits
-    to the page where the item is in the basket.
+    AJAX in the first instance, however this check handles subsequent
+    visits to the page where the item is in the basket.
 
     Arguments:
         request -- HttpRequest
@@ -136,10 +153,11 @@ def product_detail(request, slug):
     Returns:
         HTML template with request and context variables available
     """
+    product = get_object_or_404(Product, slug=slug)
+
     basket_keys = list(Basket(request).basket.keys())
     basket_list = [int(i) for i in basket_keys]
-    print(basket_keys)
 
-    product = get_object_or_404(Product, slug=slug)
     context = {"product": product, "basket_list": basket_list}
+
     return render(request, "products/product_detail.html", context)

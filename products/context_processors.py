@@ -4,6 +4,8 @@ from .models import Category, Platform, Region
 def categories(request):
     """Context processor to make Categories available in template context.
 
+    This is used to populate navbar entries.
+
     Arguments:
         request -- HttpRequest
 
@@ -16,6 +18,8 @@ def categories(request):
 def platforms(request):
     """Context processor to make Platforms available in template context.
 
+    This is used to populate navbar entries.
+
     Arguments:
         request -- HttpRequest
 
@@ -27,6 +31,8 @@ def platforms(request):
 
 def regions(request):
     """Context processor to make Regions available in template context.
+
+    This is used to populate navbar entries.
 
     Arguments:
         request -- HttpRequest
