@@ -40,9 +40,15 @@
     </div>
   </div>
   <hr />
-  <h1>Retro Replay Homepage!</h1>
-  <div id="message"></div>
-  <p>{{ recent_products.count }} product{{ recent_products.count|pluralize }} found:</p>
+  <!-- SEO keywords -->
+  <section class="text-center">
+    <h1 class="h4">At Retro Replay, we have some of the best deals in the UK for classic video games.</h1>
+    <br />
+    <h2 class="h6">We stock American, Japanese and European games from the vintage era of gaming.</h2>
+    <h3 class="h6">We have products by Nintendo, Sony, SEGA and Microsoft, with a great selection for N64 and PS2.</h3>
+    <h3 class="h6">Take a look at our newest additions below and find the next favourite for your collection!</h3>
+  </section>
+  <!-- END SEO keywords -->
   <!-- Recent products card loop -->
   <div class="row">
     {% for product in recent_products %}
