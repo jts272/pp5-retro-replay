@@ -1,5 +1,6 @@
 // Reference: https://youtu.be/VOwfGW-ZTIY?list=PLOLrQ9Pn6caxY4Q1U9RjO1bulQp5NDYS_&t=7011
 $(document).on("click", "#add-to-basket", function (e) {
+  $("body").scrollTop();
   e.preventDefault();
   $.ajax({
     type: "POST",
