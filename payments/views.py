@@ -44,12 +44,8 @@ def checkout(request):
     https://youtu.be/ncsCnC3Ynlw?list=PLOLrQ9Pn6caxY4Q1U9RjO1bulQp5NDYS_&t=12452
     """
     # 1. Get user's default saved address, if present
-    # Null address object unless found in query
-    address_object = None
-    address_object_json = None
     if request.user.profile.address_set.exists():
         try:
-            print("Addresses exist on this profile")
             # Select the user's default saved address from profile
             address = Address.objects.get(
                 profile=request.user.profile, default=True
@@ -58,15 +54,19 @@ def checkout(request):
             address_object = address.get_address_object()
             # Convert to JSON before handing off to template context
             address_object_json = json.dumps(address_object)
-        except Exception as e:
-            print(f"Exception: {e} No default address is set on this profile.")
-    else:
-        print("No addresses exist on this profile.")
+        except Address.DoesNotExist:
+            address = None
+            address_object = None
+            address_object_json = None
 
     # 2. Generate a JSON-style object to pass Stripe metadata
     basket = Basket(request)
 
-    if basket:
+    # Guard clause for accessing checkout page with an empty basket
+    if not basket:
+        context = {"basket": basket}
+
+    else:
         # Build a JSON-like order item dictionary
         basket_keys = list(basket.basket.keys())
         order_items = {}
@@ -85,22 +85,18 @@ def checkout(request):
         # 3. Perform calculations to provide accurate grand total
         # Basket subtotal before any calculations
         subtotal = float(basket.get_subtotal())
-        print(f"BASKET SUBTOTAL: {subtotal}")
 
         # Calculate delivery charge
         delivery_charge = Order.STANDARD_DELIVERY_CHARGE
         if subtotal >= Order.FREE_DELIVERY_THRESHOLD:
             delivery_charge = 0
-        print(f"DELIVERY CHARGE: {delivery_charge}")
 
         # Calculate grand total
         # Two decimal places specified for float arithmetic
         grand_total = round(subtotal + delivery_charge, 2)
-        print(f"GRAND TOTAL: {grand_total}")
 
         # Convert grand total to integer in pence for Stripe
         amount = int(grand_total * 100)
-        print(f"STRIPE AMOUNT: {amount}")
 
         # 4. Create the `PaymentIntent` for Stripe payment
         stripe.api_key = os.getenv("STRIPE_SECRET_KEY")
@@ -119,14 +115,12 @@ def checkout(request):
         context = {
             "basket": basket,
             "client_secret": intent.client_secret,
+            # Passed to form data attribute to autofill Stripe address element
             "address_object_json": address_object_json,
             "subtotal": subtotal,
             "delivery_charge": delivery_charge,
             "grand_total": grand_total,
         }
-    else:
-        # Client secret not present as no Stripe elements will be built
-        context = {"basket": basket}
 
     return render(request, "payments/payments.html", context)
 
