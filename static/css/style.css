@@ -1,15 +1,24 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
 
+/* Fonts */
+
+@font-face {
+  src: url("../fonts/pricedown-bl.ttf");
+  font-family: "Pricedown Bl";
+  font-display: swap;
+}
+
 body {
   font-family: "Rubik", sans-serif;
 }
+
+/* Navbar */
 
 .brand-logo {
   -webkit-text-stroke: 2px white;
   color: black;
   font-size: 3rem;
   font-family: "Pricedown Bl", sans-serif;
-  font-display: swap;
 }
 
 .brand-logo:hover {
@@ -22,8 +31,11 @@ body {
   background-color: #ffab00 !important;
 }
 
+/* Hero image */
+
 .hero-image {
   -webkit-filter: brightness(50%);
+  filter: brightness(50%);
   width: 100%;
   min-height: 33vh;
   object-fit: cover;
@@ -53,23 +65,30 @@ body {
   font-size: 20px !important;
 }
 
+/* Order summary */
+
 .mini-thumbnail {
   height: 100px !important;
 }
 
+/* Error page - 403 */
+
 .error-403 {
   -webkit-text-stroke: 0.02em black;
   color: #dc3534;
-  font-size: 15vw;
+  font-size: 8vw;
   font-family: "Pricedown Bl", sans-serif;
-  font-display: swap;
   text-align: center;
 }
+
+/* Footer */
 
 .social-cta {
   color: black;
   font-size: 2rem;
 }
+
+/* Media queries */
 
 @media screen and (min-width: 767.98px) {
   .hero-image {
