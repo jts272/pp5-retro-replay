@@ -28,7 +28,8 @@ def all_products(request):
             )
             products = Product.available_products.filter(queries)
 
-    context = {"products": products}
+    all_products_view = True
+    context = {"products": products, "all_products_view": all_products_view}
     return render(request, "products/product_list.html", context)
 
 
@@ -43,6 +44,15 @@ def products_by_category(request, category):
         HTML template with request and context variables available
     """
     products = Product.available_products.filter(category__slug=category)
+    if request.GET:
+        if "q" in request.GET:
+            query = request.GET["q"]
+            queries = (
+                Q(name__icontains=query)
+                | Q(description__icontains=query)
+                | Q(region__name__icontains=query)
+            )
+            products = Product.available_products.filter(queries)
     context = {"products": products}
     return render(request, "products/product_list.html", context)
 
@@ -58,6 +68,15 @@ def products_by_platform(request, platform):
         HTML template with request and context variables available
     """
     products = Product.available_products.filter(platform__slug=platform)
+    if request.GET:
+        if "q" in request.GET:
+            query = request.GET["q"]
+            queries = (
+                Q(name__icontains=query)
+                | Q(description__icontains=query)
+                | Q(region__name__icontains=query)
+            )
+            products = Product.available_products.filter(queries)
     context = {"products": products}
     return render(request, "products/product_list.html", context)
 
@@ -73,6 +92,15 @@ def products_by_region(request, region):
         HTML template with request and context variables available
     """
     products = Product.available_products.filter(region__slug=region)
+    if request.GET:
+        if "q" in request.GET:
+            query = request.GET["q"]
+            queries = (
+                Q(name__icontains=query)
+                | Q(description__icontains=query)
+                | Q(region__name__icontains=query)
+            )
+            products = Product.available_products.filter(queries)
     context = {"products": products}
     return render(request, "products/product_list.html", context)
 
