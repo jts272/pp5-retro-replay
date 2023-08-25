@@ -1,8 +1,9 @@
-from django.shortcuts import render, get_object_or_404
-
-from .models import Product
+from django.db.models import Q
+from django.shortcuts import get_object_or_404, render
 
 from basket.basket import Basket
+
+from .models import Product
 
 
 # Create your views here.
@@ -16,6 +17,17 @@ def all_products(request):
         HTML template with request and context variables available
     """
     products = Product.objects.all()
+
+    if request.GET:
+        if "q" in request.GET:
+            query = request.GET["q"]
+            queries = (
+                Q(name__icontains=query)
+                | Q(description__icontains=query)
+                | Q(region__name__icontains=query)
+            )
+            products = Product.available_products.filter(queries)
+
     context = {"products": products}
     return render(request, "products/product_list.html", context)
 
