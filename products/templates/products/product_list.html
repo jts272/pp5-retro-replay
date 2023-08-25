@@ -29,4 +29,11 @@
     {% endfor %}
   </div>
   <!-- END Product card loop by queryset -->
+  <!-- Conditional navigation -->
+  {% if all_products_view %}
+    <a href="{% url 'home:home' %}" class="btn btn-primary"><i class="bi bi-house"></i> Home</a>
+  {% else %}
+    <a href="{% url 'products:all_products' %}" class="btn btn-primary"><i class="bi bi-chevron-left"></i> All Products</a>
+  {% endif %}
+  <!-- END Conditional navigation -->
 {% endblock content %}
