@@ -8,6 +8,7 @@ class OrderItemInline(admin.TabularInline):
     readonly_fields = ["product", "price"]
     # Don't include extra blank placeholder entries
     extra = 0
+    can_delete = False
 
 
 class OrderModelAdmin(admin.ModelAdmin):
@@ -16,7 +17,6 @@ class OrderModelAdmin(admin.ModelAdmin):
         "profile",
         "name",
         "amount",
-        "created",
         "updated",
         "paid",
     ]
@@ -25,4 +25,3 @@ class OrderModelAdmin(admin.ModelAdmin):
 
 # Register your models here.
 admin.site.register(Order, OrderModelAdmin)
-admin.site.register(OrderItem)

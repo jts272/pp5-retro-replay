@@ -44,7 +44,7 @@ class Order(models.Model):
         max_digits=4, decimal_places=2, default=STANDARD_DELIVERY_CHARGE
     )
     created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
+    updated = models.DateTimeField(auto_now=True, verbose_name="Completed at")
     paid = models.BooleanField(default=False)
 
     class Meta:
@@ -64,7 +64,6 @@ class OrderItem(models.Model):
 
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    # For instances where the item may be discounted
     price = models.DecimalField(
         max_digits=6,
         decimal_places=2,
