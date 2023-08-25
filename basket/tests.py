@@ -1,5 +1,3 @@
-import json
-
 from django.contrib.auth.models import User
 from django.http import HttpRequest
 from django.test import Client, TestCase
@@ -47,7 +45,8 @@ class TestAddToBasketView(TestCase):
     def test_view_url_json_response(self):
         """Test for the json response from the ajax function to add to basket.
 
-        Reference: https://youtu.be/VOwfGW-ZTIY?list=PLOLrQ9Pn6caxY4Q1U9RjO1bulQp5NDYS_&t=15091
+        Reference:
+        https://youtu.be/VOwfGW-ZTIY?list=PLOLrQ9Pn6caxY4Q1U9RjO1bulQp5NDYS_&t=15091
         """
         response = self.c.post(
             "/basket/add/", {"productId": 1, "action": "post"}

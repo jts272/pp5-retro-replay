@@ -1,4 +1,3 @@
-from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
@@ -58,15 +57,9 @@ def add_to_basket(request):
                 "basket contents": basket_contents,
             }
         )
-        # view_basket_url = "/basket/"
-        # messages.add_message(
-        #     request,
-        #     messages.SUCCESS,
-        #     f"Item added to basket. <a href='{view_basket_url}'>View Basket</a>",
-        # )
-        # messages.add_message(request, messages.ERROR, "message")
 
         return response
+
     else:
         return redirect("products:all_products")
 
@@ -99,12 +92,20 @@ def remove_from_basket(request):
         )
 
         return response
+
     else:
         return redirect("products:all_products")
 
 
 def print_basket(request):
-    # Get the delivery charge, based on the basket subtotal
+    """Makes calculations to display in the basket view
+
+    Arguments:
+        request -- HttpRequest
+
+    Returns:
+        Basket subtotal and delivery charge as JSON
+    """
     basket = Basket(request)
 
     delivery_charge = Order.STANDARD_DELIVERY_CHARGE
