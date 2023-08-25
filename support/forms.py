@@ -58,6 +58,7 @@ class CustomerQueryForm(forms.ModelForm):
         query = self.cleaned_data["query"]
         if not p.match(query):
             raise forms.ValidationError(
-                "Please provide some more detail before submitting your query."
+                "Please provide some more detail before submitting your query"
+                " (at least 20 characters)."
             )
         return query
