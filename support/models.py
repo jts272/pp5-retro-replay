@@ -31,7 +31,7 @@ class CustomerQuery(models.Model):
         ),
     )
     created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
+
     replied = models.BooleanField(
         default=False,
         help_text=(

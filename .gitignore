@@ -162,3 +162,4 @@ cython_debug/
 # Custom entries
 env.py
 linting.js
+.vscode

@@ -11,9 +11,9 @@ class FAQAdmin(SummernoteModelAdmin):
 
 
 class CustomerQueryAdmin(admin.ModelAdmin):
-    fields = ["sender", "query", "created", "updated", "replied", "resolved"]
-    list_display = ["sender", "created", "updated", "replied", "resolved"]
-    readonly_fields = ["sender", "query", "created", "updated"]
+    fields = ["sender", "query", "created", "replied", "resolved"]
+    list_display = ["sender", "created", "replied", "resolved"]
+    readonly_fields = ["sender", "query", "created"]
 
 
 # Register your models here.
