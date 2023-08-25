@@ -3,6 +3,13 @@
 {% block title %}
   Retro Replay | Viewing {{ product }}
 {% endblock title %}
+{% block content %}
+  <div class="row">
+    <!-- Detail product card -->
+    {% include "includes/product-detail-card.html" %}
+    <!-- END Detail product card -->
+  </div>
+{% endblock content %}
 {% block js_messages %}
   <!-- JavaScript Messages -->
   <div class="container d-none" id="js-msg-container">
@@ -19,13 +26,6 @@
   </div>
   <!-- END JavaScript Messages -->
 {% endblock js_messages %}
-{% block content %}
-  <div class="row">
-    <!-- Detail product card -->
-    {% include "includes/product-detail-card.html" %}
-    <!-- END Detail product card -->
-  </div>
-{% endblock content %}
 {% block additional_scripts %}
   {% if not product.sold %}
     {% if product.pk not in basket_list %}

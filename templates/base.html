@@ -57,8 +57,6 @@
       {% endfor %}
       <!-- END Django Messages -->
     {% endif %}
-    {% block js_messages %}
-    {% endblock js_messages %}
     {% block hero_image %}
     {% endblock hero_image %}
     <!-- Page content -->
@@ -66,6 +64,8 @@
       {% block content %}
       {% endblock content %}
     </div>
+    {% block js_messages %}
+    {% endblock js_messages %}
     <!-- END Page content -->
     <!-- Footer -->
     {% block footer %}

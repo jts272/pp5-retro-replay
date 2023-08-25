@@ -72,14 +72,14 @@
 <!-- Dynamic: handle first user attempt to re-add to basket -->
 <div class="container d-none" id="basket-warning-container">
   <div class="alert alert-warning mt-3" role="alert">
-    Item is already in your basket! <a href="{% url 'basket:basket_summary' %}" class="float-end">View Basket</a>
+    <strong>Item is already in your basket! <a href="{% url 'basket:basket_summary' %}" class="float-end">View Basket</a></strong>
   </div>
 </div>
 <!-- Static: after page refresh -->
 {% if product.pk in basket_list %}
   <div class="container" id="basket-warning-container">
     <div class="alert alert-warning mt-3" role="alert">
-      Item is already in your basket! <a href="{% url 'basket:basket_summary' %}" class="float-end">View Basket</a>
+      <strong>Item is already in your basket! <a href="{% url 'basket:basket_summary' %}" class="float-end">View Basket</a></strong>
     </div>
   </div>
 {% endif %}
