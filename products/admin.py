@@ -8,6 +8,14 @@ class CategoryModelAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ["name"]}
 
 
+class PlatformModelAdmin(admin.ModelAdmin):
+    prepopulated_fields = {"slug": ["name"]}
+
+
+class RegionModelAdmin(admin.ModelAdmin):
+    prepopulated_fields = {"slug": ["name"]}
+
+
 @admin.action(description="Mark selected products as visible")
 def make_product_visible(modeladmin, request, queryset):
     queryset.update(visible=True)
@@ -57,14 +65,6 @@ class ProductModelAdmin(SummernoteModelAdmin):
         make_product_for_sale,
         make_product_sold,
     ]
-
-
-class PlatformModelAdmin(admin.ModelAdmin):
-    prepopulated_fields = {"slug": ["name"]}
-
-
-class RegionModelAdmin(admin.ModelAdmin):
-    prepopulated_fields = {"slug": ["name"]}
 
 
 # Register your models here.
