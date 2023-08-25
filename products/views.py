@@ -16,9 +16,10 @@ def all_products(request):
     Returns:
         HTML template with request and context variables available
     """
-    products = Product.objects.all()
+    products = Product.available_products.all()
 
     if request.GET:
+        print(request.GET)
         if "q" in request.GET:
             query = request.GET["q"]
             queries = (
@@ -27,6 +28,10 @@ def all_products(request):
                 | Q(region__name__icontains=query)
             )
             products = Product.available_products.filter(queries)
+
+            if "include-sold" in request.GET:
+                # Use default manager to show all unfiltered products
+                products = Product.objects.filter(queries)
 
     all_products_view = True
     context = {"products": products, "all_products_view": all_products_view}
@@ -53,6 +58,10 @@ def products_by_category(request, category):
                 | Q(region__name__icontains=query)
             )
             products = Product.available_products.filter(queries)
+
+            if "include-sold" in request.GET:
+                products = Product.objects.filter(queries)
+
     context = {"products": products}
     return render(request, "products/product_list.html", context)
 
@@ -77,6 +86,10 @@ def products_by_platform(request, platform):
                 | Q(region__name__icontains=query)
             )
             products = Product.available_products.filter(queries)
+
+            if "include-sold" in request.GET:
+                products = Product.objects.filter(queries)
+
     context = {"products": products}
     return render(request, "products/product_list.html", context)
 
@@ -101,6 +114,10 @@ def products_by_region(request, region):
                 | Q(region__name__icontains=query)
             )
             products = Product.available_products.filter(queries)
+
+            if "include-sold" in request.GET:
+                products = Product.objects.filter(queries)
+
     context = {"products": products}
     return render(request, "products/product_list.html", context)
 
