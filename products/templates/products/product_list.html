@@ -8,7 +8,6 @@
       <form class="d-flex" role="search">
         <input class="form-control me-2"
                type="search"
-               vale="search"
                name="q"
                required
                placeholder="Search our entire range..."
@@ -17,6 +16,11 @@
           <i class="bi bi-search"></i>
           <span class="visually-hidden">Search</span>
         </button>
+        <input type="checkbox"
+               name="include-sold"
+               id="include-sold"
+               class="btn-check" />
+        <label for="include-sold" class="btn btn-outline-secondary text-nowrap ms-2">Include sold?</label>
       </form>
     </div>
   </div>
