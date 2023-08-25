@@ -27,7 +27,9 @@
   </div>
 {% endblock content %}
 {% block additional_scripts %}
-  {% if product.pk not in basket_list %}
-    <script src="{% static 'js/add-to-basket.js' %}"></script>
+  {% if not product.sold %}
+    {% if product.pk not in basket_list %}
+      <script src="{% static 'js/add-to-basket.js' %}"></script>
+    {% endif %}
   {% endif %}
 {% endblock additional_scripts %}
