@@ -11,6 +11,21 @@ from .models import FAQ
 
 # Create your views here.
 def support(request):
+    """Enables customers to post queries directly to the admin.
+
+    Content is rendered safe in the admin panel. The administrator can
+    keep track of queries that have been replied to and resolved.
+
+    The FAQ created by the admin are also rendered here. Full CRUD
+    functionality is enabled for the admin for FAQ entries.
+
+    Arguments:
+        request -- HttpRequest
+
+    Returns:
+        Customer query form, with bound form error handling
+        FAQ data with CRUD functionality for admin
+    """
     if request.method == "POST":
         form = CustomerQueryForm(request.POST)
 
@@ -25,12 +40,15 @@ def support(request):
                 messages.SUCCESS,
                 "Thanks for sending your query. We will respond soon!",
             )
+
             return redirect(reverse("support:support"))
+
     else:
         form = CustomerQueryForm()
 
     faqs = FAQ.objects.filter(published=True)
     context = {"faqs": faqs, "form": form}
+
     return render(request, "support/support.html", context)
 
 
@@ -70,7 +88,7 @@ class DeleteFAQ(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return user.is_superuser
 
     # Give message for deletion - cannot use mixin to hook to form_valid
-    # Reference: https://stackoverflow.com/questions/24822509/success-message-in-deleteview-not-shown
+    # Reference: https://stackoverflow.com/questions/24822509/success-message-in-deleteview-not-shown # noqa
     def delete(self, request, *args, **kwargs):
         messages.success(self.request, self.success_message)
         return super(DeleteFAQ, self).delete(request, *args, **kwargs)
