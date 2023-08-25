@@ -32,11 +32,12 @@ class ProductModelAdmin(SummernoteModelAdmin):
     # Product id can be sorted in list display, unlike PK
     list_display = [
         "name",
-        "id",
         "category",
         "platform",
         "region",
         "price",
+        "created",
+        "updated",
         "visible",
         "sold",
     ]
