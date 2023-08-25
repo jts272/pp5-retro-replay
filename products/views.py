@@ -22,7 +22,6 @@ def all_products(request):
     products = Product.available_products.all()
 
     if request.GET:
-        print(request.GET)
         if "q" in request.GET:
             query = request.GET["q"]
             queries = (
