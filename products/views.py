@@ -29,11 +29,7 @@ def all_products(request):
                 | Q(description__icontains=query)
                 | Q(region__name__icontains=query)
             )
-            products = Product.available_products.filter(queries)
-
-            if "include-sold" in request.GET:
-                # Use default manager to show all unfiltered products
-                products = products.filter(queries)
+            products = products.filter(queries)
 
     all_products_view = True
 
@@ -64,10 +60,7 @@ def products_by_category(request, category):
                 | Q(description__icontains=query)
                 | Q(region__name__icontains=query)
             )
-            products = Product.available_products.filter(queries)
-
-            if "include-sold" in request.GET:
-                products = products.filter(queries)
+            products = products.filter(queries)
 
     # Navigation context
     collection = "category"
@@ -104,10 +97,7 @@ def products_by_platform(request, platform):
                 | Q(description__icontains=query)
                 | Q(region__name__icontains=query)
             )
-            products = Product.available_products.filter(queries)
-
-            if "include-sold" in request.GET:
-                products = products.filter(queries)
+            products = products.filter(queries)
 
     # Navigation context
     collection = "platform"
@@ -145,10 +135,7 @@ def products_by_region(request, region):
                 | Q(description__icontains=query)
                 | Q(region__name__icontains=query)
             )
-            products = Product.available_products.filter(queries)
-
-            if "include-sold" in request.GET:
-                products = products.filter(queries)
+            products = products.filter(queries)
 
     # Navigation context
     collection = "region"

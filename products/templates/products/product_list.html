@@ -3,6 +3,7 @@
   Retro Replay | Browsing Products
 {% endblock title %}
 {% block content %}
+  <!-- Conditional search bar -->
   <div class="row">
     <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
       <form class="d-flex" role="search">
@@ -16,21 +17,18 @@
           <i class="bi bi-search"></i>
           <span class="visually-hidden">Search</span>
         </button>
-        <input type="checkbox"
-               name="include-sold"
-               id="include-sold"
-               class="btn-check" />
-        <label for="include-sold"
-               class="btn btn-outline-secondary text-nowrap ms-2 d-none d-sm-block">Include sold?</label>
       </form>
     </div>
   </div>
   <hr />
+  <!-- END Conditional search bar -->
+  <!-- Queryset report -->
   {% if all_products_view %}
     <p>Showing results from all products - {{ products.count }} product{{ products.count|pluralize }} found:</p>
   {% else %}
     <p>{{ products.count }} product{{ products.count|pluralize }} found for the {{ filter }} {{ collection }}:</p>
   {% endif %}
+  <!-- END Queryset report -->
   <!-- Product card loop by queryset -->
   <div class="row">
     {% for product in products %}
