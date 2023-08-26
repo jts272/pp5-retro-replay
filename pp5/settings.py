@@ -46,7 +46,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = DEVELOPMENT
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["pp5-retro-replay-f8ca18b6956c.herokuapp.com"]
 
 if DEVELOPMENT:
     ALLOWED_HOSTS = ["*"]
