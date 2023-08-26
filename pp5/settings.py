@@ -79,6 +79,7 @@ INSTALLED_APPS = [
     "crispy_forms",
     "crispy_bootstrap5",
     "django_summernote",
+    "storages",
     # Required for `allauth`
     "django.contrib.auth",
     "django.contrib.messages",
@@ -194,6 +195,30 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
+
+# AWS Configuration
+# https://youtu.be/r-HJv_MyOqw
+# https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html
+
+if "USE_AWS" in os.environ:
+    AWS_S3_ACCESS_KEY_ID = os.getenv("AWS_S3_ACCESS_KEY_ID")
+    AWS_S3_SECRET_ACCESS_KEY = os.getenv("AWS_S3_SECRET_ACCESS_KEY")
+    AWS_S3_STORAGE_BUCKET_NAME = os.getenv("AWS_S3_STORAGE_BUCKET_NAME")
+    AWS_S3_REGION_NAME = os.getenv("AWS_S3_REGION_NAME")
+    # Location where static/media files will be coming from
+    AWS_S3_CUSTOM_DOMAIN = os.getenv("AWS_S3_CUSTOM_DOMAIN")
+
+    # Custom storage engine for collecting static files with `collectstatic`
+    # https://docs.djangoproject.com/en/3.2/ref/settings/#staticfiles-storage
+    STATICFILES_STORAGE = "pp5.custom_storage.StaticStorage"
+
+    # Custom storage class for uploaded media files
+    # https://docs.djangoproject.com/en/3.2/ref/settings/#default-file-storage
+    DEFAULT_FILE_STORAGE = "pp5.custom_storage.MediaStorage"
+
+    # Location static and media files will be served from in production
+    STATIC_URL = f"{AWS_S3_CUSTOM_DOMAIN}/static/"
+    MEDIA_URL = f"{AWS_S3_CUSTOM_DOMAIN}/media/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

@@ -163,3 +163,5 @@ cython_debug/
 env.py
 linting.js
 .vscode
+pp5-retro-replay-staticfiles-user_credentials.csv
+pp5-retro-replay-staticfiles-user_accessKeys.csv
