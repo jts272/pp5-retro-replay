@@ -62,12 +62,18 @@ class Order(models.Model):
 class OrderItem(models.Model):
     """A model to represent each individual item in a related order."""
 
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    order = models.ForeignKey(
+        Order, on_delete=models.CASCADE, null=True, blank=True
+    )
+    product = models.ForeignKey(
+        Product, on_delete=models.CASCADE, null=True, blank=True
+    )
     price = models.DecimalField(
         max_digits=6,
         decimal_places=2,
         help_text="Price paid at time of purchase",
+        null=True,
+        blank=True,
     )
 
     def __str__(self):

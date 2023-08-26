@@ -161,89 +161,68 @@ def webhook_view(request):
 
 # Webhook handler functions
 def create_order(stripe_response):
-    # Get data returned from Stripe to create the Order instance
-    # Key: model field, Value: Stripe JSON response
-    print(f"full Stripe response: {stripe_response}")
     data = stripe_response
     address = stripe_response.shipping
     metadata = stripe_response.metadata
-    returned_data = {
-        "name": address.name,
-        "email": metadata.user_email,
-        "address_line1": address.address.line1,
-        "address_line2": address.address.line2,
-        "city": address.address.city,
-        "postal_code": address.address.postal_code,
-        "amount": data.amount,
-        "paid": True,
-        "order_items": metadata.order_items,
-        "profile": metadata.profile,
-        "delivery_charge": metadata.delivery_charge,
-    }
-    print(returned_data)
 
-    # Create model entries using the data returned from the webhook
-    # Order model
+    # Create order model instance
     try:
         # Get profile instance the order will be added to
         profile = Profile.objects.get(pk=metadata.profile)
+    except Profile.DoesNotExist:
+        profile = None
 
-        order = Order.objects.create(
-            name=address.name,
-            email=metadata.user_email,
-            address_line1=address.address.line1,
-            address_line2=address.address.line2,
-            city=address.address.city,
-            postal_code=address.address.postal_code,
-            # Create decimal value from integer returned by Stripe
-            amount=data.amount / 100,
-            paid=True,
-            profile=profile,
-            delivery_charge=metadata.delivery_charge,
-        )
-        order.save()
-    except Exception as e:
-        print(f"ERROR: {e}")
+    order = Order.objects.create(
+        name=address.name,
+        email=metadata.user_email,
+        address_line1=address.address.line1,
+        address_line2=address.address.line2,
+        city=address.address.city,
+        postal_code=address.address.postal_code,
+        # Create decimal value from integer returned by Stripe
+        amount=data.amount / 100,
+        paid=True,
+        profile=profile,
+        delivery_charge=metadata.delivery_charge,
+    )
+    order.save()
 
-    # Order items model
-    try:
-        # Parse JSON string to Python object
-        py_metadata = json.loads(metadata.order_items)
-        # Get list of primary keys for each item ordered
-        ordered_items = [i for i in py_metadata.values()]
-        # Create an order item entry for each item in the list
-        for i in range(len(ordered_items)):
-            order_item = OrderItem.objects.create(
-                # Attach to newly created order
-                order=order,
-                # Get product by PK sent with Stripe metadata
-                product=Product.objects.get(pk=ordered_items[i]["id"]),
-                # Price returned in decimal format from webhook metadata
-                price=ordered_items[i]["price"],
-            )
+    # Create order items model instance(s)
+    # Parse JSON string to Python object
+    py_metadata = json.loads(metadata.order_items)
+    # Get list of primary keys for each item ordered
+    ordered_items = [i for i in py_metadata.values()]
+    # Create an order item entry for each item in the list
 
-            # Mark each order item paid for as sold
+    for i in range(len(ordered_items)):
+        # Get the database entry of the product ordered
+        try:
             product = Product.objects.get(pk=ordered_items[i]["id"])
-            product.mark_as_sold()
+        except Product.DoesNotExist:
+            product = None
 
+        # Create an order item instance for each ordered item
+        order_item = OrderItem.objects.create(
+            order=order,
+            product=product,
+            # Price returned in decimal format from webhook metadata
+            price=ordered_items[i]["price"],
+        )
+
+        # Mark each order item paid for as sold
+        product.mark_as_sold()
+        # Save each item created
         order_item.save()
 
-    except Exception as e:
-        print(f"ERROR: {e}")
-
-    try:
-        send_confirmation_email(order)
-    except Exception as e:
-        print(f"There was an error sending the confirmation email: {e}")
+    # Send email to customer with order context information
+    # Requires email host and password environment variables to be set
+    send_confirmation_email(order)
 
 
 def checkout_status(request):
     # User is redirected here by Stripe.js after payment
     basket = Basket(request)
-    print("calling basket.clear_session()!")
     basket.clear_session()
-    print(f"basket: {basket}")
-    print(f"basket basket: {basket.basket}")
     return render(request, "payments/payment_status.html")
 
 
