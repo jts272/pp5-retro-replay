@@ -57,8 +57,8 @@ def checkout(request):
             address_object_json = json.dumps(address_object)
         except Address.DoesNotExist:
             address = None
-            address_object = None
-            address_object_json = None
+    else:
+        address_object_json = None
 
     # 2. Generate a JSON-style object to pass Stripe metadata
     basket = Basket(request)
