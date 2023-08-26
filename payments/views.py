@@ -44,6 +44,7 @@ def checkout(request):
     Reference:
     https://youtu.be/ncsCnC3Ynlw?list=PLOLrQ9Pn6caxY4Q1U9RjO1bulQp5NDYS_&t=12452
     """
+    address_object_json = None
     # 1. Get user's default saved address, if present
     if request.user.profile.address_set.exists():
         try:
@@ -57,8 +58,6 @@ def checkout(request):
             address_object_json = json.dumps(address_object)
         except Address.DoesNotExist:
             address = None
-    else:
-        address_object_json = None
 
     # 2. Generate a JSON-style object to pass Stripe metadata
     basket = Basket(request)
