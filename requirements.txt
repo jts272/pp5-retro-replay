@@ -25,12 +25,14 @@ EditorConfig==0.12.3
 factory-boy==3.3.0
 Faker==19.3.1
 greenlet==2.0.2
+gunicorn==21.2.0
 html-tag-names==0.1.2
 html-void-elements==0.1.0
 idna==3.4
 jsbeautifier==1.14.9
 json5==0.9.14
 oauthlib==3.2.2
+packaging==23.1
 pathspec==0.11.2
 Pillow==10.0.0
 psycopg2-binary==2.9.7
