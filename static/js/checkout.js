@@ -16,7 +16,7 @@ const form = document.getElementById("payment-form");
 const value = form.getAttribute("data-address-object");
 
 if (value !== "None") {
-  addressObjectJson = form.dataset.addressObject;
+  let addressObjectJson = form.dataset.addressObject;
   // Convert JSON returned from the view to an object
   addressObjectParsed = JSON.parse(addressObjectJson);
 }

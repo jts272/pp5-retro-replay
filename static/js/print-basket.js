@@ -1,5 +1,5 @@
 function updateDeliveryCharge() {
-  url = `${window.location.href}print/`;
+  const url = `${window.location.href}print/`;
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
@@ -26,12 +26,12 @@ function updateDeliveryCharge() {
       );
 
       // Alert classes are assigned or replaced dynamically
-      incentiveEl.innerHTML = `Spend <strong>£${deliveryIncentive}</strong> more for free delivery.`;
+      incentiveEl.innerHTML = `Spend <strong>£${deliveryIncentive}</strong> more for <strong>Free Delivery</strong>.`;
       incentiveEl.classList.add("alert-info");
       incentiveEl.classList.replace("alert-success", "alert-info");
 
       if (grandTotal >= FREE_DELIVERY_THRESHOLD) {
-        incentiveEl.innerHTML = `You have qualified for <strong>Free delivery!</strong>`;
+        incentiveEl.innerHTML = `You have qualified for <strong>Free Delivery!</strong>`;
         incentiveEl.classList.add("alert-success");
         incentiveEl.classList.replace("alert-info", "alert-success");
       }
