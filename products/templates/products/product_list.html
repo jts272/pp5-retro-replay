@@ -24,9 +24,9 @@
   <!-- END Conditional search bar -->
   <!-- Queryset report -->
   {% if all_products_view %}
-    <p>Showing results from all products - {{ products.count }} product{{ products.count|pluralize }} found:</p>
+    <p>Showing results from all products - {{ products.count }} product{{ products.count|pluralize }} available:</p>
   {% else %}
-    <p>{{ products.count }} product{{ products.count|pluralize }} found for the {{ filter }} {{ collection }}:</p>
+    <p>{{ products.count }} product{{ products.count|pluralize }} available for the {{ filter }} {{ collection }}:</p>
   {% endif %}
   <!-- END Queryset report -->
   <!-- Product card loop by queryset -->
