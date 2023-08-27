@@ -51,7 +51,9 @@ class Address(models.Model):
     # uuid used as a unique slug for the user's CRUD functions
     uuid = models.UUIDField(default=uuid.uuid4, editable=False)
     # Fields to prefill Stripe address form; these mirror the order model
-    name = models.CharField(max_length=80)
+    name = models.CharField(
+        max_length=80, help_text="Name of the person at this address"
+    )
     address_line1 = models.CharField(max_length=255)
     address_line2 = models.CharField(max_length=255, null=True, blank=True)
     city = models.CharField(max_length=80)
