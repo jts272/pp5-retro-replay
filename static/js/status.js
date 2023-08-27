@@ -25,6 +25,7 @@ if (clientSecret) {
     switch (paymentIntent.status) {
       case "succeeded":
         message.innerText = `Success! Payment received. We have sent a confirmation email to you. \n
+          Please check your junk/spam folder, or contact us if you have not received your order email. \n        
           You can view your full order history by clicking 'Manage' next to your username. \n
           Thank you for shopping with us!`;
         break;
