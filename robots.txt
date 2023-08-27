@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /accounts/
+Disallow: /basket/
+Disallow: /payments/
+Disallow: /profile/
+Sitemap: https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/sitemap.xml
