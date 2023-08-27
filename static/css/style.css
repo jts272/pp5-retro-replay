@@ -37,7 +37,7 @@ body {
   -webkit-filter: brightness(50%);
   filter: brightness(50%);
   width: 100%;
-  min-height: 33vh;
+  min-height: 300px;
   object-fit: cover;
 }
 
