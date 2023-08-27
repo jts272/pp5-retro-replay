@@ -220,6 +220,11 @@ if "USE_AWS" in os.environ:
     STATIC_URL = f"{AWS_S3_CUSTOM_DOMAIN}/static/"
     MEDIA_URL = f"{AWS_S3_CUSTOM_DOMAIN}/media/"
 
+    # Cache control
+    # https://testdriven.io/blog/storing-django-static-and-media-files-on-amazon-s3/
+    AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400"}
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
