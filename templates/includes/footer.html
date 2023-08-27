@@ -2,25 +2,15 @@
   <div class="container">
     <hr />
     <div class="row text-center ">
-      <!-- Social links -->
-      <div class="col-12 col-lg-4 justify-content-evenly d-flex">
-        <a href="https://www.facebook.com/profile.php?id=61550327891860"
+      <!-- Support -->
+      <div class="col-12 col-lg-4">
+        <a href="{% url 'support:support' %}" class="btn btn-outline-dark mt-2">FAQs/Contact <i class="bi bi-info-circle"></i></a>
+        <a href="https://www.privacypolicygenerator.info/live.php?token=a2MUpUbQvMZfUOkfgrkqyczOJVZuO2X4"
            rel="noopener"
            target="_blank"
-           aria-label="Facebook link"
-           class="social-cta"><i class="bi bi-facebook social-btn"></i></a>
-        <a href="https://github.com/jts272"
-           rel="noopener"
-           target="_blank"
-           aria-label="GitHub link"
-           class=" social-cta"><i class="bi bi-github social-btn"></i></a>
-        <a href="https://www.linkedin.com/in/joseph-smith-dev/"
-           rel="noopener"
-           target="_blank"
-           aria-label="LinkedIn link"
-           class=" social-cta"><i class="bi bi-linkedin social-btn"></i></a>
+           class="btn btn-outline-dark mt-2">Privacy Policy <i class="bi bi-card-text"></i></a>
       </div>
-      <!-- END Social links -->
+      <!-- END Support -->
       <!-- Mailing list -->
       <div class="col-12 col-lg-4">
         <!-- Mailchimp embed -->
@@ -71,15 +61,29 @@
         <!-- END Mailchimp embed -->
       </div>
       <!-- END Mailing list -->
-      <!-- Support -->
-      <div class="col-12 col-lg-4 mb-3">
-        <a href="{% url 'support:support' %}" class="btn btn-outline-dark">FAQs/Contact <i class="bi bi-info-circle"></i></a>
-        <a href="https://www.privacypolicygenerator.info/live.php?token=a2MUpUbQvMZfUOkfgrkqyczOJVZuO2X4"
-           rel="noopener"
-           target="_blank"
-           class="btn btn-outline-dark">Privacy Policy <i class="bi bi-card-text"></i></a>
+      <!-- Social links -->
+      <div class="col-12 col-lg-4">
+        <div class="row">
+          <div class="col-12 d-flex justify-content-evenly">
+            <a href="https://www.facebook.com/profile.php?id=61550327891860"
+               rel="noopener"
+               target="_blank"
+               aria-label="Facebook link"
+               class="social-cta"><i class="bi bi-facebook social-btn"></i></a>
+            <a href="https://github.com/jts272"
+               rel="noopener"
+               target="_blank"
+               aria-label="GitHub link"
+               class=" social-cta"><i class="bi bi-github social-btn"></i></a>
+            <a href="https://www.linkedin.com/in/joseph-smith-dev/"
+               rel="noopener"
+               target="_blank"
+               aria-label="LinkedIn link"
+               class=" social-cta"><i class="bi bi-linkedin social-btn"></i></a>
+          </div>
+        </div>
       </div>
-      <!-- END Support -->
+      <!-- END Social links -->
     </div>
   </div>
 </footer>
