@@ -54,10 +54,11 @@ body {
   margin: auto;
   border-radius: 15px;
   background-color: rgba(255, 171, 0, 0.7);
-  padding: 1rem;
+  padding: 0.3rem;
   width: 300px;
-  height: 200px;
+  height: min-content;
   color: white;
+  text-align: center;
 }
 
 .hero-cover > * {
