@@ -132,13 +132,21 @@ def webhook_view(request):
     payload = request.body
     event = None
 
+    # Webhook verification for production
+    # Reference: https://stripe.com/docs/webhooks#endpoint-secrets
+    endpoint_secret = os.getenv("STRIPE_WEBHOOK_SECRET")
+    sig_header = request.META["HTTP_STRIPE_SIGNATURE"]
+
     try:
-        event = stripe.Event.construct_from(
-            json.loads(payload), stripe.api_key
+        event = stripe.Webhook.construct_event(
+            payload, sig_header, endpoint_secret
         )
-    except ValueError:
+    except ValueError as e:
         # Invalid payload
-        return HttpResponse(status=400)
+        return HttpResponse(content=e, status=400)
+    except stripe.error.SignatureVerificationError as e:
+        # Invalid signature
+        return HttpResponse(content=e, status=400)
 
     # Handle the event
     if event.type == "payment_intent.succeeded":
