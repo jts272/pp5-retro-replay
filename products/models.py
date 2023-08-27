@@ -32,7 +32,11 @@ class Product(models.Model):
             "It cannot be edited."
         ),
     )
-    price = models.DecimalField(max_digits=6, decimal_places=2)
+    price = models.DecimalField(
+        max_digits=6,
+        decimal_places=2,
+        help_text="Please enter the price in decimal format, e.g. 9.99",
+    )
     category = models.ForeignKey(
         "Category", on_delete=models.SET_NULL, null=True, blank=True
     )
