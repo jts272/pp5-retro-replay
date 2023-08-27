@@ -15,22 +15,25 @@ class FAQForm(forms.ModelForm):
         answer = SummernoteTextField()
         widgets = {
             "question": forms.TextInput(
-                attrs={"placeholder": "Question title (minimum 10 characters)"}
+                attrs={
+                    "placeholder": "Question title (minimum 10 characters)."
+                }
             ),
             "answer": SummernoteWidget(),
         }
 
     def clean_question(self):
-        p = re.compile("[a-zA-z]{1-10}")
+        p = re.compile(".{10,}")
         question = self.cleaned_data["question"]
         if not p.match(question):
             raise forms.ValidationError(
-                "Please provide a longer question title."
+                "Please provide a longer title (minimum 10 characters)."
             )
         return question
 
     def clean_answer(self):
-        p = re.compile("[a-zA-z]{1-20}")
+        # Pattern includes opening and closing `p` tags from Summernote
+        p = re.compile(".{27,}")
         answer = self.cleaned_data["answer"]
         if not p.match(answer):
             raise forms.ValidationError(
@@ -47,14 +50,14 @@ class CustomerQueryForm(forms.ModelForm):
             "query": forms.widgets.Textarea(
                 attrs={
                     "placeholder": (
-                        "Enter you query here (minimum 20 characters)"
+                        "Enter you query here (minimum 20 characters)."
                     )
                 }
             )
         }
 
     def clean_query(self):
-        p = re.compile("[a-zA-z]{1-20}")
+        p = re.compile(".{20,}")
         query = self.cleaned_data["query"]
         if not p.match(query):
             raise forms.ValidationError(
