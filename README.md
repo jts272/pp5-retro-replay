@@ -780,20 +780,205 @@ Tool: [WAVE](https://wave.webaim.org/)
 
 ## Deployment
 
-- See PP4 steps where appropriate
-- [Boutique Ado guide](https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+EA101+2021_T1/courseware/eb05f06e62c64ac89823cc956fcd8191/40cc2543c48643fda09351da6fa90579/)
-- [AWS guide](https://codeinstitute.s3.amazonaws.com/fullstack/AWS%20changes%20sheet.pdf)
+This application uses the following platforms for deployment:
 
-### Breakdown by service provider
+- [Heroku](https://dashboard.heroku.com/) - primary hosting platform.
+- [ElephantSQL](https://www.elephantsql.com/) - managed Postgres database service.
+- [Amazon S3](https://aws.amazon.com/s3/) - static and media files hosting.
+- [Stripe](https://stripe.com/gb) - payments integration platform.
 
-- Environment
-- SECRET KEYS
+To follow along to this deployment guide, you will need accounts on the above
+platforms, some of which may require a payment card. It is recommended to use
+appropriate naming conventions for the resources you create, it is easy to
+remember which parts link together. _This guide assumes that no secrets have been
+pushed to version control._ For example, you have maintained an untracked `env.py`
+file for local environment variables such as the Django `SECRET_KEY`. Switch any
+values in `<>` with your equivalent variable.
 
-- GitHub
-- Heroku
-- ElephantSQL
-- Stripe
-- AWS
+Here is an outline of the steps taken to bring this app to the web:
+
+1. Create an ElephantSQL instance by selecting a region and noting your database url.
+2. Create a new Heroku app and add a config var for `DATABASE_URL` and assign it
+   the value provided from your Postgres database on ElephantSQL, without any quotation marks.
+3. Install the following dependencies in your Django project:
+
+   ```py
+   pip install dj_database_url==0.5.0 psycopg2-binary gunicorn
+   ```
+
+4. Freeze your requirements
+
+   ```py
+   pip freeze > requirements.txt
+   ```
+
+5. Create `env.py` if not present and add it to your `.gitignore` to keep from version control.
+6. Set the following:
+
+   ```py
+   os.environ['DATABASE_URL'] = '<YOUR_ELEPHANTSQL_DATABASE_URL>'
+   ```
+
+7. In `settings.py`, create a configuration like this, with:
+
+   ```py
+    import dj_database_url
+
+     DEVELOPMENT_DB = {
+       "default": {
+           "ENGINE": "django.db.backends.sqlite3",
+           "NAME": BASE_DIR / "db.sqlite3",
+       }
+   }
+
+   PRODUCTION_DB = {"default": dj_database_url.parse(os.getenv("DATABASE_URL"))}
+
+   DATABASES = PRODUCTION_DB
+   ```
+
+8. You can now `migrate` and `createsuperuser` for the ElephantSQL database.
+   Now is a good time to check that your tables have been added on the ElephantSQL browser:
+
+   ![ElephantSQL table browser](docs/images/elephantsql-browser.png)
+
+9. Create the `Procfile` for Heroku like so:
+
+   ```py
+   web: gunicorn <YOUR_DJANGO_STARTPROJECT_APP>.wsgi:application
+   ```
+
+10. Set the env var `DISABLE_COLLECTSTATIC=1` on Heroku.
+11. Set the host name of the Heroku app into the list of `ALLOWED_HOSTS` in Django settings.
+12. Link your GitHub repository to your Heroku app under Heroku's 'Deploy' tab.
+    Optionally, choose to enable automatic deploys.
+13. Add a Heroku env var for the Django `SECRET_KEY`
+14. Ensure that `DEBUG` is configured to be `False`
+15. You may choose to trigger a Heroku deployment here, however no static files will be present
+16. On your AWS account, create a new S3 bucket. Select your region and uncheck
+    the block on public access, confirming where necessary. Ensure that ACLs are
+    enabled and select bucket owner preferred.
+17. Enable static website hosting to create an endpoint. Specify your index document
+    as `index.html` if asked.
+18. In permissions, paste the following code block for your CORS configuration:
+
+    ```json
+    [
+      {
+        "AllowedHeaders": ["Authorization"],
+        "AllowedMethods": ["GET"],
+        "AllowedOrigins": ["*"],
+        "ExposeHeaders": []
+      }
+    ]
+    ```
+
+19. In the S3 bucket policy generator, set `principal=*` and `actions=GetObject`
+20. Copy and paste in the ARN name from properties.
+21. Click to add statement then generate policy. Copy the policy into the bucket
+    policy editor. Append the value the `Resource` key with `/*`
+22. The bucket policy can be saved, ensuring that 'List' is checked for 'Everyone (public access)'.
+23. Moving from S3 to IAM, create a group. Navigate to 'create policy' (JSON).
+24. Search from and import the `AmazonS3FullAccess` policy. Copy and paste it in to the policy.
+25. Set `Resource` to a list containing `<YOUR_ARN>` and `<YOUR_ARN/*>`
+26. The policy can now be reviewed and created, then attached to the newly created
+    group under the permissions section.
+27. Create a user for the group, enabling programmatic access.
+28. With the user created, go to 'Security Credentials', 'Access Keys' and click
+    'Create access key'.
+29. Select 'Create Access Key' and ensure you download the `.csv` file provided.
+30. Back in the Django project, install the packages `boto3` and `django-storages`,
+    remembering to freeze them into `requirements.txt`
+31. Add `storages` to the list of installed apps.
+32. The `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` config vars can be set in
+    Heroku, using the credentials from the `.csv` file.
+33. `DISABLE_COLLECTSTATIC` can be set `False` on Heroku.
+34. On Heroku, set a config var for `USE_AWS=True` and create an `if USE_AWS:`
+    branch in `settings.py`
+35. Under this if branch, create a block like this:
+
+    ```py
+    AWS_S3_ACCESS_KEY_ID = os.getenv("AWS_S3_ACCESS_KEY_ID")
+    AWS_S3_SECRET_ACCESS_KEY = os.getenv("AWS_S3_SECRET_ACCESS_KEY")
+    AWS_S3_STORAGE_BUCKET_NAME = os.getenv("AWS_S3_STORAGE_BUCKET_NAME")
+    AWS_S3_REGION_NAME = os.getenv("AWS_S3_REGION_NAME")
+    AWS_S3_CUSTOM_DOMAIN = os.getenv("AWS_S3_CUSTOM_DOMAIN")
+
+    STATICFILES_STORAGE = "<YOUR_STARTPROJECT_APP>.custom_storage.StaticStorage"
+
+    DEFAULT_FILE_STORAGE = "<YOUR_STARTPROJECT_APP>.custom_storage.MediaStorage"
+
+    STATIC_URL = f"{AWS_S3_CUSTOM_DOMAIN}/static/"
+    MEDIA_URL = f"{AWS_S3_CUSTOM_DOMAIN}/media/"
+
+    AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400"}
+    ```
+
+    The storage bucket name and region comes from the bucket you set up in AWS.
+    The custom domain can be constructed by removing the `http://` scheme and `website-`
+    from your static website hosting endpoint.
+
+36. The `custom_storage` module can be created in `<YOUR_STARTPROJECT_APP>`. In
+    this application, the folder is entitled `pp5`. Your module should look something
+    like this:
+
+    ```py
+    import os
+
+    from storages.backends.s3boto3 import S3Boto3Storage
+
+    class StaticStorage(S3Boto3Storage):
+        bucket_name = os.getenv("AWS_S3_STORAGE_BUCKET_NAME")
+        location = "static"
+
+    class MediaStorage(S3Boto3Storage):
+        bucket_name = os.getenv("AWS_S3_STORAGE_BUCKET_NAME")
+        location = "media"
+
+    ```
+
+    Consult the [django-storages](https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html)
+    documentation for more information about using this class.
+
+37. Set any config vars on Heroku that are missing from step 35. After all updates
+    are pushed, the next Heroku deploy should collect any static files and start
+    using S3 for storage. Any files uploaded to the site in production should be
+    sent to the `media/` folder. You may see your static files being added to S3
+    during the build phase on Heroku, which may take a while once Heroku is set
+    to collect static files.
+38. For Stripe, the `STRIPE_WEBHOOK_SECRET` must be accessible by the webhook view.
+    Again, set the env var for you Stripe API secret key. Pass this into your
+    webhook view. See an example in my snippet below:
+
+    ```py
+        @require_POST
+        @csrf_exempt
+        def webhook_view(request):
+            # Reference: https://stripe.com/docs/webhooks#example-endpoint
+            payload = request.body
+            event = None
+
+            # Webhook verification for production
+            # Reference: https://stripe.com/docs/webhooks#endpoint-secrets
+            endpoint_secret = os.getenv("STRIPE_WEBHOOK_SECRET")
+            sig_header = request.META["HTTP_STRIPE_SIGNATURE"]
+
+            try:
+                event = stripe.Webhook.construct_event(
+                    payload, sig_header, endpoint_secret
+                )
+            except ValueError as e:
+                # Invalid payload
+                return HttpResponse(content=e, status=400)
+            except stripe.error.SignatureVerificationError as e:
+                # Invalid signature
+                return HttpResponse(content=e, status=400)
+
+            ...
+    ```
+
+39. Register your webhook view endpoint with Stripe. Choose all or a selection of
+    the events you would like to listen for. You may send a test signal to verify
+    that everything is working.
 
 ### Cloning
 
