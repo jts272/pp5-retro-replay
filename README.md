@@ -127,14 +127,79 @@ the user can focus on simply finding and purchasing their desired product.
 
 ### 4. Skeleton
 
-- UI
-- Navigation story
-- Mobile-first
+A mobile-first approach was taken as standard, which is also advantageous in the
+app's SEO efforts. Design was optimized from the resolution of 375x667 pixel and
+tested all the way up to 2560x1440. Screens as small as 320px in width lose no
+functionality, however the burger menu icon is wrapped below the brand header.
 
-<details>
-  <summary>Wireframe</summary>
-  <img src="" alt="">
-</details>
+To start the navigation story from the home page, the navbar is stylized in such
+a way that fans of the [Grand Theft Auto](https://en.wikipedia.org/wiki/Grand_Theft_Auto)
+franchise will instantly recognize. Combined with the product category and basket
+controls, this alone sets the tone as a place to purchase gaming related goods.
+
+An eye-catching hero image solidifies this notion with a vast array of the sorts
+of products that are solid. This is covered with SEO-rich keywords to drive the
+point home.
+
+A selection of the newest products are shown. First-time visitors can get a feel
+for the products sold, whilst repeat customers can quickly see what is new.
+
+A search bar is present on both the home page and product category list pages.
+This serves as a filter for the currently selected category, whilst the home page
+search bar functions as does the search in the 'All Products' category.
+
+The typical list > detail view pattern is used for customers to find a product
+and easily add it to the basket.
+
+Basket and Checkout pages are intuitive. The checkout page employs the latest
+Stripe address and payment elements, complete with validation.
+
+A profile management dashboard is available to authenticated users to manage their
+addresses, or view past orders. They are fully informed throughout the process,
+wether they have none or multiple addresses. The order history also follows the
+familiar list > details pattern.
+
+The following wireframes were produced to plan the skeleton that would form each
+section's code, using [Miro.](https://miro.com/app/dashboard/) Pages were developed
+in mobile format first then scaled to desktop width. However most wireframes are
+depicted in desktop format for the sake of clarity. The mobile home page wireframe
+is displayed with the navbar menu expanded.
+
+#### Home page - mobile and desktop
+
+![Home page wireframe](docs/images/wireframes/home-page.jpg)
+
+#### Product list - desktop
+
+![Product list wireframe](docs/images/wireframes/product-list.jpg)
+
+#### Product detail - card
+
+![Product detail wireframe](docs/images/wireframes/product-detail.jpg)
+
+#### Basket summary - card
+
+![Product wireframe](docs/images/wireframes/basket-summary.jpg)
+
+#### Checkout - card
+
+![Checkout wireframe](docs/images/wireframes/checkout.jpg)
+
+#### Support - desktop
+
+![Support wireframe](docs/images/wireframes/support.jpg)
+
+#### Saved addresses - desktop
+
+![Saved addresses wireframe](docs/images/wireframes/saved-addresses.jpg)
+
+#### Order history list - desktop
+
+![Order history list wireframe](docs/images/wireframes/order-history-list.jpg)
+
+#### Order history detail - desktop
+
+![Order history detail wireframe](docs/images/wireframes/order-history-detail.jpg)
 
 ### 5. Surface
 
