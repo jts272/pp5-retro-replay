@@ -268,30 +268,188 @@ for the Pac-Man style payment processing icon.
 
 ## Features
 
-- Include screenshots of everything
-
 ### Navbar
 
-- Fully responsive
-- Search bar
+![Navbar mobile when logged out](docs/images/features/navbar-mob-anon.png)
+
+A fully responsive navbar is employed at the top of the site. This includes links
+to product categories, authentication controls and basket information. Until the
+user is authenticated, all features requiring authentication will redirect the
+user to log in when clicked.
+
+![Navbar desktop dropdown when logged in](docs/images/features/navbar-auth.png)
+
+The desktop navbar features dropdowns for the user to navigate straight to their
+selected category. When logged in, users can go to the profile management page
+or view the status of their basket.
+
+### Sign in page
+
+![Sign in page](docs/images/features/sign-in-mob.png)
+
+This is the user's entry point to interaction with the site and their data.
+
+### Sign out page
+
+![Sign out page](docs/images/features/sign-out-mob.png)
+
+When the user is finished, they may sign out securely.
+
+### Sign up page
+
+![Sign up page](docs/images/features/sign-up-mob.png)
+
+Sign up requires an email address, username and password. All must be confirmed
+to filter out user error during the sign up process.
+
+### Email verification sent
+
+![Email verification sent page](docs/images/features/verify-mob.png)
+
+The email address provided must be verified before the user can access the site's
+functions requiring authentication.
+
+### Email verification received
+
+![Email verification received](docs/images/features/verify-email-mob.png)
+
+The confirmation email is sent to the email address provided at the sign up process.
+The link included in the email is used to go back to the site and confirm the
+verification.
+
+### Email verification confirm
+
+![Email verification confirm](docs/images/features/confirm-email-mob.png)
+
+Here the user confirms that the email address is correct. Upon confirming, they
+are redirected to the sign in page.
+
+### Hero image - mobile
+
+![Mobile hero image](docs/images/features/hero-mob.png)
+
+Atop the hero image is a banner notifying users of the free delivery threshold.
+The hero image itself hints at the wide range of products available, which is
+darkened to improve contrast.
 
 ### Home page
 
-- Introduction
-- New arrivals
+![Home page](docs/images/features/home-page.png)
 
-### Footer
+A search bar invites the user to search for any product in the store. Introductory
+text reinforces the site's purpose, which further implements relevant SEO terms.
+The four newest products to the store are depicted here in list-card format, with
+a call-to-action to view the product in more detail.
 
-- Newsletter
-- Social CTAs
+### Footer - mobile
 
-### Pagination of console > item type
+![Mobile footer](docs/images/features/footer-mob.png)
 
-- e.g. Console > Region > Games list > game detail
+In both mobile and desktop view, the footer holds links to valuable support resources.
+Firstly is the FAQs/Contact button, which links to the support page. The externally
+hosted privacy policy is viewable.
 
-### Product detail page
+Users can opt-in the the Newsletter, powered by Mailchimp. Also included are
+social call-to-action buttons, which link to Facebook, GitHub and LinkedIn,
+respectively. Links open in a new window and context, thanks to properly assigned
+HTML attributes.
 
-- Add to basket
+### FAQ/Contact page - user
+
+![Support page](docs/images/features/support.png)
+
+This page is the user's first line of support. An accordion details frequently
+asked questions, where users can view the associated answer.
+
+If they would like to message the admin directly, they can do so with the query
+form that follows.
+
+### FAQ/Contact page - admin
+
+![Support page](docs/images/features/support-admin.png)
+
+For the administrator, there is no admin contact form. They do however gain the
+ability to quickly add edit and delete FAQ entries from the front end.
+
+### FAQ form
+
+![FAQ form](docs/images/features/faq-form.png)
+
+The form for admin to add a question is shown here, with validation in effect.
+The answer field makes use of a custom [Summernote](https://github.com/summernote/django-summernote)
+form widget. This provides an advantage over a standard text field by enabling
+WYSIWYG editing for elements such as lists or links.
+
+This is also used in the admin panel for the product detail field. This is currently
+used to create product listings on the site for selling.
+
+### Privacy policy
+
+![Privacy policy](docs/images/features/privacy-policy.png)
+
+The site's policy was created at and hosted by
+[privacypolicygenerator.info](https://www.privacypolicygenerator.info/)
+
+This keeps customers properly informed regarding GDPR and their usage of the site.
+
+### Product list page
+
+![Product list page](docs/images/features/product-list.png)
+
+The full browser window is displayed in this image, to bring attention to the
+url path. Urls have been designed in accompaniment with the models to make for
+informative, semantic paths. Here depicts the 'products' app, the 'platforms'
+section, then finally the 'filter' - which is the model's name in slug format.
+
+To illustrate another example, a user would navigate to
+`/products/regions/ntsc-j/` when they select that particular selection from the
+navbar. This leverages Django's design patterns to produce meaningful canonical
+urls.
+
+### Product detail - card
+
+![Product detail card](docs/images/features/product-detail-card.png)
+
+All pertinent information on the product's specifics are outlined in the card.
+Various actions are available, depending on authorization status, or 'in-basket'
+status. A logged in user whom does not have the current product in their basket
+can add it from this page.
+
+### Log in to buy - mobile
+
+![Log in to buy](docs/images/features/login-to-buy.png)
+
+Unauthenticated users are linked to the login page by a conditionally rendered
+button.
+
+### Product added to basket
+
+![Product added to basket](docs/images/features/added-to-basket.png)
+
+Users are notified that the product has been added to the basket when the add to
+basket button is clicked and are offered a link to view their basket. This message
+auto-dismisses after a time or can be dismissed manually.
+
+### Product already in basket
+
+![Product already in basket](docs/images/features/already-in-basket.png)
+
+If users attempt to re-add the item to the basket, or navigate back to a product
+detail page where the item is already in the basket, they are given the appropriate
+message. This message will stay present with no option to dismiss.
+
+### Product detail - slug
+
+![Product detail slug](docs/images/features/product-detail-slug.png)
+
+As with product listings, the product detail card has a logical endpoint. I had
+the idea to use an auto-incrementing slug field, as it is very realistic that
+a second listing for a game of the same name could be made in the future.
+Thankfully, such a field exists and was implemented using the excellent
+[django-extensions.](https://django-extensions.readthedocs.io/en/latest/field_extensions.html)
+
+The provides a nice human-readable endpoint for products, rather than the product's
+primary key, or other such non-semantic identifier.
 
 ### Basket
 
@@ -307,11 +465,6 @@ for the Pac-Man style payment processing icon.
 
 - Address
 - Order history
-
-### FAQ/Contact page
-
-- HTML detail/summary
-- Contact
 
 ### Error pages
 
