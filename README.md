@@ -477,6 +477,9 @@ to qualify for free delivery.
 When 'Remove' is clicked, all changes occur instantly thanks to the AJAX implementation.
 All calculations are performed to correctly display the new figure.
 
+A button on the bottom left links back to the full product list, should the user
+want to add more items before checking out.
+
 ![Basket with three items and free delivery](docs/images/features/basket-3-items-free-delivery.png)
 ![Basket with two items](docs/images/features/basket-2-items.png)
 ![Basket with one item](docs/images/features/basket-1-item.png)
@@ -514,7 +517,7 @@ Upon payment, the user is redirected to the checkout summary page. They are noti
 that they will be receiving an email confirmation and that they can view the full
 details of their order history on the site.
 
-Note that the basket it emptied when the transaction is complete and the counter
+Note that the basket is emptied when the transaction is complete and the counter
 is set back to zero.
 
 ### Checkout confirmation email
@@ -537,14 +540,14 @@ A user's list after their first order
 
 ![Order history list page multiples](docs/images/features/order-history-list-multiple.png)
 
-This list grows as orders are added. Here shows the orders placed for a different user.
+This list grows as orders are added. Here are the orders placed for a different user.
 
 ### Order history detail page
 
 ![Order history detail page](docs/images/features/order-history-detail.png)
 
 Here is the full report of the order, in the form of an itemized bill, with
-shipping information
+shipping information.
 
 ### Saved addresses - none
 
@@ -610,28 +613,83 @@ Or when a user performs an authentication action, such as logging in:
 
 ![Signed in message](docs/images/features/messages-signed-in.png)
 
-This system is employed in all situations were CRUD operations are concerned,
-aside from in the basket. The basket uses AJAX for instant feedback by manipulating
-the targeted elements, such as removing an item from the basket and adjusting subtotals
-accordingly.
+This system is employed in all situations were CRUD operations are concerned. The
+basket is handled differently, however. The basket uses AJAX for instant feedback
+by manipulating the targeted elements, such as removing an item from the basket
+and adjusting subtotals accordingly.
+
+The client wanted customers to experience a modern, frictionless experience around
+payment. It was decided at the planning stages to use an approach that does not
+require refreshing or any database operations to handle the customer's basket.
+The idea is for them to enjoy browsing or searching in a logical manner, then to
+have a responsive, secure path to payment.
 
 ---
 
 ## Web marketing campaign
 
-- FB Business page
-- Reciprocal links
-- Newsletter
-- eCommerce business model in-depth
+### Facebook
+
+Multiple approaches were undertaken to aid in marketing the business. First, a
+Facebook business page was created:
+
+![Facebook business page](docs/images/marketing-and-seo/facebook.png)
+
+Reciprocal links are present to link the site and Facebook page. This is another
+avenue for interacting with current or future customers, whilst spreading
+word-of-mouth as the business gets off the ground.
+
+A brand icon was sourced from [Pixabay](https://pixabay.com/vectors/video-game-cursor-keys-control-icon-1294541/)
+which uses matching brand colours with a classic game controller motif.
+
+As the business grows, so too will the Facebook page. The aim is to provide a steady
+stream of relevant, high-quality content that will get people interested in the
+store.
+
+### Newsletter
+
+In addition, a newsletter campaign was created with Mailchimp. This uses an embedded
+form in the footer of every page for users to opt-in to mailing list updates.
+
+![Newsletter signup form](docs/images/marketing-and-seo/newsletter-signup.png)
+
+The launch newsletter has been pushed to subscribers. They received the following
+email:
+
+![Newsletter email](docs/images/marketing-and-seo/newsletter-email.png)
+
+Combining these tools allows the client to target existing customers with relevant
+information, whilst expanding brand outreach to gain more customers. As a new
+B2C online retail store, it is critical to spread awareness in order to increase
+the amount of potential revenue streams.
 
 ## SEO implementation
 
-- Step-up from previous considerations
-- robots.txt
-- sitemap.xml
-- meta tags
-- rel attrs on external links
-- URL design
+Search Engine Optimization efforts were stepped up in this application compared to
+previous ones. Keyword research was undertaken to identify 'short-tail' and
+'long-tail' search terms. These refer to popular, competitive terms and more
+specific, targeted terms, respectively.
+
+After conducting this research using the Google search engine, high-value terms
+and phrases were listed. These terms were placed in high-impact HTML elements
+such as header tags on the home page. This shows the indexing engines of that
+such terms are a key focus of the site, in effort to boost ranking on the
+search index.
+
+Appropriate use of meta tags were employed in the head element, such as a description,
+keywords and dynamic page titles across the site. Outgoing links, such as those
+to Facebook were given an attribute to signify the the page is opened in a new
+context and is not relevant to its origin as far as search indexing is concerned.
+
+An XML sitemap was generated at [XML-Sitemaps.com](https://www.xml-sitemaps.com/)
+to aid search engine spiders in indexing the site. This works in conjunction with
+a file called `robots.txt` which tells the spiders to ignore certain sensitive parts
+of the site, such as those related to payments or profiles. The presence of this
+file inherently boosts the site's perceived quality for the indexing algorithm.
+
+This is all tied together with meaningful url design, as mentioned in the product
+detail features section. By using these basic tools well, I give the client a
+big boost in terms of the site's relevancy on the web.
 
 ---
 
