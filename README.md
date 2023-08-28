@@ -364,6 +364,19 @@ asked questions, where users can view the associated answer.
 If they would like to message the admin directly, they can do so with the query
 form that follows.
 
+### Contact query - received by admin
+
+![Contact query received by admin](docs/images/features/contact-query-received.png)
+
+The client wanted to ensure that customers were able to reach him privately and
+securely if they encountered any issues. A return email address is provided, which
+comes from the logged in user's credentials when they make a query, without
+requiring them to input it manually.
+
+It is possible to keep track of wether the customer has been responded to and their
+query resolved. This feature is currently the admin user's responsibility to
+monitor and can be fleshed out as a front end feature in future iterations.
+
 ### FAQ/Contact page - admin
 
 ![Support page](docs/images/features/support-admin.png)
@@ -380,7 +393,7 @@ The answer field makes use of a custom [Summernote](https://github.com/summernot
 form widget. This provides an advantage over a standard text field by enabling
 WYSIWYG editing for elements such as lists or links.
 
-This is also used in the admin panel for the product detail field. This is currently
+This is also used in the admin panel for the product detail field, which is currently
 used to create product listings on the site for selling.
 
 ### Privacy policy
@@ -451,40 +464,156 @@ Thankfully, such a field exists and was implemented using the excellent
 The provides a nice human-readable endpoint for products, rather than the product's
 primary key, or other such non-semantic identifier.
 
-### Basket
+### Basket - dynamic calculations
 
-- Remove products
-- Keep shopping
+The following examples demonstrate the calculations that are performed on the items
+in the current basket. Note that the basket quantity in the top right reflects
+the current number of items in it.
+
+The delivery threshold is taken into account and an appropriate message is displayed.
+If the threshold is not met, the user is prompted on how much more they could spend
+to qualify for free delivery.
+
+When 'Remove' is clicked, all changes occur instantly thanks to the AJAX implementation.
+All calculations are performed to correctly display the new figure.
+
+![Basket with three items and free delivery](docs/images/features/basket-3-items-free-delivery.png)
+![Basket with two items](docs/images/features/basket-2-items.png)
+![Basket with one item](docs/images/features/basket-1-item.png)
+![Basket empty](docs/images/features/basket-empty.png)
 
 ### Checkout
 
-- Confirm address
-- Payment integration
+![Checkout initial page](docs/images/features/checkout-initial.png)
+
+Stripe provides APIs for address and payment elements, the latest of which were
+used in this payment integration.
+
+![Checkout validation errors](docs/images/features/checkout-validation-errors.png)
+
+Full form validation is in effect. An alert is shown above the payment controls
+to communicate the most recent error to be fixed.
+
+![Checkout Google API](docs/images/features/checkout-google-api.png)
+![Checkout Google API filled](docs/images/features/checkout-google-api-filled.png)
+
+The address element utilizes the Google Maps API to help the user autocomplete
+their address.
+
+![Checkout 3D secure](docs/images/features/checkout-3d-secure.png)
+
+3D Secure payments are supported, as an extra layer of security. Whilst the API
+logic is running, the 'Pay now' button is changed to 'Processing', with an
+animated SVG of Pac-Man to indicate the processing status.
+
+### Checkout summary
+
+![Checkout summary](docs/images/features/checkout-summary.png)
+
+Upon payment, the user is redirected to the checkout summary page. They are notified
+that they will be receiving an email confirmation and that they can view the full
+details of their order history on the site.
+
+Note that the basket it emptied when the transaction is complete and the counter
+is set back to zero.
+
+### Checkout confirmation email
+
+![Checkout confirmation email](docs/images/features/checkout-confirmation-email.png)
+
+Order details are confirmed in an email sent after payment succeeds.
 
 ### Profile
 
-- Address
-- Order history
+![Profile management page](docs/images/features/profile-management.png)
 
-### Error pages
+Profile management serves as the dashboard for regular user's CRUD functionality.
 
-- 404
-- 403
-- 500
+### Order history list page
+
+![Order history list page](docs/images/features/order-history-list.png)
+
+A user's list after their first order
+
+![Order history list page multiples](docs/images/features/order-history-list-multiple.png)
+
+This list grows as orders are added. Here shows the orders placed for a different user.
+
+### Order history detail page
+
+![Order history detail page](docs/images/features/order-history-detail.png)
+
+Here is the full report of the order, in the form of an itemized bill, with
+shipping information
+
+### Saved addresses - none
+
+![No saved addresses](docs/images/features/saved-address-none.png)
+
+New users with no saved addresses are greeted with this screen. They are prompted
+to select an address as default to speed up their next checkout process, where the
+address section of the form with be automatically filled when the saved address
+data is passed to the Stripe address elemnt as it is built.
+
+### Saved addresses - one, no default set
+
+![One saved addresses](docs/images/features/saved-address-one.png)
+
+In this example, the user has one saved address, but no default set.
+
+### Saved addresses - two; first set as default
+
+![No saved addresses](docs/images/features/saved-address-two-with-default.png)
+
+Here, the user has added a second shipping address and nominated their first
+as the one they'd like to use next checkout.
+
+### Error page - 404
+
+![404 page](docs/images/features/page-404.png)
+
+Navigating to a non-existent page on the domain produces a custom 404 error page.
+In all instances or error pages, the user is offered a prominent link back home.
+
+### Error page - 403
+
+![403 page](docs/images/features/page-403.png)
+
+In this instance, a non-admin user is attempting to access a page that is restricted
+to superusers. Again, they are informed of what has occurred and guided back home.
+
+### Error page - 500
+
+![500 page](docs/images/features/page-500.png)
+
+Sever errors are also handled with a custom page. This situation was replicated
+by the admin user trying to access the address edit page of another user.
 
 ### Favicon
 
-- Where it was made and why
+![Favicon](static/favicon.ico)
+
+[favicon.io](https://favicon.io/) was used to generate a favicon for the site,
+using an abbreviated version of the brand for lettering and matching colours.
 
 ### Feedback system
 
-- Django messages
-- Toasts
-- Login/registration status
+Feedback messages have been implemented using a combination of the Django messages
+framework and custom JavaScript. It is used to highlight that key actions have
+taken place.
 
-### Admin CRUD functions
+An example is shown below when a user updates one of their saved addresses:
 
-- Add, update and deletion of products
+![Address updated message](docs/images/features/messages-address-updated.png)
+
+Or when a user performs an authentication action, such as logging in:
+
+![Signed in message](docs/images/features/messages-signed-in.png)
+
+This system is employed in all situations were CRUD operations are concerned,
+aside from in the basket. The basket uses AJAX for instant feedback by manipulating
+the targeted elements, such as removing an item from the basket and adjusting subtotals
+accordingly.
 
 ---
 
