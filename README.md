@@ -419,7 +419,7 @@ To illustrate another example, a user would navigate to
 navbar. This leverages Django's design patterns to produce meaningful canonical
 urls.
 
-### Product detail - card
+### Product detail
 
 ![Product detail card](docs/images/features/product-detail-card.png)
 
@@ -980,13 +980,10 @@ Here is an outline of the steps taken to bring this app to the web:
     the events you would like to listen for. You may send a test signal to verify
     that everything is working.
 
-### Cloning
+### Cloning and forking
 
-- See PP4 if same
-
-### Forking
-
-- See PP4 if same
+Please refer to the steps for [cloning and forking](https://github.com/jts272/pp4-safe-hands-guitar-tech#cloning-and-forking)
+from my previous project.
 
 ---
 
