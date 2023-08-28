@@ -58,20 +58,72 @@ are best viewed in 'Board' layout, with the 'Labels' field enabled.
 
 ### 1. Strategy
 
-- Business model
-- Competition check
+This application is designed to serve the needs of a client that is starting a new
+B2C small business. The product is retro video games from the mid-2000's and prior.
+The client has no premises overhead and wants an online platform to sell his
+products, whilst expanding his audience reach.
+
+The client's target market is mainly well-informed collectors. They generally
+know what they are looking for, so the strategy is to make browsing the site
+very logical, whilst providing prospective customers with the details they would
+be interested in.
+
+One advantage that Retro Replay offers over high street retailers such as
+[CeX](https://uk.webuy.com/) is that it sells products from regions outside the
+UK. Games from Japan or the US varied much more in the retro-era and are a
+commodity to collectors.
+
+When auditing the competition, [ConsoleMAD](https://www.consolemad.co.uk/),
+[Retro Games](https://www.retrogames.co.uk/) and [Amazon](https://www.amazon.co.uk/)
+were used to gauge functional expectations. The intent is to provide a smooth,
+essential navigational experience, whilst building trust that leads to successful
+conversions.
 
 ### 2. Scope
 
-- MVP features
-- Admin CRUD
-- Specific eCommerce implementation
+As an e-commerce application, the following MVP features were identified:
+
+- Logical product category list pages.
+- Product detail page with relevant information.
+- Role-based authentication and authorization.
+- Add to basket > Checkout flow.
+- Secure payment integration.
+- An integrated SEO and marketing campaign, to expand brand reach.
+
+In addition, front end CRUD functionality is available to both customers and
+admin. The intent is to allow both parties to control their relevant data
+easily, with a pleasant UX. The admin can easily control the content in the FAQ
+section, whilst customers can manage their addresses.
+
+The client, whom will serve as the admin, is familiar with the Django administration
+system and wanted a reliable way to manage site data. Product management operations
+are conducted on the admin site, as well as the monitoring of customer queries.
+Customer queries can easily be made by authenticated users on the front end.
 
 ### 3. Structure
 
-- Information architecture
-- Interaction design
-- Navigation
+Interaction design is critical, especially where payments are concerned. The
+navigational flow is consistent, which comprises:
+
+- A responsive header, with product categories, authentication controls and basket
+  information.
+- Main page content. For example, product pages have a search bar and the selected
+  product list.
+- A footer with support, marketing and call-to-action social links.
+
+By using the navbar, customers can access the majority of the site in no more
+than two clicks. Support is readily accessible in the footer by convention.
+
+Feedback is offered on all interactions, leaving nothing to chance. Examples
+include:
+
+- Notifying of login status.
+- Informing when an item was added to the basket, with a link to view the basket.
+- Confirmation prompt for the deletion of a saved address.
+
+Overall, navigation is intended to feel familiar to users of e-commerce platforms,
+whilst keeping them informed every step of the way. By keeping things predictable,
+the user can focus on simply finding and purchasing their desired product.
 
 ### 4. Skeleton
 
