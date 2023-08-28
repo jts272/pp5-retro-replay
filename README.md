@@ -205,30 +205,64 @@ is displayed with the navbar menu expanded.
 
 #### Colour
 
-![Colour palette]
+![Colour palette](docs/images/retro-replay-palette.png)
 
-- Colour justification
+Colour palette generated at [coolors.co](https://coolors.co/)
+
+Staple black and white was used, with a brand colour reminiscent of
+[Rockstar Games.](https://en.wikipedia.org/wiki/Rockstar_Games) In addition,
+the semantic colours from [Bootstrap 5](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
+were used on buttons and alerts.
+
+The client wanted to use a warm colour tone that looks familiar to seasoned
+gamers, without associating with any game platform in particular.
 
 #### Typography
 
-- Font justification
+Two fonts are in use:
 
-[Pricedown]
+- [Pricedown](https://www.cdnfonts.com/pricedown.font)
+- [Rubik](https://fonts.google.com/specimen/Rubik)
+
+Combined with the colour palette, Pricedown font creates an instant link to the
+gaming theme at first glance. It also evokes the retro theme of decades gone past.
+
+Body text is represented by Rubik. It is an easily readable sans-serif font, with
+playful rounded edges. This is somewhat similar to the body text in use at
+[Nintendo's](https://www.nintendo.com/) official site.
 
 #### Imagery
 
-- Own images
-- Customers interested in condition
+When providing vintage products to collectors, it is import to provide high-quality
+images of the product in question. These were taken from the client's own stock.
+
+The eye-catching hero image was used from a [bossrush.net](https://bossrush.net/2022/07/09/collecting-retro-video-games-is-a-waste-of-money-for-me/)
+blog post.
+
+Region flag icons were sourced from [flaticon.com](https://www.flaticon.com/packs/countrys-flags)
+to provide a bit of visual flair and context to the region codes. Most collectors
+would be familiar with such terms, however this helps to reinforce the intent.
+An icon to represent items not found was also sourced from here, although all
+current listed products have images present.
+
+Game over 404 image was sourced from [unsplash.com](https://unsplash.com/photos/By-tZImt0Ms)
 
 #### Text content
 
-- [igdb.com]
-- Model text
+All text content is originally provided from the client. This includes things such
+as:
 
-#### Responsive design
+- Product titles
+- Categories
+- Product descriptions
+- FAQs
 
-- Mobile first
-- Progressive enhancement to bigger screens
+In addition, short and long-tail keyword research was undertaken. High-value terms
+were implemented in HTML header tags on the homepage to maximize SEO efforts.
+
+Iconography to support text content comes from [Bootstrap Icons.](https://icons.getbootstrap.com/)
+A customized SVG was generated from [icons8](https://icons8.com/preloaders/en/search/pac+man)
+for the Pac-Man style payment processing icon.
 
 ---
 
