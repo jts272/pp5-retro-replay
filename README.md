@@ -1,18 +1,22 @@
 # Retro Replay eCommerce web platform
 
-![Am I responsive mockup]
+![Am I responsive mockup](docs/images/mockup.png)
 
-[Click here to view the deployed site!]
+[Click here to view the deployed site!](https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/)
 
 <details>
   <summary>Click to reveal QR code for easy mobile access!</summary>
-  <img src="" alt="QR code link to deployed site">
+  <img src="docs/images/pp5-qr_code.png" alt="QR code link to deployed site">
 </details>
 
 The table of contents can be accessed at any time by selecting the menu icon at
 the top left of the screen, next to 'README.md'.
 
 Links can be opened in a new tab with a right click, middle click or Ctrl + click.
+
+Getting the most out of this web app requires a verified account. If you would
+like to use all features of the site without using a personal email address,
+[temp-mail](https://temp-mail.org/) can provide you with a disposable email address.
 
 ## Introduction
 
