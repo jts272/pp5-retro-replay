@@ -20,9 +20,21 @@ like to use all features of the site without using a personal email address,
 
 ## Introduction
 
-- What it is and how it works
-- Builds on from PP4
-- Expands on PP4 with SEO and Marketing
+Retro Replay is a web-based e-commerce platform, powered by Django and Stripe.
+It operates on a B2C model, where customers can pay by card for one, or multiple
+items in the store. Items are added to their basket, followed by a secure
+checkout page. The user is provided with an order confirmation email and they
+may view past orders on their profile page.
+
+Additionally, role-based CRUD functions are implemented to benefit the customer.
+Customers may store, modify and delete saved addresses on their profile and
+nominate one as their default address to speed up their next checkout. There are
+lines of support available to customers, facilitated by the FAQ/Contact section.
+The administrator can easily create, update and delete FAQ entries entirely from
+the front end.
+
+This application expands on my previous [full stack application](https://github.com/jts272/pp4-safe-hands-guitar-tech)
+with a complete SEO and marketing campaign, utilizing Facebook and Mailchimp.
 
 ## Agile methodologies
 
@@ -31,11 +43,14 @@ detailed breakdown on the implementation, please consult the
 [agile methodologies breakdown](https://github.com/jts272/pp4-safe-hands-guitar-tech#agile-methodologies)
 outlined in my previous full-stack production. There you will find a thorough
 explanation of each component, how to read the visualizations and how they benefit
-the development process
+the development process.
 
-- [Issues]
-- [Milestones]
-- [Projects]
+Here are the links to the agile resources for this project. GitHub project boards
+are best viewed in 'Board' layout, with the 'Labels' field enabled.
+
+- [Issues](https://github.com/jts272/pp5-retro-replay/issues?q=is%3Aissue+is%3Aclosed)
+- [Milestones](https://github.com/jts272/pp5-retro-replay/milestones?state=closed)
+- [Projects](https://github.com/jts272/pp5-retro-replay/projects?query=is%3Aopen)
 
 ---
 
