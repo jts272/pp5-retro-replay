@@ -15,6 +15,13 @@ class AvailableProductManager(models.Manager):
         return super().get_queryset().filter(visible=True, sold=False)
 
 
+class SoldProductManager(models.Manager):
+    """Manager to return products that have been sold."""
+
+    def get_queryset(self):
+        return super().get_queryset().filter(visible=True, sold=True)
+
+
 class Product(models.Model):
     CONDITION_CHOICES = [
         ("Sealed", "Sealed"),
