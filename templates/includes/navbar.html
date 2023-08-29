@@ -15,9 +15,23 @@
       <hr />
       <!-- Navigation links -->
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link"  href="{% url 'products:all_products' %}">All Products</a>
+        <!-- All products dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle"
+             href="#"
+             role="button"
+             data-bs-toggle="dropdown"
+             aria-expanded="false">All Products</a>
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item" href="{% url 'products:all_products' %}">Available Products</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="{% url 'products:sold_products' %}">Sold Products</a>
+            </li>
+          </ul>
         </li>
+        <!-- END All products dropdown -->
         <!-- Category dropdown -->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle"
