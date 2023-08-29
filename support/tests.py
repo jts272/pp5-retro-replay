@@ -66,6 +66,74 @@ class TestSupportViews(TestCase):
         self.assertRedirects(response, reverse("support:support"))
 
 
+class TestAddFAQView(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(
+            username="not_admin",
+            password="secret",
+            email="a@b.com",
+            is_superuser=False,
+        )
+        self.user.save()
+        self.c = Client()
+        self.c.login(username="not_admin", password="secret")
+
+    def test_non_admin_user_redirects(self):
+        response = self.c.get(reverse("support:add_faq"))
+        self.assertEqual(response.status_code, 403)
+
+
+class TestUpdateFAQView(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(
+            username="not_admin",
+            password="secret",
+            email="a@b.com",
+            is_superuser=False,
+        )
+        self.user.save()
+        self.c = Client()
+        self.c.login(username="not_admin", password="secret")
+
+        self.f = FAQFactory()
+
+    def test_non_admin_user_redirects(self):
+        response = self.c.get(reverse("support:update_faq", kwargs={"pk": 1}))
+        self.assertEqual(response.status_code, 403)
+
+
+class DeleteFAQView(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(
+            username="not_admin",
+            password="secret",
+            email="a@b.com",
+            is_superuser=False,
+        )
+        self.user.save()
+        self.c = Client()
+        self.c.login(username="not_admin", password="secret")
+
+        self.f = FAQFactory()
+
+    def test_non_admin_user_redirects(self):
+        response = self.c.get(reverse("support:delete_faq", kwargs={"pk": 1}))
+        self.assertEqual(response.status_code, 403)
+
+    def test_admin_can_delete_faq(self):
+        self.user = User.objects.create_superuser(
+            username="admin",
+            password="secret",
+        )
+        self.user.save()
+        self.c = Client()
+        self.c.login(username="admin", password="secret")
+
+        response = self.c.get(reverse("support:delete_faq", kwargs={"pk": 1}))
+
+        self.assertEqual(response.status_code, 200)
+
+
 class TestFAQForm(TestCase):
     def test_clean_question(self):
         data = {"question": "too short"}
