@@ -1,6 +1,7 @@
 from django.test import TestCase
+from django.urls import reverse
 
-from .models import Category, Product, Platform, Region
+from .models import Category, Platform, Product, Region
 
 
 # Create your tests here.
@@ -38,6 +39,11 @@ class TestProductModel(TestCase):
         self.p.mark_as_sold()
         self.assertTrue(self.p.sold)
 
+    def test_get_absolute_url(self):
+        self.assertEqual(
+            self.p.get_absolute_url(), "/products/view/test-product/"
+        )
+
 
 class TestPlatformModel(TestCase):
     def setUp(self):
@@ -62,6 +68,20 @@ class TestAllProductsView(TestCase):
         response = self.client.get("/products/all-products/")
         self.assertEqual(response.status_code, 200)
 
+    def test_search_200_response(self):
+        response = self.client.get("/products/all-products/", {"q": "test"})
+        self.assertEqual(response.status_code, 200)
+
+
+class TestSoldProductsView(TestCase):
+    def test_view_url_200_response(self):
+        response = self.client.get("/products/sold-products/")
+        self.assertEqual(response.status_code, 200)
+
+    def test_search_200_response(self):
+        response = self.client.get("/products/sold-products/", {"q": "test"})
+        self.assertEqual(response.status_code, 200)
+
 
 class TestProductsByCategoryView(TestCase):
     def setUp(self):
@@ -71,6 +91,12 @@ class TestProductsByCategoryView(TestCase):
 
     def test_view_url_200_response(self):
         response = self.client.get("/products/categories/test-category/")
+        self.assertEqual(response.status_code, 200)
+
+    def test_search_200_response(self):
+        response = self.client.get(
+            "/products/categories/test-category/", {"q": "test"}
+        )
         self.assertEqual(response.status_code, 200)
 
 
@@ -84,6 +110,12 @@ class TestProductsByPlatformView(TestCase):
         response = self.client.get("/products/platforms/test-platform/")
         self.assertEqual(response.status_code, 200)
 
+    def test_search_200_response(self):
+        response = self.client.get(
+            "/products/platforms/test-platform/", {"q": "test"}
+        )
+        self.assertEqual(response.status_code, 200)
+
 
 class TestProductsByRegionView(TestCase):
     def setUp(self):
@@ -91,6 +123,12 @@ class TestProductsByRegionView(TestCase):
 
     def test_view_url_200_response(self):
         response = self.client.get("/products/regions/test-region/")
+        self.assertEqual(response.status_code, 200)
+
+    def test_search_200_response(self):
+        response = self.client.get(
+            "/products/regions/test-region/", {"q": "test"}
+        )
         self.assertEqual(response.status_code, 200)
 
 
@@ -102,4 +140,8 @@ class TestProductDetailView(TestCase):
 
     def test_view_url_200_response(self):
         response = self.client.get("/products/view/test-product/")
+        self.assertEqual(response.status_code, 200)
+
+    def test_search_200_response(self):
+        response = self.client.get("/products/all-products/", {"q": "test"})
         self.assertEqual(response.status_code, 200)
