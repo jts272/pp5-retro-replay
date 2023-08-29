@@ -95,4 +95,12 @@ body {
   .hero-image {
     max-height: 33vh;
   }
+
+  .hero-cover {
+    width: 600px;
+  }
+
+  .hero-cover > * {
+    font-size: 36px !important;
+  }
 }
