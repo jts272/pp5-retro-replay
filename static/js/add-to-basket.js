@@ -18,14 +18,6 @@ $(document).on("click", "#add-to-basket", function (e) {
       // Update basket quantity counter without refreshing the page
       document.getElementById("basket-qty").innerText = json["basket quantity"];
     },
-    // Alert error information if returned
-    error: function (jqXHR, textStatus, errorThrown) {
-      window.alert(`
-        An error occurred:
-        Error status: ${textStatus}
-        Error thrown: ${errorThrown}
-        Status code: ${jqXHR.status}`);
-    },
   });
 });
 
