@@ -1,10 +1,10 @@
 import factory
 from django.contrib.auth.models import User
 from django.test import Client, TestCase
+from django.urls import reverse
 
-from .forms import CustomerQueryForm
+from .forms import CustomerQueryForm, FAQForm
 from .models import FAQ, CustomerQuery
-from .forms import FAQForm, CustomerQueryForm
 
 
 class FAQFactory(factory.django.DjangoModelFactory):
@@ -40,7 +40,7 @@ class TestCustomerQuery(TestCase):
 class TestSupportViews(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(
-            username="tester", password="secret"
+            username="tester", password="secret", email="a@b.com"
         )
         self.user.save()
         self.c = Client()
@@ -57,6 +57,13 @@ class TestSupportViews(TestCase):
             }
         )
         self.assertFalse(form.is_valid())
+
+    def test_valid_form_redirects(self):
+        response = self.c.post(
+            reverse("support:support"),
+            {"query": "here is my detailed long enough query"},
+        )
+        self.assertRedirects(response, reverse("support:support"))
 
 
 class TestFAQForm(TestCase):
