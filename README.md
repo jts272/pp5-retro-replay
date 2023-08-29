@@ -733,31 +733,100 @@ big boost in terms of the site's relevancy on the web.
 
 ## Testing
 
-- Intro on nature of testing carried out
-- Mention what was automated and what was manual/integration
+A robust testing regimen has been implemented during the application's development.
+On the server side, a large battery of unit tests were conducted across every app.
+The [coverage](https://pypi.org/project/coverage/) package provided a framework
+to discover which elements needed to be tested.
 
-### Python testing
+Integration tests were conducted to assess that the combination of moving parts
+of the e-commerce platform works in harmony. Thorough manual testing was undertaken
+for elements that were not, or could not be covered with unit tests.
 
-#### Automated test for each app
+### Automated testing
 
-#### Coverage
+The overall test results and coverage for every app is shown here, followed by
+an app-by-app breakdown. 55 tests were conducted and passing, with a 91% coverage
+rate.
 
-### JavaScript testing
+#### All apps tests - Python
 
-- Table
+![All apps py tests](docs/images/tests/all-apps.png)
+![All apps coverage 1](docs/images/tests/cov-all-1.png)
+![All apps coverage 2](docs/images/tests/cov-all-2.png)
 
-### Stripe/webhook testing
+#### Basket app tests - Python
 
-- Local vs deployed
+![Basket py tests](docs/images/tests/basket.png)
+![Basket coverage](docs/images/tests/cov-basket.png)
+
+#### Home app tests - Python
+
+![Home py tests](docs/images/tests/home.png)
+![Home coverage](docs/images/tests/cov-home.png)
+
+#### Orders app tests - Python
+
+![Orders py tests](docs/images/tests/orders.png)
+![Orders coverage](docs/images/tests/cov-orders.png)
+
+#### Payments app tests - Python
+
+![Payments py tests](docs/images/tests/payments.png)
+![Payments coverage](docs/images/tests/cov-payments.png)
+
+#### Products app tests - Python
+
+![Products py tests](docs/images/tests/products.png)
+![Products coverage](docs/images/tests/cov-products.png)
+
+#### Profile app tests - Python
+
+![Profile py tests](docs/images/tests/profiles.png)
+![Profile coverage](docs/images/tests/cov-profiles.png)
+
+#### Support app tests - Python
+
+![Support py tests](docs/images/tests/support.png)
+![Support coverage](docs/images/tests/cov-support.png)
+
+### Integration and Manual testing
+
+![Integration and manual tests sheet](docs/images/tests/int-man-tests.png)
+
+A [PDF](docs/pp5-man-int-tests.pdf) version of the integration and manual tests
+displayed above is also available.
 
 ### UX/User story testing
 
-- Link to project iterations; mention index card presentation
+To keep separation of concerns apart, whilst reducing repetition, all user story
+tests can be found by viewing the index cards of each closed issue in each
+iteration milestone.
+
+Naturally, there were some backlog items that were tagged as "won't have" on the
+MoSCow priority system. However, an example is shown below on how to locate the
+outcome of the user story test. Simply check the acceptance criteria of an entry.
+A checked box considers the story task as done, whilst a complete set of acceptance
+criteria formally declares the user story as having passed.
+
+![User story test example](docs/images/tests/user-story-test-example.png)
 
 ### UI testing
 
-- Mobile-first design
-- Each component that was tested for responsiveness throughout development
+By implementing a mobile-first design approach, UI testing was conducted as a
+natural response to building the site. Building with a baseline of 320 pixels
+width meant it was simply a case of progressively enhancing the existing features
+to utilize the extra screen real-estate.
+
+That being said, the following design rules were adhered to:
+
+| Rule                                                                   | Achieved           |
+| ---------------------------------------------------------------------- | ------------------ |
+| Burger icon does not wrap below brand logo at 375px width              | :heavy_check_mark: |
+| Search bar placeholder text is always fully visible                    | :heavy_check_mark: |
+| Social link tap icons are appropriately sized                          | :heavy_check_mark: |
+| Product list scale from two columns to four at medium breakpoint       | :heavy_check_mark: |
+| Hero image cover text div never vertically breaks out of the container | :heavy_check_mark: |
+| Hero image cover text size is increased at medium breakpoint           | :heavy_check_mark: |
 
 ---
 
