@@ -9,267 +9,272 @@
 
 <url>
   <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
   <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/all-products/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/sold-products/</loc>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/categories/accessories/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/categories/consoles/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/categories/games/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/platforms/nintendo-64/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/platforms/playstation/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/platforms/playstation-2/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/platforms/sega-saturn/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/platforms/wii/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/platforms/xbox/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/regions/ntsc-j/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/regions/ntsc-u/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/regions/pal/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/regions/region-free/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/accounts/login/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/accounts/signup/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/view/grand-theft-auto-san-andreas/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/view/official-n64-rumble-pak/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/view/official-ps2-memory-card-8mb/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/view/playstation-2-slim-console/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/support/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/view/1080-snowboarding/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
   <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/view/devil-may-cry-3-special-edition/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/view/die-hard-arcade-2/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/view/die-hard-trilogy/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/view/fighters-destiny/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/view/final-fantasy-x/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/view/gex/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/view/god-hand/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/view/god-of-war/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/view/goldeneye-007-2/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/view/goldeneye-007/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/view/mario-kart-64/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/view/metal-gear-solid-2-sons-of-liberty/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/view/metroid-prime-trilogy/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/view/n64-controller-blue/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/view/ninja-gaiden/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/view/perfect-dark/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/view/resident-evil-4-wii-edition/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/view/sega-saturn-console/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/view/silent-hill-2-inner-fears/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/view/soul-calibur-ii/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/view/super-mario-64-2/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/view/super-mario-64/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/view/super-mario-64-2/</loc>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/view/tekken-4/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/view/the-legend-of-zelda-majoras-mask/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/view/the-story-of-thor-2/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/view/xenoblade-chronicles/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/view/1080-snowboarding/</loc>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/view/die-hard-trilogy/</loc>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/view/goldeneye-007/</loc>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/products/view/n64-controller-blue/</loc>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/accounts/password/reset/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/accounts/login/?next=/basket/</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/accounts/signup/?next=%2Fbasket%2F</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
   <loc>https://pp5-retro-replay-f8ca18b6956c.herokuapp.com/accounts/login/?next=%2Fbasket%2F</loc>
-  <lastmod>2023-08-27T22:54:49+00:00</lastmod>
+  <lastmod>2023-08-29T17:48:10+00:00</lastmod>
   <priority>0.41</priority>
 </url>
 
