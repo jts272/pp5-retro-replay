@@ -26,13 +26,5 @@ $(document).on("click", ".remove-from-basket", function (e) {
       document.getElementById("basket-subtotal").innerText =
         json["basket subtotal"];
     },
-    // Alert error information if returned
-    error: function (jqXHR, textStatus, errorThrown) {
-      window.alert(`
-        An error occurred:
-        Error status: ${textStatus}
-        Error thrown: ${errorThrown}
-        Status code: ${jqXHR.status}`);
-    },
   });
 });
