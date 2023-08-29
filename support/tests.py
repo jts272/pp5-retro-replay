@@ -4,6 +4,7 @@ from django.test import Client, TestCase
 
 from .forms import CustomerQueryForm
 from .models import FAQ, CustomerQuery
+from .forms import FAQForm, CustomerQueryForm
 
 
 class FAQFactory(factory.django.DjangoModelFactory):
@@ -56,3 +57,51 @@ class TestSupportViews(TestCase):
             }
         )
         self.assertFalse(form.is_valid())
+
+
+class TestFAQForm(TestCase):
+    def test_clean_question(self):
+        data = {"question": "too short"}
+        form = FAQForm(data=data)
+        self.assertFalse(form.is_valid())
+        self.assertIn(
+            "Please provide a longer title (minimum 10 characters).",
+            form.errors["question"],
+        )
+        self.assertTrue(form.data["question"] == "too short")
+
+    def test_clean_answer(self):
+        data = {"answer": "too short"}
+        form = FAQForm(data=data)
+        self.assertFalse(form.is_valid())
+        self.assertIn(
+            "Please write 20 or more characters in your answer.",
+            form.errors["answer"],
+        )
+        self.assertTrue(form.data["answer"] == "too short")
+
+    def test_form_is_valid(self):
+        data = {
+            "question": "a long enough question",
+            "answer": "a long enough answer to the question",
+        }
+        form = FAQForm(data=data)
+        self.assertTrue(form.is_valid())
+
+
+class TestCustomerQueryForm(TestCase):
+    def test_clean_query(self):
+        data = {"query": "too short"}
+        form = CustomerQueryForm(data=data)
+        self.assertFalse(form.is_valid())
+        self.assertIn(
+            "Please provide some more detail before submitting your query"
+            " (at least 20 characters).",
+            form.errors["query"],
+        )
+        self.assertTrue(form.data["query"] == "too short")
+
+    def test_form_is_valid(self):
+        data = {"query": "here is my detailed long enough query"}
+        form = CustomerQueryForm(data)
+        self.assertTrue(form.is_valid())
