@@ -38,6 +38,34 @@ def all_products(request):
     return render(request, "products/product_list.html", context)
 
 
+def sold_products(request):
+    """Returns all sold products from the database.
+
+    Arguments:
+        request -- HttpRequest
+
+    Returns:
+        HTML template with request and context variables available
+    """
+    products = Product.sold_products.all()
+
+    if request.GET:
+        if "q" in request.GET:
+            query = request.GET["q"]
+            queries = (
+                Q(name__icontains=query)
+                | Q(description__icontains=query)
+                | Q(region__name__icontains=query)
+            )
+            products = products.filter(queries)
+
+    sold_products_view = True
+
+    context = {"products": products, "sold_products_view": sold_products_view}
+
+    return render(request, "products/product_list.html", context)
+
+
 def products_by_category(request, category):
     """Returns all products within a given category.
 

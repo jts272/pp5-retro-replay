@@ -94,6 +94,7 @@ class Product(models.Model):
     # Django default manager
     objects = models.Manager()
     available_products = AvailableProductManager()
+    sold_products = SoldProductManager()
 
 
 class Category(models.Model):
