@@ -10,8 +10,9 @@ from .models import Category, Platform, Product, Region
 def all_products(request):
     """Returns all products from the database.
 
-    The default queryset is delivered by the `available_products` manager.
-    Users have the option to find sold items using the searchbar.
+    The type of view is passed into the template context as a boolean.
+    This is used to conditionally render certain elements, relative to
+    the template using this view.
 
     Arguments:
         request -- HttpRequest
@@ -41,6 +42,10 @@ def all_products(request):
 def sold_products(request):
     """Returns all sold products from the database.
 
+    The type of view is passed into the template context as a boolean.
+    This is used to conditionally render certain elements, relative to
+    the template using this view.
+
     Arguments:
         request -- HttpRequest
 
@@ -68,9 +73,6 @@ def sold_products(request):
 
 def products_by_category(request, category):
     """Returns all products within a given category.
-
-    The default queryset is delivered by the `available_products` manager.
-    Users have the option to find sold items using the searchbar.
 
     Arguments:
         request -- HttpRequest
@@ -106,9 +108,6 @@ def products_by_category(request, category):
 def products_by_platform(request, platform):
     """Returns all products within a given platform.
 
-    The default queryset is delivered by the `available_products` manager.
-    Users have the option to find sold items using the searchbar.
-
     Arguments:
         request -- HttpRequest
         platform -- platform to filter products by
@@ -142,9 +141,6 @@ def products_by_platform(request, platform):
 
 def products_by_region(request, region):
     """Returns all products within a given region.
-
-    The default queryset is delivered by the `available_products` manager.
-    Users have the option to find sold items using the searchbar.
 
     Arguments:
         request -- HttpRequest
