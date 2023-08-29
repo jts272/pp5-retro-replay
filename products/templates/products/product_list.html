@@ -11,7 +11,7 @@
                type="search"
                name="q"
                required
-               placeholder="{% if all_products_view %}Search our entire range... {% else %} Search the {{ filter }} {{ collection }}... {% endif %}"
+               placeholder="{% if all_products_view %}Search our available range... {% elif sold_products_view %}Search sold products... {% else %} Search the {{ filter }} {{ collection }}... {% endif %} "
                aria-label="Search" />
         <button class="btn btn-primary" type="submit">
           <i class="bi bi-search"></i>
@@ -25,6 +25,10 @@
   <!-- Queryset report -->
   {% if all_products_view %}
     <p>Showing results from all products - {{ products.count }} product{{ products.count|pluralize }} available:</p>
+  {% elif sold_products_view %}
+    <p>
+      Showing results from all <em>sold</em> products - {{ products.count }} product{{ products.count|pluralize }} shown:
+    </p>
   {% else %}
     <p>{{ products.count }} product{{ products.count|pluralize }} available for the {{ filter }} {{ collection }}:</p>
   {% endif %}
