@@ -509,6 +509,12 @@ their address.
 logic is running, the 'Pay now' button is changed to 'Processing', with an
 animated SVG of Pac-Man to indicate the processing status.
 
+![Checkout declined](docs/images/features/payment-declined.png)
+
+A message is shown in the event that the card is declined. The form stays as-is
+and the button text changes. This suggests that they can retry the payment, without
+losing the form progress they have made.
+
 ### Checkout summary
 
 ![Checkout summary](docs/images/features/checkout-summary.png)
