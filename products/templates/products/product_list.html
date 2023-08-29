@@ -26,9 +26,7 @@
   {% if all_products_view %}
     <p>Showing results from all products - {{ products.count }} product{{ products.count|pluralize }} available:</p>
   {% elif sold_products_view %}
-    <p>
-      Showing results from all <em>sold</em> products - {{ products.count }} product{{ products.count|pluralize }} shown:
-    </p>
+    <p>Showing results from all sold products - {{ products.count }} product{{ products.count|pluralize }} shown:</p>
   {% else %}
     <p>{{ products.count }} product{{ products.count|pluralize }} available for the {{ filter }} {{ collection }}:</p>
   {% endif %}
