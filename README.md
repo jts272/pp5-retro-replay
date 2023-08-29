@@ -996,14 +996,29 @@ can be verified using the DevTools (F12) of Chromium-based browsers.
 
 ## Bugs
 
-- Link to milestones
+Bugs for this project were collected into a dedicated milestone that can
+[be viewed here.](https://github.com/jts272/pp5-retro-replay/milestone/1?closed=1)
 
-## Version control
+All bugs documented during development have been solved. I would like to note two
+potential limitations found, however.
 
-- Conventional commits
-- No commented-out code
-- Filename conventions
-- Settings (pyproject, formatters)
+If the user navigates with the browser back button after adding an item to the
+basket, the basket quantity returns to the state it was at on the previous page.
+This resolves to the correct quantity one the page is refreshed. I am not sure
+if this is a bug per se, but it is not currently a major concern.
+
+Secondly, is has been noted that users with certain tracking protection options
+cannot submit the newsletter form. I believe this may actually be the correct
+function of the blocker:
+
+![No tracked newsletter](docs/images/no-tracked-newsletter.png)
+
+Due to the messages reported by the browser, I cannot consider this to be a bug,
+as it looks like the tracking protection is serving its purpose. An FAQ has been
+made on the site offering a solution, should any user encounter admittedly edge
+case.
+
+---
 
 ## Deployment
 
