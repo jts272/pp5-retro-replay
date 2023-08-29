@@ -419,6 +419,26 @@ To illustrate another example, a user would navigate to
 navbar. This leverages Django's design patterns to produce meaningful canonical
 urls.
 
+### Product search bar
+
+![Product search bar](docs/images/features/products-search.png)
+
+All product list pages have a search bar that the customer can use to narrow down
+their search results. It takes into account other key attributes of the searched
+product such as words found in the description, to give the customer relevant results.
+
+### Product list page - sold products
+
+![Sold products list page](docs/images/features/sold-product-list.png)
+
+During development, a feature to allow searching for sold products was implemented,
+then reverted as it was predicted to not see much use and be quite distracting
+in terms of UX flow. However, this did become a must-have for the client in the
+later cycles of development so the ability to navigate to sold products was
+re-introduced in a far less intrusive and more logical way. The navigational
+element for all products was refactored into a dropdown so users can clearly
+make their choice in terms of looking at sold or available items.
+
 ### Product detail
 
 ![Product detail card](docs/images/features/product-detail-card.png)
