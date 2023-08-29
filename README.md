@@ -821,44 +821,176 @@ That being said, the following design rules were adhered to:
 
 | Rule                                                                   | Achieved           |
 | ---------------------------------------------------------------------- | ------------------ |
-| Burger icon does not wrap below brand logo at 375px width              | :heavy_check_mark: |
-| Search bar placeholder text is always fully visible                    | :heavy_check_mark: |
-| Social link tap icons are appropriately sized                          | :heavy_check_mark: |
-| Product list scale from two columns to four at medium breakpoint       | :heavy_check_mark: |
-| Hero image cover text div never vertically breaks out of the container | :heavy_check_mark: |
-| Hero image cover text size is increased at medium breakpoint           | :heavy_check_mark: |
+| Burger icon does not wrap below brand logo at 375px width              | :white_check_mark: |
+| Search bar placeholder text is always fully visible                    | :white_check_mark: |
+| Social link tap icons are appropriately sized                          | :white_check_mark: |
+| Product list scale from two columns to four at medium breakpoint       | :white_check_mark: |
+| Hero image cover text div never vertically breaks out of the container | :white_check_mark: |
+| Hero image cover text size is increased at medium breakpoint           | :white_check_mark: |
 
 ---
 
 ## Validation
 
-- Accessibility and SEO considerations
+To ensure a fully robust codebase, end-to-end validation was undertaken on all
+aspects of the code. They are broken down by language or technology below
 
 ### HTML validation
 
-Tool: [Nu Html Checker](https://validator.w3.org/nu/)
+Tools:
+
+- [Nu Html Checker](https://validator.w3.org/nu/)
+
+Pages that are publicly accessible have been validated by the url. However, this
+method is not suitable for pages requiring authentication as the validator will
+redirect to the sign in page. For those instances, the HTML source code has been
+validated by direct input.
+
+- Home page
+
+  ![Home page HTML validation](docs/images/validation/html/home-page.png)
+
+- Product list page
+
+  ![Product list page HTML validation](docs/images/validation/html/product-list.png)
+
+- Product detail page
+
+  ![Product detail page HTML validation](docs/images/validation/html/product-detail.png)
+
+- Sign in page
+
+  ![Sign in page HTML validation](docs/images/validation/html/sign-in-page.png)
+
+- Sign up page
+
+  ![Sign up page HTML validation](docs/images/validation/html/sign-up-page.png)
+
+- Support page
+
+  ![Support page HTML validation](docs/images/validation/html/support.png)
+
+- Address list page
+
+  ![Address list page HTML validation](docs/images/validation/html/input-address-list.png)
+
+- Address form page
+
+  ![Address form page HTML validation](docs/images/validation/html/input-address-form.png)
+
+- Basket page
+
+  ![Basket page HTML validation](docs/images/validation/html/input-basket.png)
+
+- Order list page
+
+  ![Order list page HTML validation](docs/images/validation/html/input-order-list.png)
+
+- Order detail page
+
+  ![Order detail page HTML validation](docs/images/validation/html/input-order-detail.png)
+
+- Profile page
+
+  ![Profile page HTML validation](docs/images/validation/html/input-profile.png)
+
+- Sign out page
+
+  ![Sign out page HTML validation](docs/images/validation/html/input-sign-out-page.png)
 
 ### CSS validation
 
 Tool: [Jigsaw CSS Validation Service](https://jigsaw.w3.org/css-validator/)
 
+- Custom style sheet
+
+![Custom CSS validation](docs/images/validation/css/style-css-val.png)
+
+- Mailchimp local style sheet
+
+![Mailchimp local version CSS validation](docs/images/validation/css/mailchimp-css-val.png)
+
 ### JavaScript validation
 
 Tool: [JSHint](https://jshint.com/)
 
-- Local = eslint, prettier
+As these scripts are being validated in isolation, there may be instances where
+the linter complains of undefined variables. This is expected when examining
+these scripts one-by-one and is not an issue in the context of the real DOM.
+
+- `add-to-basket.js`
+
+![Add to basket JS validation](docs/images/validation/js/add-to-basket.png)
+
+- `checkout.js`
+
+![Checkout JS validation](docs/images/validation/js/checkout.png)
+
+- `confirm-address-delete.js`
+
+![Confirm address delete JS validation](docs/images/validation/js/confirm-address-delete.png)
+
+- `message-auto-dismiss.js`
+
+![Message auto dismiss JS validation](docs/images/validation/js/message-auto-dismiss.png)
+
+- `print-basket.js`
+
+![print basket JS validation](docs/images/validation/js/print-basket.png)
+
+- `remove-from-basket.js`
+
+![Remove from basket JS validation](docs/images/validation/js/remove-from-basket.png)
+
+- `status.js`
+
+![Status JS validation](docs/images/validation/js/status.png)
 
 ### Python validation
 
-https://pep8ci.herokuapp.com/
+Tool: [CI Python Linter](https://pep8ci.herokuapp.com/)
 
-- Local = ruff, pylance, black
+There are an extensive amount of Python modules present in this application. The
+Linting results can be found [in this folder.](docs/images/validation/py/) Images
+are named like so for easy reference:
+
+```py
+<app_name>-<module_name>.png
+```
 
 ### WAVE accessibility validation
 
 Tool: [WAVE](https://wave.webaim.org/)
 
+A [WAVE](https://wave.webaim.org/) extension was used to check for contrast errors,
+or to highlight any non-accessibility compliant elements. Here is the result for
+the home page:
+
+![WAVE home page](docs/images/validation/wave/home.png)
+
+Results for all other pages of the site can be viewed [in this folder.](docs/images/validation/wave/)
+The page title and full url path are displayed to help identify the page being evaluated.
+
 ### Lighthouse reports
+
+Tool: Chromium browser DevTools (Incognito window)
+
+This Lighthouse report is of the site homepage as an anonymous visitor:
+
+![Home page lighthouse report](docs/images/validation/lighthouse/lh-pp5.png)
+
+Accessibility is just shy of a 100 score for the following reason:
+
+![Navbar contrast report](docs/images/validation/lighthouse/lh-contrast.png)
+
+However, inspecting the element reveals a contrast rating of 11.07.
+
+![Navbar contrast inspection](docs/images/validation/lighthouse/lh-nav-element.png)
+
+The brand text is stylized with a CSS text-stroke property, which the client does
+not want to compromise on. Overall, the site is extremely coherent, whilst catering
+to accessibility needs throughout. This result is uniform across site pages. This
+can be verified using the DevTools (F12) of Chromium-based browsers.
 
 ---
 
