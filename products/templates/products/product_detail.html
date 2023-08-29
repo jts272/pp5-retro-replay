@@ -27,9 +27,11 @@
   <!-- END JavaScript Messages -->
 {% endblock js_messages %}
 {% block additional_scripts %}
-  {% if not product.sold %}
-    {% if product.pk not in basket_list %}
-      <script src="{% static 'js/add-to-basket.js' %}"></script>
+  {% if user.is_authenticated %}
+    {% if not product.sold %}
+      {% if product.pk not in basket_list %}
+        <script src="{% static 'js/add-to-basket.js' %}"></script>
+      {% endif %}
     {% endif %}
   {% endif %}
 {% endblock additional_scripts %}
