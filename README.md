@@ -721,13 +721,69 @@ big boost in terms of the site's relevancy on the web.
 
 ## Data modelling
 
-- PostgreSQL on ElephantSQL
-- How to read the graph
-- Note on custom models, with images for each
+Database schema diagrams were produced with [graph_models](https://django-extensions.readthedocs.io/en/latest/graph_models.html)
 
-### Header for each model
+The following graphs outline the entire relational database system of the application.
+First is the data model in totality, with a breakdown into smaller, related fragments.
+Arrow colour designates the cascade effect when a model instance is deleted, with
+red relating to deletion and yellow to setting null.
 
 ### Complete schema
+
+![Complete schema](docs/images/schemas/graph-all.png)
+
+### User-Profile schema
+
+![User-profile schema](docs/images/schemas/graph-user-profile.png)
+
+A common pattern in Django is to create a one-to-one link from Django's stock
+user model to a customized 'Profile' model. All instances of `Profile` are
+intrinsically linked to `User`
+
+### Product schema
+
+![Product schema](docs/images/schemas/graph-product.png)
+
+An e-commerce platform needs a product to sell and this plan was made to allow for
+the product to have certain attributes added to it from foreign key (FK) tables.
+An example use case would be adding a new `Platform` when listing a product whose
+platform is not already created.
+
+Of special note is the product model's auto-incrementing slug field, that is designed
+to avoid url clashes where products share the same name. When a product is sold,
+the boolean is set and it is moved from the standard product list to the sold section.
+Visibility can also be toggled, should the listing need to be quickly added or
+removed from display.
+
+### Order schema
+
+![Order schema](docs/images/schemas/graph-order.png)
+
+With products in place, orders can be created. An `OrderItem` model complements
+the order, so that itemized bills can be provided to customers. Order entries are
+ultimately created from data that is passed to and from the Stripe webhook on
+successful payment. The order item has access to the related product by its FK.
+
+### Profile schema
+
+![Profile schema](docs/images/schemas/graph-profile.png)
+
+The profile is where users have full CRUD control over their address list, or can
+view full itemized reports of past orders. The `default` boolean of the address
+model designates which one will pre-fill the Stripe address element at checkout.
+The order model has access to its related order items.
+
+### Support schema
+
+![Support schema](docs/images/schemas/graph-support.png)
+
+Finally, the support schema houses two unrelated models aimed at providing support
+to the customer base. FAQ entries can easily be created, updated or deleted in
+the front end by the admin.
+
+The customer query model exists to provide a direct line of support for customer
+to admin. On the front end, logged in users only have to provide a valid query,
+whilst the admin can use the booleans to keep track of the customer query's status.
 
 ---
 
@@ -792,6 +848,8 @@ rate.
 ### Integration and Manual testing
 
 ![Integration and manual tests sheet](docs/images/tests/int-man-tests.png)
+
+You may the [Google Sheet](https://docs.google.com/spreadsheets/d/1Wt_Kp37rsQeYtojQci2e1f2Fy2aYcI4K9iavl_9b_TA/edit?usp=sharing) in full for a closer look.
 
 A [PDF](docs/pp5-man-int-tests.pdf) version of the integration and manual tests
 displayed above is also available.
