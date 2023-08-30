@@ -18,7 +18,7 @@ Getting the most out of this web app requires a verified account. If you would
 like to use all features of the site without using a personal email address,
 [temp-mail](https://temp-mail.org/) can provide you with a disposable email address.
 
-## Introduction
+## Project introduction
 
 Retro Replay is a web-based e-commerce platform, powered by Django and Stripe.
 It operates on a B2C model, where customers can pay by card for one, or multiple
@@ -35,6 +35,74 @@ the front end.
 
 This application expands on my previous [full stack application](https://github.com/jts272/pp4-safe-hands-guitar-tech)
 with a complete SEO and marketing campaign, utilizing Facebook and Mailchimp.
+
+## Project context
+
+The objective of this project is to integrate the last 12 months' study of full
+stack software development to create a modern, intuitive and secure e-commerce
+application.
+
+This app uses the most up-to-date implementation of [Stripe](https://stripe.com/docs)
+address and payment elements. A lot of care was taken to study the API to integrate
+it with my knowledge of Django design patterns. Speaking of patterns, this is
+the payment flow used for Stripe payment integrations:
+
+### The Pattern
+
+![Stripe payment pattern](docs/images/stripe-payment-pattern.png)
+
+There is a lot of interaction between the front and back ends. Serious consideration
+must be taken regarding how data is passed around. It became clear that building
+`JSON` data structures is the way to go. This ties in with the use of custom
+[webhooks](https://stripe.com/docs/webhooks) to trigger certain actions from Stripe's
+response.
+
+Here is a general overview of how this pattern fits into the whole picture:
+
+1. An authenticated user browses the store, with clearly defined sections and
+   search functionality.
+2. They select the items they would like to purchase, are notified of the quantity
+   of items in the basket and are offered a link to proceed to the basket summary.
+3. The customer is shown live updates of their basket subtotals. A delivery incentive
+   value is calculated to encourage spending targets.
+4. At the checkout, the customer can fill in their address details with either the
+   assistance of the Google Maps API, or with an address pre-saved on their profile.
+5. A secure, validated card payment is taken. On success, the order and its
+   associated data is stored in the database.
+6. The customer is notified of the successful payment, the ability to view their
+   full order history in their profile page and are sent a confirmation email.
+
+This outlines some of the core functions of the application, which interact together
+to give an excellent customer experience.
+
+### AJAX
+
+Using a customer-first design philosophy, it was decided to use the technology to
+create a snappy, responsive app that reduces friction to provide a great online
+shopping experience. To this end, adding and removing items to and from the basket
+is asynchronous. This was achieved with using either jQuery or the Fetch API, in
+conjunction with JSON data and views.
+
+The end result of this is that the customer can perform their actions smoothly,
+whilst having the UI update to reflect the current state instantly.
+
+### Original design
+
+Ultimately, this app serves the needs of the client and his customers, whilst
+being a brilliant learning opportunity. There were many new concepts to explore
+to bring this vision to life, which was a great challenge. An original brand
+design was made, yet site interaction should feel familiar to users of online
+stores.
+
+The latest version of [Bootstrap 5](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
+was employed to scaffold out the site in a mobile-first manner. Users of all
+screen sizes will enjoy the site experience, without compromise.
+
+Aside from the code, much effort was placed in the business end of the equation.
+We will explore the techniques employed expand the client's reach as an e-commerce
+entity with a well-defined target market.
+
+---
 
 ## Agile methodologies
 
@@ -1289,8 +1357,20 @@ from my previous project.
 
 ## Acknowledgements
 
-- Code credit given in comments and docstrings
-- Any tutorials if required
-- Shoutouts to CI tutors, mentors, students past and present
-- Any repos that served as inspiration
-- Summary of year's learning
+I would like to give credit to the following:
+
+- The starting point for this project - the 2021 Django e-commerce store project
+  by [Very Academy](https://www.youtube.com/playlist?list=PLOLrQ9Pn6caxY4Q1U9RjO1bulQp5NDYS_)
+
+- My mentor Anthony for offering me sound guidance over that past year as I have
+  developed my portfolio.
+
+- The [Code Institute](https://codeinstitute.net/) Slack community for being a great
+  place to ask, learn and share!
+
+- My partner for her unyielding belief and support.
+
+I have achieved much in the last year and look forward to increasing my abilities
+by working in the industry. My next steps are to dig into Vue, Django Rest Framework
+and PHP. The experiences gained producing the five projects I made in the last
+year have been invaluable. I look forward to taking these skills to the next level.
