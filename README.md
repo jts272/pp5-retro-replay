@@ -114,6 +114,21 @@ Aside from the code, much effort was placed in the business end of the equation.
 We will explore the techniques employed expand the client's reach as an e-commerce
 entity with a well-defined target market.
 
+### Unique constraints
+
+Unlike a typical e-commerce store that has multiple given stock items that are
+readily replenished, each item sold in the store is unique. As each item is a
+single piece, the system had to be built from the ground up to accommodate for
+this.
+
+When an order goes through, any associated order items are flagged as sold. This
+affects how the product listing can be found. The homepage shows the four most
+recently added products to the store, which may include sold products. This creates
+a sense of urgency for first time visitors by giving the notion that stock is
+limited. All sold products can then be found in their own section. This keeps
+all site links easily accessible, without cluttering the customer's searches for
+available items.
+
 ---
 
 ## Agile methodologies
