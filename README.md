@@ -1,4 +1,4 @@
-# Retro Replay eCommerce web platform
+# Retro Replay e-commerce web platform
 
 ![Am I responsive mockup](docs/images/mockup.png)
 
@@ -18,8 +18,8 @@ Getting the most out of this web app requires a verified account. If you would
 like to use all features of the site without using a personal email address,
 [temp-mail](https://temp-mail.org/) can provide you with a disposable email address.
 
-To simulate making a payment on the store (you will not be charged), use one of
-the following codes:
+To simulate making a payment on the store (you will not be charged), please use
+one of the following codes:
 
 | Card number         | Triggers action          |
 | ------------------- | ------------------------ |
@@ -27,14 +27,14 @@ the following codes:
 | 4000 0025 0000 3155 | 3D Secure authentication |
 | 4000 0000 0000 0002 | Generic decline          |
 
-View the [full test card reference](https://stripe.com/docs/testing) for other
-methods.
+View the [full test card reference](https://stripe.com/docs/testing) by Stripe
+for other methods.
 
 ## Project introduction
 
 Retro Replay is a web-based e-commerce platform, powered by Django and Stripe.
-It operates on a B2C model, where customers can pay by card for one, or multiple
-items in the store. Items are added to their basket, followed by a secure
+It operates on a B2C model, where customers can pay by card for either one or
+multiple items in the store. Items are added to their basket, followed by a secure
 checkout page. The user is provided with an order confirmation email and they
 may view past orders on their profile page.
 
@@ -50,24 +50,26 @@ with a complete SEO and marketing campaign, utilizing Facebook and Mailchimp.
 
 ## Project context
 
-The objective of this project is to integrate the last 12 months' study of full
+The objective of this project is to apply the last 12 months' study of full
 stack software development to create a modern, intuitive and secure e-commerce
-application.
+application. This involves thorough planning, with good working knowledge of the
+technologies employed and the ability to solve problems gracefully.
 
 This app uses the most up-to-date implementation of [Stripe](https://stripe.com/docs)
 address and payment elements. A lot of care was taken to study the API to integrate
 it with my knowledge of Django design patterns. Speaking of patterns, this is
 the payment flow used for Stripe payment integrations:
 
-### The Pattern
+### Stripe payment pattern
 
 ![Stripe payment pattern](docs/images/stripe-payment-pattern.png)
 
 There is a lot of interaction between the front and back ends. Serious consideration
 must be taken regarding how data is passed around. It became clear that building
-`JSON` data structures is the way to go. This ties in with the use of custom
+`JSON` data structures was the best approach. This ties in with the use of custom
 [webhooks](https://stripe.com/docs/webhooks) to trigger certain actions from Stripe's
-response.
+response. The basket concept utilizes [Django sessions](https://docs.djangoproject.com/en/3.2/topics/http/sessions/)
+to handle its data.
 
 Here is a general overview of how this pattern fits into the whole picture:
 
@@ -77,15 +79,15 @@ Here is a general overview of how this pattern fits into the whole picture:
    of items in the basket and are offered a link to proceed to the basket summary.
 3. The customer is shown live updates of their basket subtotals. A delivery incentive
    value is calculated to encourage spending targets.
-4. At the checkout, the customer can fill in their address details with either the
-   assistance of the Google Maps API, or with an address pre-saved on their profile.
+4. At the checkout, the customer can fill in their address details with the assistance
+   of either the Google Maps API, or with an address pre-saved on their profile.
 5. A secure, validated card payment is taken. On success, the order and its
    associated data is stored in the database.
 6. The customer is notified of the successful payment, the ability to view their
    full order history in their profile page and are sent a confirmation email.
 
-This outlines some of the core functions of the application, which interact together
-to give an excellent customer experience.
+This outlines the core shopping loop of the application, as different site
+functions interact to give an excellent customer experience.
 
 ### AJAX
 
@@ -111,23 +113,27 @@ was employed to scaffold out the site in a mobile-first manner. Users of all
 screen sizes will enjoy the site experience, without compromise.
 
 Aside from the code, much effort was placed in the business end of the equation.
-We will explore the techniques employed expand the client's reach as an e-commerce
+We will explore the techniques employed to expand the client's reach as an e-commerce
 entity with a well-defined target market.
 
 ### Unique constraints
 
 Unlike a typical e-commerce store that has multiple given stock items that are
 readily replenished, each item sold in the store is unique. As each item is a
-single piece, the system had to be built from the ground up to accommodate for
+single unit, the system had to be built from the ground up to accommodate for
 this.
 
 When an order goes through, any associated order items are flagged as sold. This
 affects how the product listing can be found. The homepage shows the four most
 recently added products to the store, which may include sold products. This creates
 a sense of urgency for first time visitors by giving the notion that stock is
-limited. All sold products can then be found in their own section. This keeps
-all site links easily accessible, without cluttering the customer's searches for
-available items.
+limited. All sold products can then be found in their own dedicated section. This
+keeps all site links easily accessible, without cluttering the customer's searches
+for available items.
+
+In response to this unique requirement, each product's endpoint is generated from
+an automatically incrementing slug field. This creates a clear, semantic url for
+the product, whilst avoiding url clashes where products share the same name.
 
 ---
 
@@ -223,7 +229,7 @@ the user can focus on simply finding and purchasing their desired product.
 ### 4. Skeleton
 
 A mobile-first approach was taken as standard, which is also advantageous in the
-app's SEO efforts. Design was optimized from the resolution of 375x667 pixel and
+app's SEO efforts. Design was optimized up from the resolution of 375x667 pixels and
 tested all the way up to 2560x1440. Screens as small as 320px in width lose no
 functionality, however the burger menu icon is wrapped below the brand header.
 
@@ -233,7 +239,7 @@ franchise will instantly recognize. Combined with the product category and baske
 controls, this alone sets the tone as a place to purchase gaming related goods.
 
 An eye-catching hero image solidifies this notion with a vast array of the sorts
-of products that are solid. This is covered with SEO-rich keywords to drive the
+of products that are sold. This is covered with SEO-rich keywords to drive the
 point home.
 
 A selection of the newest products are shown. First-time visitors can get a feel
@@ -241,7 +247,7 @@ for the products sold, whilst repeat customers can quickly see what is new.
 
 A search bar is present on both the home page and product category list pages.
 This serves as a filter for the currently selected category, whilst the home page
-search bar functions as does the search in the 'All Products' category.
+search bar functions as if the customer searched for all available products.
 
 The typical list > detail view pattern is used for customers to find a product
 and easily add it to the basket.
@@ -527,7 +533,7 @@ product such as words found in the description, to give the customer relevant re
 ![Sold products list page](docs/images/features/sold-product-list.png)
 
 During development, a feature to allow searching for sold products was implemented,
-then reverted as it was predicted to not see much use and be quite distracting
+then reverted as it was predicted to not see much use and was quite distracting
 in terms of UX flow. However, this did become a must-have for the client in the
 later cycles of development so the ability to navigate to sold products was
 re-introduced in a far less intrusive and more logical way. The navigational
@@ -590,7 +596,8 @@ If the threshold is not met, the user is prompted on how much more they could sp
 to qualify for free delivery.
 
 When 'Remove' is clicked, all changes occur instantly thanks to the AJAX implementation.
-All calculations are performed to correctly display the new figure.
+All calculations are performed to correctly display the new figure. This is similar
+to deleting an item from the basket at Amazon, where the response is instant.
 
 A button on the bottom left links back to the full product list, should the user
 want to add more items before checking out.
@@ -651,7 +658,7 @@ Order details are confirmed in an email sent after payment succeeds.
 
 ![Profile management page](docs/images/features/profile-management.png)
 
-Profile management serves as the dashboard for regular user's CRUD functionality.
+Profile management serves as the dashboard for regular users' CRUD functionality.
 
 ### Order history list page
 
@@ -718,7 +725,7 @@ by the admin user trying to access the address edit page of another user.
 ![Favicon](static/favicon.ico)
 
 [favicon.io](https://favicon.io/) was used to generate a favicon for the site,
-using an abbreviated version of the brand for lettering and matching colours.
+using an abbreviated version of the brand for lettering with matching colours.
 
 ### Feedback system
 
@@ -799,7 +806,7 @@ search index.
 
 Appropriate use of meta tags were employed in the head element, such as a description,
 keywords and dynamic page titles across the site. Outgoing links, such as those
-to Facebook were given an attribute to signify the the page is opened in a new
+to Facebook were given an attribute to signify that the page is opened in a new
 context and is not relevant to its origin as far as search indexing is concerned.
 
 An XML sitemap was generated at [XML-Sitemaps.com](https://www.xml-sitemaps.com/)
@@ -819,9 +826,9 @@ big boost in terms of the site's relevancy on the web.
 Database schema diagrams were produced with [graph_models](https://django-extensions.readthedocs.io/en/latest/graph_models.html)
 
 The following graphs outline the entire relational database system of the application.
-First is the data model in totality, with a breakdown into smaller, related fragments.
-Arrow colour designates the cascade effect when a model instance is deleted, with
-red relating to deletion and yellow to setting null.
+First is the data model in totality, followed by a breakdown into smaller, related
+fragments. Arrow colour designates the cascade effect when a model instance is
+deleted, with red relating to deletion and yellow to setting null.
 
 ### Complete schema
 
@@ -944,7 +951,7 @@ rate.
 
 ![Integration and manual tests sheet](docs/images/tests/int-man-tests.png)
 
-You may the [Google Sheet](https://docs.google.com/spreadsheets/d/1Wt_Kp37rsQeYtojQci2e1f2Fy2aYcI4K9iavl_9b_TA/edit?usp=sharing) in full for a closer look.
+You may view the [Google Sheet](https://docs.google.com/spreadsheets/d/1Wt_Kp37rsQeYtojQci2e1f2Fy2aYcI4K9iavl_9b_TA/edit?usp=sharing) in full for a closer look.
 
 A [PDF](docs/pp5-man-int-tests.pdf) version of the integration and manual tests
 displayed above is also available.
@@ -977,7 +984,7 @@ That being said, the following design rules were adhered to:
 | Burger icon does not wrap below brand logo at 375px width              | :white_check_mark: |
 | Search bar placeholder text is always fully visible                    | :white_check_mark: |
 | Social link tap icons are appropriately sized                          | :white_check_mark: |
-| Product list scale from two columns to four at medium breakpoint       | :white_check_mark: |
+| Product list scales from two columns to four at medium breakpoint      | :white_check_mark: |
 | Hero image cover text div never vertically breaks out of the container | :white_check_mark: |
 | Hero image cover text size is increased at medium breakpoint           | :white_check_mark: |
 
@@ -986,7 +993,7 @@ That being said, the following design rules were adhered to:
 ## Validation
 
 To ensure a fully robust codebase, end-to-end validation was undertaken on all
-aspects of the code. They are broken down by language or technology below
+aspects of the code. They are broken down by language or technology below.
 
 ### HTML validation
 
@@ -1069,7 +1076,7 @@ Tool: [JSHint](https://jshint.com/)
 
 As these scripts are being validated in isolation, there may be instances where
 the linter complains of undefined variables. This is expected when examining
-these scripts one-by-one and is not an issue in the context of the real DOM.
+these scripts one-by-one and is not an issue in the real DOM context.
 
 - `add-to-basket.js`
 
@@ -1107,16 +1114,14 @@ There are an extensive amount of Python modules present in this application. The
 Linting results can be found [in this folder.](docs/images/validation/py/) Images
 are named like so for easy reference:
 
-```py
-<app_name>-<module_name>.png
-```
+`<app_name>-<module_name>.png`
 
 ### WAVE accessibility validation
 
 Tool: [WAVE](https://wave.webaim.org/)
 
 A [WAVE](https://wave.webaim.org/) extension was used to check for contrast errors,
-or to highlight any non-accessibility compliant elements. Here is the result for
+or to highlight any accessibility non-compliant elements. Here is the result for
 the home page:
 
 ![WAVE home page](docs/images/validation/wave/home.png)
@@ -1152,8 +1157,8 @@ can be verified using the DevTools (F12) of Chromium-based browsers.
 Bugs for this project were collected into a dedicated milestone that can
 [be viewed here.](https://github.com/jts272/pp5-retro-replay/milestone/1?closed=1)
 
-All bugs documented during development have been solved. I would like to note two
-potential limitations found, however.
+All bugs documented during development have been solved. I would like to note a
+few potential limitations found, however.
 
 If the user navigates with the browser back button after adding an item to the
 basket, the basket quantity returns to the state it was at on the previous page.
@@ -1171,6 +1176,20 @@ as it looks like the tracking protection is serving its purpose. An FAQ has been
 made on the site offering a solution, should any user encounter admittedly edge
 case.
 
+In the FAQ form, the answer field uses a Summernote widget. The regex validator
+needs to take into account the opening and closing paragraph tags, which are
+automatically inserted. Due to the nature of how the element displays its content,
+A user could overcome the character limit check by simply starting a few lines
+lower in the WYSIWYG editor, as this will create HTML elements that count towards
+the number of characters the validator is looking for. It is unlikely that the
+admin would want to present their FAQ answer in this way, however this limitation
+must be noted. I believe there is much more value in using this widget over a
+standard HTML text field that offers no text formatting or attachment support.
+
+On a final note, image thumbnails in the horizontal cards of the order detail
+page may report to the browser as having an incorrect aspect ratio. They do display
+as intended however, as a quick visual reference for the ordered item.
+
 ---
 
 ## Deployment
@@ -1185,10 +1204,12 @@ This application uses the following platforms for deployment:
 To follow along to this deployment guide, you will need accounts on the above
 platforms, some of which may require a payment card. It is recommended to use
 appropriate naming conventions for the resources you create, it is easy to
-remember which parts link together. _This guide assumes that no secrets have been
+remember which parts link together.
+
+_This guide assumes that no secrets have been
 pushed to version control._ For example, you have maintained an untracked `env.py`
 file for local environment variables such as the Django `SECRET_KEY`. Switch any
-values in `<>` with your equivalent variable.
+values in `<angled_brackets>` with your equivalent variable.
 
 Here is an outline of the steps taken to bring this app to the web:
 
@@ -1201,7 +1222,7 @@ Here is an outline of the steps taken to bring this app to the web:
    pip install dj_database_url==0.5.0 psycopg2-binary gunicorn
    ```
 
-4. Freeze your requirements
+4. Freeze your requirements:
 
    ```py
    pip freeze > requirements.txt
@@ -1400,4 +1421,5 @@ I would like to give credit to the following:
 I have achieved much in the last year and look forward to increasing my abilities
 by working in the industry. My next steps are to dig into Vue, Django Rest Framework
 and PHP. The experiences gained producing the five projects I made in the last
-year have been invaluable. I look forward to taking these skills to the next level.
+year have been invaluable. I look forward to taking these skills to the next level
+in the future.
