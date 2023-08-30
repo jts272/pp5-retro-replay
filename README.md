@@ -18,6 +18,18 @@ Getting the most out of this web app requires a verified account. If you would
 like to use all features of the site without using a personal email address,
 [temp-mail](https://temp-mail.org/) can provide you with a disposable email address.
 
+To simulate making a payment on the store (you will not be charged), use one of
+the following codes:
+
+| Card number         | Triggers action          |
+| ------------------- | ------------------------ |
+| 4242 4242 4242 4242 | Visa success             |
+| 4000 0025 0000 3155 | 3D Secure authentication |
+| 4000 0000 0000 0002 | Generic decline          |
+
+View the [full test card reference](https://stripe.com/docs/testing) for other
+methods.
+
 ## Project introduction
 
 Retro Replay is a web-based e-commerce platform, powered by Django and Stripe.
